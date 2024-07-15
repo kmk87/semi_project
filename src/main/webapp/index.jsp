@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
 <body>
-
+   <section>
+   <%@ include file="views/include/header.jsp" %>
+   <%@ include file="views/include/nav.jsp" %>
+      <div id="section_wrap">
+         <div class="word">
+            <h3>나혼자산다</h3>
+         </div>
+      </div>
+   </section>
 </body>
 </html>
