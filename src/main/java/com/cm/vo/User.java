@@ -18,7 +18,7 @@ public class User {
 	
 	public User() {
 		super();
-		// 주석..
+		
 	}
 
 
