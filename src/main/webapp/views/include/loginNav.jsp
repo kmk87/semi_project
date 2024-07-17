@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href='../../resources/css/include/common.css' rel="stylesheet" type="text/css">
-<link href='../../resources/css/include/nav.css' rel="stylesheet" type="text/css">
+<link href='../../resources/css/user/style.css' rel="stylesheet" type="text/css">
 
 <nav>
     <header>
         <div class="container">
             <nav class="main-menu d-flex navbar navbar-expand-lg">
                 <div class="d-flex d-lg-none align-items-end mt-3">
+                	<div class="container">
+           		 	<div class="logo">
+                	<img src="${pageContext.request.contextPath}/resources/images/집.png" alt="Logo">
+                	<span>Share Life</span>
+           			 </div>
                     <ul class="d-flex justify-content-end list-unstyled m-0">
                         <li>
                             <a href="account.html" class="mx-3">
@@ -118,16 +123,35 @@
         </div>
     </header>
     <div id="nav_wrap">
-        <div class="menu">
-            <ul>
-                <li>
-                    <a href="/user/login">로그인</a>
-                </li>
-                <li>
-                    <a href="/user/create">회원가입</a>
-                </li>
-            </ul>
-        </div>
+        <c:choose>
+            <c:when test="${not empty sessionScope.user}">
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <a href="/board/create">게시글 등록</a>
+                        </li>
+                        <li>
+                            <a href="/user/logout">로그아웃</a>
+                        </li>
+                        <li>
+                            <a href="#">계정수정</a>
+                        </li>
+                    </ul>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <a href="/user/login">로그인</a>
+                        </li>
+                        <li>
+                            <a href="/user/create">회원가입</a>
+                        </li>
+                    </ul>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <div class="search">
             <form action="/board/list" name="search_board_form" method="get">
                 <input type="text" name="board_title" placeholder="검색하고자하는 게시글의 제목을 입력하세요.">

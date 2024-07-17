@@ -15,4 +15,26 @@ public class UserService {
 		close(conn);
 		return result;
 	}
+	
+	public int check(String id) {
+		Connection conn = getConnection();
+		int result = new UserDao().check(id,conn);
+		close(conn);
+		return result;
+	}
+	
+	public int checkNick(String nick) {
+		Connection conn = getConnection();
+		int result = new UserDao().checkNick(nick,conn);
+		close(conn);
+		return result;
+	}
+	
+	
+	public User getUserInfo(String id,String pw) {
+		Connection conn = getConnection();
+		User result = new UserDao().getUserInfo(id,pw,conn);
+		close(conn);
+		return result;
+	}
 }

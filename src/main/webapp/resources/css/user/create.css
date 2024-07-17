@@ -1,42 +1,85 @@
 @charset "UTF-8";
+body {
+    font-family: 'Jua', sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 section {
-	margin: 30px 0;
+    margin: 30px 0;
 }
+
 #section_wrap {
-	width: 1200px;
-	margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-#section_wrap .word {
-	width: 1024px;
-	margin: 0 auto;
-	text-align: center;
-}	
-#section_wrap .create_account_form {
-	width: 1024px;
-	margin: 0 auto;
-	text-align: center;
+
+.word {
+    text-align: center;
+    margin: 0 auto 30px;
 }
-#section_wrap .create_account_form input {
-	width: 300px;
-	margin: 3px;
+
+.create_account_form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 1024px;
+    margin: 0 auto;
 }
-#section_wrap .create_account_form select {
-	width: 322px;
-	margin: 3px;
+
+.create_account_form input,
+.create_account_form select {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
 }
-#section_wrap .create_account_form input[type='button'],
-#section_wrap .create_account_form input[type='reset'] {
-	width: 156px;
+
+.create_account_form input[type="button"],
+.create_account_form input[type="reset"] {
+    width: 156px;
 }
-#section_wrap .login {
-	width: 1024px;
-	margin: 50px auto;
-	text-align: center;
+
+.login {
+    text-align: center;
+    margin: 50px auto;
 }
-#section_wrap .login a {
-	display: inline-block;
-	width: 200px;
-	padding: 10px 0;
-	border-top: 1px solid #E1E1E1;
-	border-bottom: 1px solid #E1E1E1;
+
+.login a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 0;
+    border-top: 1px solid #E1E1E1;
+    border-bottom: 1px solid #E1E1E1;
+    text-decoration: none;
+    color: #333333;
 }

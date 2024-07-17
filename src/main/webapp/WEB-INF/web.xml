@@ -9,4 +9,11 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-</web-app>
+ <!--  <listener>
+  	<listener-class>com.cm.common.r</listener-class>
+  </listener>
+  <filter>
+  	<filter-name>autoLogin</filter-name>
+  	<filter-class>com.cm.common.AutoLogFilter</filter-class>
+  </filter>-->
+</web-app> 

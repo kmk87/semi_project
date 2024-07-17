@@ -23,8 +23,16 @@
             </div>
             <div class="header-links">
                 <a href="${pageContext.request.contextPath}/">홈</a>
-                <a href="${pageContext.request.contextPath}/user/login">로그인</a>
-                <a href="${pageContext.request.contextPath}/user/create">회원가입</a>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <a href="${pageContext.request.contextPath}/user/userMyPage">마이페이지</a>
+                        <a href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/user/login">로그인</a>
+                        <a href="${pageContext.request.contextPath}/user/create">회원가입</a>
+                    </c:otherwise>
+                </c:choose>
                 <a href="${pageContext.request.contextPath}/customerService">고객센터</a>
             </div>
         </div>
