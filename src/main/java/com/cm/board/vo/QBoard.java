@@ -14,13 +14,14 @@ public class QBoard extends Paging{
 	private LocalDateTime postRegDate;
 	private LocalDateTime postModDate;
 	private String postReleaseYn;
+	private int likeCount;
 	
 	public QBoard() {
 		super();
 	}
 
 	public QBoard(int postNo, int boardTypeId, int localGuNo, int userNo, String postTitle, String postText,
-			LocalDateTime postRegDate, LocalDateTime postModDate, String postReleaseYn) {
+			LocalDateTime postRegDate, LocalDateTime postModDate, String postReleaseYn, int likeCount) {
 		super();
 		this.postNo = postNo;
 		this.boardTypeId = boardTypeId;
@@ -31,6 +32,7 @@ public class QBoard extends Paging{
 		this.postRegDate = postRegDate;
 		this.postModDate = postModDate;
 		this.postReleaseYn = postReleaseYn;
+		this.likeCount = likeCount;
 	}
 
 	public int getPostNo() {
@@ -105,12 +107,15 @@ public class QBoard extends Paging{
 		this.postReleaseYn = postReleaseYn;
 	}
 
-	@Override
-	public String toString() {
-		return "QBoard [postNo=" + postNo + ", boardTypeId=" + boardTypeId + ", localGuNo=" + localGuNo + ", userNo="
-				+ userNo + ", postTitle=" + postTitle + ", postText=" + postText + ", postRegDate=" + postRegDate
-				+ ", postModDate=" + postModDate + ", postReleaseYn=" + postReleaseYn + "]";
+	public int getLikeCount() {
+		return likeCount;
 	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+	
+	
 	
 	
 }

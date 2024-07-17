@@ -25,7 +25,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
 <meta charset="UTF-8">
 </head>
 <body>
@@ -34,7 +33,7 @@
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a href="index.html" style="display: flex; align-items: center;">
+                    <a href="index.jsp" style="display: flex; align-items: center;">
                         <img src="images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
                         <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
                     </a>
@@ -114,7 +113,7 @@
                     </style>
                     <ul class="dropdown-menu" aria-labelledby="pages">
                         <li>
-                            <a href="about.html" class="dropdown-item">
+                            <a href="/views/qboard/create.jsp" class="dropdown-item">
                                 <img class="dropdown_icon" src="images/질문.png">
                                 질문 게시글
                             </a>
@@ -140,10 +139,10 @@
                     </style>
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link active">Home</a>
+                            <a href="index.jsp" class="nav-link active">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="shop.html" class="nav-link">질문</a>
+                            <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="nav-item">
                             <a href="blog.html" class="nav-link">판매/나눔</a>
@@ -352,10 +351,10 @@
                     <h3>Quick Links</h3>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="index.jsp" class="nav-link">Home</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">질문</a>
+                            <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="nav-link">판매/나눔</a>

@@ -43,4 +43,11 @@ public class QBoardService {
         close(conn);
         return result;
     }
+    
+//    public int detailBoard(QBoard qb) {
+//    	Connection conn = getConnection();
+//    	int result = new QBoardDao().detailBoard(qb,conn);
+//    	close(conn);
+//    	return result;
+//    }
 }
