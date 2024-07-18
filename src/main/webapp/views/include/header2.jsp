@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <link href="../../resources/css/user/style.css" rel="stylesheet">
+  <link href="../resources/css/include/header.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +23,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="css/vendor.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/vendor.css">
+<link rel="stylesheet" type="text/css" href="style.css"> -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,6 @@
   <header>
     <div class="container py-2">
       <div class="row py-4 pb-0 pb-sm-4 align-items-center">
-  
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
             <a href="index.html" style="display: flex; align-items: center;">
@@ -48,7 +47,7 @@
             </a>
           </div>
         </div>
-
+	  </div>
         <div style="padding-left: 50px;" class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
           <div class="search-bar border rounded-2 px-3 border-dark-subtle">
             <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
@@ -62,43 +61,13 @@
           </div>
         </div>
         
-        <div id="nav_wrap">
-        <%-- <c:choose>
-            <c:when test="${not empty sessionScope.user}">
-                <div class="menu">
-                    <ul>
-                        <li>
-                            <a href="/board/create">게시글 등록</a>
-                        </li>
-                        <li>
-                            <a href="/user/logout">로그아웃</a>
-                        </li>
-                        <li>
-                            <a href="#">계정수정</a>
-                        </li>
-                    </ul>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <div class="menu">
-                    <ul>
-                        <li>
-                            <a href="/user/login">로그인</a>
-                        </li>
-                        <li>
-                            <a href="/user/create">회원가입</a>
-                        </li>
-                    </ul>
-                </div>
-            </c:otherwise>
-        </c:choose>
- --%>
+        <div id="nav_wrap" class="col-sm-2">
 		<%
 			User user = (User)session.getAttribute("user");
 			if(user == null){
 		%>
 
-     	<div class="menu">
+     	<div class="menu d-flex align-items-center justify-content-end">
      		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
      			<div class="support-box text-end d-none d-xl-block">
      			 	<a href="/user/login">
@@ -118,13 +87,13 @@
      	</div>
      	<% } else { %>
      	<!-- <div class="menu"> -->
-     		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
+     		<div class="menu d-flex align-items-center justify-content-end"> 
      			<div class="support-box text-end d-none d-xl-block"> 
      				<a href="/user/userMyPage">
      				<span class="fs-6 secondary-font text-muted">마이페이지</span>
      				</a>
      			</div>
-     				<div class="support-box text-end d-none d-xl-block"> 
+     			<div class="support-box text-end d-none d-xl-block"> 
      				<a href="/user/logout">
      				<span class="fs-6 secondary-font text-muted">로그아웃</span> 
      				</a>
@@ -133,6 +102,8 @@
      	<!-- </div> -->
      	<% } %>
      	</div>
+     </div>
+     </div>
     <div class="container-fluid">
       <hr class="m-0">
     </div>

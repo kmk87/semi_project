@@ -63,3 +63,23 @@
 .header-links a:hover {
     text-decoration: underline;
 }
+
+.navbar-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-nav a {
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar-nav a:hover {
+    color: #FF6347;
+}
+
+.navbar-nav .active {
+    font-weight: bold;
+    color: #FF6347;
+}
