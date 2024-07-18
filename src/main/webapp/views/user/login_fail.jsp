@@ -8,12 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link href="../../resources/css/user/login_fail.css" rel="stylesheet" type="text./css">
 </head>
 <body>
-	<%@ include file ="../include/header.jsp" %>
-	<%@ include file ="../include/loginHeader.jsp" %>
+	<%-- <%@ include file ="../include/header.jsp" %>
+	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %>
 	<%@ include file="../include/loginNav.jsp" %> --%>
+	<%@ include file ="../include/new_header.jsp" %>
 	<section>
 		<div id="secting_wrap">
 			<div class="word">

@@ -26,7 +26,7 @@ public class UserDao {
 			pstmt.setString(1, u.getUser_id());
 			pstmt.setString(2, u.getUser_pw());
 			pstmt.setString(3, u.getUser_email());
-			pstmt.setString(4, "마포구");
+			pstmt.setString(4, u.getUser_address());
 			pstmt.setString(5, u.getUser_nick());
 			
 			result=pstmt.executeUpdate();

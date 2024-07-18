@@ -12,10 +12,11 @@
 
 </head>
 <body>
-	<%@ include file ="../include/header2.jsp" %>
-	<%@ include file ="../include/loginHeader.jsp" %>
+	<%-- <%@ include file ="../include/header2.jsp" %>
+	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
+	<%@ include file ="../include/new_header.jsp" %>
 	<section>
 		<div id="section_wrap">
 			<div class="word">

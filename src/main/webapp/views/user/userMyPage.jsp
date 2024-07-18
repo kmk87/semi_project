@@ -11,6 +11,7 @@
 </head>
 <body>
 <%-- <%@ include file="/views/include/header2.jsp" %> --%>
+<%@ include file ="../include/new_header.jsp" %>
   <!-- <header>
     <div class="container py-2">
       <div class="row py-4 pb-0 pb-sm-4 align-items-center">

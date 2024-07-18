@@ -12,10 +12,11 @@
 <script src="../resources/jquery-3.7.1.js"></script>
 </head>
 <body>
-	<%@ include file ="../include/header.jsp" %>
-	<%@ include file ="../include/loginHeader.jsp" %>
+	<%-- <%@ include file ="../include/header.jsp" %>
+	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
+	<%-- <%@ include file ="../include/new_header.jsp" %> --%>
 	<section>
 		<div id="section_wrap">
 			<div class="word">
@@ -250,8 +251,4 @@ window.onload = function(){
 
 
 
-<!-- 현재 문제점 -->
-<!-- 아이디 입력할 때 중복확인 버튼 활성화 안됌 -> 입력하면 버튼 활성화되게 해놓음 -->
-<!-- 중복확인이 되는지 확인이 안되는 상황... -->
-<!-- 입력하지 않은 내용이 있음에도 회원 가입이 완료됨 -->
 

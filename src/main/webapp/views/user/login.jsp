@@ -19,7 +19,7 @@
 	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
-	
+	<%-- <%@ include file ="../include/new_header.jsp" %> --%>
 	
 	<section>
 		<div class="login-container" id="section_wrap">
