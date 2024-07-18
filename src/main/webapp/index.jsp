@@ -6,17 +6,18 @@
 
 <meta charset="UTF-8">
 <title>Share_Life</title>
-<link href="resources/css/user/style.css">
+<link href="resources/css/user/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body> 
-	<%@ include file="views/include/hearder2.jsp" %>
+	<%@ include file="views/include/header2.jsp" %>
  
   <div class="swiper-container container my-3 py-5 slider1">
     <h5 style="font-size:40px;" class="display-3 fw-normal">
       <img src="resources/images/fire.png" style="padding-bottom: 12px;">
       인기 게시글</h5>
     <div class="swiper-wrapper my-5">
-        <div class="swiper-slide col text-center card" >카드 1</div>
+        <div class="swiper-slide col text-center card">카드 1</div>
         <div class="swiper-slide col text-center card">카드 2</div>
         <div class="swiper-slide col text-center card">카드 3</div>
         <div class="swiper-slide col text-center card">카드 4</div>
@@ -38,7 +39,7 @@
     <img src="resources/images/pink_fire.png" style="padding-bottom: 12px;">
     인기 모임</h5>
   	<div class="swiper-wrapper my-5">
-      <div class="swiper-slide col text-center card" >카드 1</div>
+      <div class="swiper-slide col text-center card">카드 1</div>
       <div class="swiper-slide col text-center card">카드 2</div>
       <div class="swiper-slide col text-center card">카드 3</div>
       <div class="swiper-slide col text-center card">카드 4</div>
@@ -52,31 +53,13 @@
   <!-- 추가적으로 네비게이션 버튼 등을 넣을 수 있는 부분 -->
 
   
-</div>
+
 <div class="swiper-button-prev swiper-button-prev2"></div>
 <div class="swiper-button-next swiper-button-next2"></div>
+</div>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script>
-  var swiper = new Swiper('.slider1', {
-      slidesPerView: 5,  // 한 번에 보여질 슬라이드 개수
-      spaceBetween: 20,  // 슬라이드 간의 간격
-      loop: true,        // 무한 루프 여부 (선택사항)
-      navigation: {
-          nextEl: '.swiper-button-next1',  // 다음 버튼 클래스
-          prevEl: '.swiper-button-prev1'   // 이전 버튼 클래스
-      }
-  });
-  var swiper = new Swiper('.slider2', {
-      slidesPerView: 5,  // 한 번에 보여질 슬라이드 개수
-      spaceBetween: 20,  // 슬라이드 간의 간격
-      loop: true,        // 무한 루프 여부 (선택사항)
-      navigation: {
-          nextEl: '.swiper-button-next2',  // 다음 버튼 클래스
-          prevEl: '.swiper-button-prev2'   // 이전 버튼 클래스
-      }
-  });
   
  
 
@@ -128,16 +111,16 @@
             <h3>Quick Links</h3>
             <ul class="menu-list list-unstyled">
               <li class="menu-item">
-                <a href="#" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">질문</a>
+                <a href="board/question" class="nav-link">질문</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">판매/나눔</a>
+                <a href="board/shop" class="nav-link">판매/나눔</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">번개모임</a>
+                <a href="board/flashmob" class="nav-link">번개모임</a>
               </li>
             </ul>
           </div>
@@ -198,6 +181,27 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+	<script>
+        var swiper1 = new Swiper('.slider1', {
+            slidesPerView: 4,  // 한 번에 보여질 슬라이드 개수
+            spaceBetween: 10,  // 슬라이드 간의 간격
+            loop: true,        // 무한 루프 여부 (선택사항)
+            navigation: {
+                nextEl: '.swiper-button-next1',  // 다음 버튼 클래스
+                prevEl: '.swiper-button-prev1'   // 이전 버튼 클래스
+            }
+        });
+        var swiper2 = new Swiper('.slider2', {
+            slidesPerView: 4,  // 한 번에 보여질 슬라이드 개수
+            spaceBetween: 10,  // 슬라이드 간의 간격
+            loop: true,        // 무한 루프 여부 (선택사항)
+            navigation: {
+                nextEl: '.swiper-button-next2',  // 다음 버튼 클래스
+                prevEl: '.swiper-button-prev2'   // 이전 버튼 클래스
+            }
+        });
+    </script>
+
 </body>
 
 </html>

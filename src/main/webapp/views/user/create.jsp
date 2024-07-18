@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link href="../../resources/css/user/create.css" rel="stylesheet">
+<script src="../resources/jquery-3.7.1.js"></script>
 </head>
 <body>
 	<%@ include file ="../include/header.jsp" %>
@@ -32,15 +33,15 @@
 					<button type="button" onclick="idCheck();" id="idBoxBottomRight" disabled>중복확인</button>
 					<div id="idCheckBox"></div>
 					<!-- 아이디 중복 체크 여부  -->
-					<input type="hidden" name="idDuplication" value="idUncheck"/>
-					<div id="idCheckBox"></div><br>
+					<!-- <input type="hidden" name="idDuplication" value="idUncheck"/>
+					<div id="idCheckBox"></div><br> -->
 					<label for="user_pw">비밀번호</label>
 					<input type="password" name="user_pw" id="user_pw" placeholder="비밀번호"> <br>
 					<label for="user_pw_check">비밀번호 확인</label>
 					<input type="password" name="user_pw_check" id="user_pw_check" placeholder="비밀번호 확인"> <br>
 					<label for="user_nick">닉네임</label>
-					<input type="text" id="user_nick" >
-					<button onclick="nickCheck();" id="nickBoxBottomRight" disabled>중복확인</button>
+					<input type="text" id="user_nick" placeholder="2글자이상 입력해주세요." >
+					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" disabled>중복확인</button>
 					<div id="nickCheckBox"></div><br><br>
 					<label for="user_email">이메일</label>
 					<input type="email" name="user_email" id="user_email"><br>
@@ -64,29 +65,41 @@
 	<script>
 	
 	const contextPath = '<%= request.getContextPath() %>';
+	
+	let idChecked = false;
+	let nickChecked =
 		
 	// 아이디, 닉네임 중복확인 버튼관련,사용자가 입력을 환료한 후에 버튼 활성화
 	document.getElementById("user_id").addEventListener("input", function() {
 	    document.getElementById("idBoxBottomRight").disabled = this.value.length < 6 || this.value.length > 10;
+	    idChecked = false;
 	});
 
 	document.getElementById("user_nick").addEventListener("input", function() {
 	    document.getElementById("nickBoxBottomRight").disabled = this.value.length < 2;
+	    nickChecked = false;
 	});
 		
 	// 아이디 중복확인
-		document.getElementById("idBoxBottomRight").addEventListener("click", function() {
+	document.getElementById("idBoxBottomRight").addEventListener("click", function() {
     const mid = document.getElementById("user_id").value;
+    console.log(mid);
     $.ajax({
         type: 'GET',
-        url: contextPath + '/IdcheckServlet?user_id=' + mid,
+        url : contextPath + '/IdcheckServlet?user_id=' + mid,
+        <%-- url: '<%=request.getContextPath()%>/IdcheckServlet',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        dataType: 'JSON',
+        data: {"text" : text,"user":user},	 --%>
         success: function(result){
             if(result == 1){
                 $('#idCheckBox').text("사용가능한 아이디입니다.");
                 $('#idCheckBox').css("color","blue");
+                idChecked = true;
             } else {
                 $('#idCheckBox').text("이미 사용중인 아이디입니다.");
                 $('#idCheckBox').css("color","red");
+                idChecked = false;
             }
         },
         error: function(request, status, error){
@@ -110,12 +123,14 @@
 				url : contextPath + '/NickcheckServlet?user_nick=' + mnick,
 				success : function(result){
 					if(result == 1){
-						$('#nickCheckBox').text("사용가능한 아이디입니다.");
+						$('#nickCheckBox').text("사용가능한 닉네임입니다.");
 						$('#nickCheckBox').css("color","blue");
+						nickChecked = true;
 					
 					}else {
-						$('#nickCheckBox').text("이미 사용중인 아이디입니다.");
+						$('#nickCheckBox').text("이미 사용중인 닉네임입니다.");
 						$('#nickCheckBox').css("color","red");
+						nickChecked = true;
 					}
 				},
 				error : function(request, status, error){
@@ -127,6 +142,40 @@
 			
 				});	
 			});
+	
+		/* function idCheckPlus(){
+			let userId = $("#uer_id").val();
+			
+			if(userId == ''){
+					alert("ID를 입력하세요");
+					return;
+			}
+			
+			$.ajax({
+				type: "post",
+				async: true;
+				url: ,
+				dataType: "text",
+				data: { id: userId},
+				success: function(data,textStatus){
+					if(data == 'usable'){
+						$("#idCheckBox").text("사용할 수 있는 ID입니다.");
+						$('#idCheckBox').css("color","blue");
+						
+						
+					}else{
+						$$("#idCheckBox").text("사용할 수 없는 ID입니다.");
+						$('#idCheckBox').css("color","red");
+					}
+				},
+				error:function(data,textStatus){
+					alert("에러가 발생했습니다.";)
+				}
+				
+				
+				
+			})
+		} */
 		
 		
 		function createUserForm(){
@@ -165,9 +214,15 @@
 				alert("인증번호을 입력하세요.");
 				form.email_check.focus();
 				
-			}else if(!form.user_address.value){
+			} else if(!form.user_address.value){
 		        alert("주소를 입력하세요.");
 		        form.user_address.focus();
+		    } else if(!idChecked){
+		        alert("아이디 중복 검사를 완료하세요.");
+		        form.user_id.focus();
+		    } else if(!nickChecked){
+		        alert("닉네임 중복 검사를 완료하세요.");
+		        form.user_nick.focus();
 		    } else {
 				form.submit();
 			}

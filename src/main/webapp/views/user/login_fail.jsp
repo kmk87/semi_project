@@ -12,8 +12,8 @@
 <body>
 	<%@ include file ="../include/header.jsp" %>
 	<%@ include file ="../include/loginHeader.jsp" %>
-	<%@ include file="../include/nav.jsp" %>
-	<%@ include file="../include/loginNav.jsp" %>
+	<%-- <%@ include file="../include/nav.jsp" %>
+	<%@ include file="../include/loginNav.jsp" %> --%>
 	<section>
 		<div id="secting_wrap">
 			<div class="word">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="/views/include/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 </head>
 <body>
-	<%@ include file ="../include/header.jsp" %>
-	<%@ include file ="../include/loginHeader.jsp" %>
+	<%-- <%@ include file ="../include/header.jsp" %>
+	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
 	
@@ -45,9 +45,10 @@
 				</form>
 			</div>
 			<div class="find_id_create_account">
-				<a href="#">아이디 찾기</a>
+				<a href="/user/findIdPass">아이디 찾기</a>
 				<a href="#">비밀번호 찾기</a>
-				<a href="<c:url value='user/create'/>">회원 가입</a>
+				<a href="/user/create">회원 가입</a>
+				<%-- <a href="<c:url value='user/create'/>">회원 가입</a> --%>
 			</div>
 		</div>
 	

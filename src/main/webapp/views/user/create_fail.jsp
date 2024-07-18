@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<%@ include file ="../include/header.jsp" %>
+	<%@ include file ="../include/header2.jsp" %>
 	<%@ include file ="../include/loginHeader.jsp" %>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>

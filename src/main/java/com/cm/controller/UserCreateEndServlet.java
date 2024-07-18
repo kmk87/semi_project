@@ -30,12 +30,32 @@ public class UserCreateEndServlet extends HttpServlet {
 		String user_address = request.getParameter("user_address");
 		String user_nick = request.getParameter("user_nick");
 		
+		UserService userService = new UserService();
+        int idCheckResult = userService.check(user_id);
+        int nickCheckResult = userService.checkNick(user_nick);
+
+        if (idCheckResult != 1) {
+            request.setAttribute("errorMessage", "아이디 중복 확인을 완료해주세요.");
+            RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
+            view.forward(request, response);
+            return;
+        }
+
+        if (nickCheckResult != 1) {
+            request.setAttribute("errorMessage", "닉네임 중복 확인을 완료해주세요.");
+            RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
+            view.forward(request, response);
+            return;
+        }
+		
 		User u = new User();
 		u.setUser_id(user_id);
 		u.setUser_pw(user_pw);
 		u.setUser_email(user_email);
 		u.setUser_address(user_address);
 		u.setUser_nick(user_nick);
+		
+		
 		
 		int result = new UserService().createUser(u);
 		

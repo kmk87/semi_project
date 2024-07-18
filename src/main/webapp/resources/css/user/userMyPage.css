@@ -1,133 +1,274 @@
 @charset "UTF-8";
+/* 상단바 스타일 */
+header {
+  position: fixed; /* 상단에 고정 */
+  top: 0; /* 화면 맨 위에 위치 */
+  width: 100%; /* 전체 너비를 차지 */
+  background-color: #ffffff; /* 배경색 */
+  z-index: 2000; /* 다른 요소 위에 표시 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Jua', sans-serif;
-    margin: 0;
-    background-color: #f0f0f0;
+  font-family: 'Jua', sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
+  padding-top: 80px; /* 헤더 공간 확보 */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Jua';
+  color: var(--bs-body-color);
+  font-weight: 400;
+  text-transform: capitalize;
 }
 
 .container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  display: flex;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .user-nav {
-    width: 200px;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
+  width: 200px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
 }
 
 .user-nav ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .user-nav ul li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .user-nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
 }
 
 .user-nav ul li ul {
-    list-style: none;
-    padding-left: 20px;
-    margin-top: 5px;
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
 }
 
 .user-nav ul li ul li a {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .profile {
-    width: 300px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .profile h2 {
-    font-size: 24px;
-    margin: 10px 0;
-    color: #333;
+  font-size: 24px;
+  margin: 10px 0;
+  color: #333;
 }
 
 .profile p {
-    font-size: 14px;
-    color: #666;
-    margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
 }
 
 .profile button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .content {
-    flex: 1;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .section {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .section h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .posts {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .post {
-    width: 100px;
-    text-align: center;
+  width: 100px;
+  text-align: center;
 }
 
 .post img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 5px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 5px;
 }
 
 .post p {
-    font-size: 14px;
-    color: #333;
+  font-size: 14px;
+  color: #333;
 }
 
 .member-withdraw {
-    padding: 10px 20px;
-    border: none;
-    background-color: red;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 4px;
-    display: block;
-    margin: 0 auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+.secondary-font {
+  font-family: 'Jua';
+  font-weight: 300;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .main-logo {
+  display: flex;
+  align-items: center;
+}
+
+header .main-logo img {
+  height: 30px;
+  width: 30px;
+}
+
+header .main-logo div {
+  font-size: 40px;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+header .search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0 10px;
+}
+
+header .search-bar input {
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  flex: 1;
+}
+
+header .search-bar svg {
+  fill: #666;
+}
+
+header .menu {
+  display: flex;
+  gap: 20px;
+}
+
+header .menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+header .menu a:hover {
+  color: #007bff;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav .navbar-toggler {
+  border: none;
+  background: none;
+  font-size: 24px;
+}
+
+header nav .offcanvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+}
+
+header nav .offcanvas-body a {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+header nav .navbar-nav {
+  display: flex;
+  gap: 50px;
+  font-size: 20px;
+}
+
+header nav .navbar-nav .nav-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+header nav .navbar-nav .nav-item a:hover {
+  color: #007bff;
+}
+
+header nav .dropdown-menu {
+  font-size: 20px;
+}
+
+header nav .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+header nav .dropdown-item img {
+  margin-right: 10px;
 }

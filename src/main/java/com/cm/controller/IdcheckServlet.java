@@ -24,13 +24,7 @@ public class IdcheckServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println(request.getParameter("user_id"));
-		String id = request.getParameter("user_id");
+	String id = request.getParameter("user_id");
 		
 		UserService us = new UserService();
 		//User u = new User();
@@ -39,8 +33,24 @@ public class IdcheckServlet extends HttpServlet {
 		
 		
 		int result = us.check(id);
-		response.setContentType("application/x-json; charset = UTF-8");
-		response.getWriter().write(result+"");
+		//response.setContentType("application/x-json; charset = UTF-8");
+		response.getWriter().print(result);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println(request.getParameter("user_id"));
+//		String id = request.getParameter("user_id");
+//		
+//		UserService us = new UserService();
+//		//User u = new User();
+//		
+//		//u.setUser_id(request.getParameter("user_id"));
+//		
+//		
+//		int result = us.check(id);
+//		//response.setContentType("application/x-json; charset = UTF-8");
+//		response.getWriter().print(result);
 	}
 	
 
