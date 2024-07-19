@@ -14,18 +14,18 @@
     <header class="header_wrap">
         <div class="container">
             <div class="logo">
-                <img src="${pageContext.request.contextPath}/resources/images/ì§.png" alt="Logo">
+                <img src="${pageContext.request.contextPath}/resources/images/집.png" alt="Logo">
                 <span>Share Life</span>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="íµí©ê²ì">
+                <input type="text" placeholder="통합검색">
                 <button><img src="${pageContext.request.contextPath}/resources/images/search-icon.png" alt="Search"></button>
             </div>
             <div class="header-links">
-                <a href="${pageContext.request.contextPath}/">í</a>
-                <a href="${pageContext.request.contextPath}/user/login">ë¡ê·¸ì¸</a>
-                <a href="${pageContext.request.contextPath}/user/create">íìê°ì</a>
-                <a href="${pageContext.request.contextPath}/customerService">ê³ ê°ì¼í°</a>
+                <a href="${pageContext.request.contextPath}/">홈</a>
+                <a href="${pageContext.request.contextPath}/user/login">로그인</a>
+                <a href="${pageContext.request.contextPath}/user/create">회원가입</a>
+                <a href="${pageContext.request.contextPath}/customerService">고객센터</a>
             </div>
         </div>
     </header>
