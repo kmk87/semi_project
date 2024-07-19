@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Jua', sans-serif; /* Apply the Google font */
+}
+
+/* Ensure the header is fixed and doesn't cover the content */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: white; /* Ensure the header background is solid */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh;
+    background-color: #f8f9fa; /* Optional: add a light background color */
+    padding-top: 80px; /* Adjust according to the height of the header */
+}
+
+section {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed for form width */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white; /* Background color for better visibility */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 8px; /* Round the corners */
+}
+#section wrap{
+	margin-top: 1500px;
+}
+
+.word {
+    text-align: center;
+}
+
+.create_account_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create_account_form label {
+    margin-top: 10px;
+}
+
+.create_account_form input, .create_account_form button {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.create_account_form button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create_account_form button:hover {
+    background-color: #0056b3;
+}
+
+.create_account_form input[type="button"],
+.create_account_form input[type="reset"] {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create_account_form input[type="button"]:hover,
+.create_account_form input[type="reset"]:hover {
+    background-color: #5a6268;
+}
+
+.login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+

@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/* section {
+    margin: 30px 0;
+    height: 80vh; Adjust the height as needed
+    overflow-y: auto;
+}
+
+#section_wrap {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    height: calc(100% - 40px); Adjust to ensure proper padding
+}
+
+#section_wrap .word {
+    width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#section_wrap .others {
+    width: 1024px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#section_wrap .others a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 0;
+    border-top: 1px solid #E1E1E1;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+New styles for centering the login elements
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .main-logo {
+    flex: 1;
+}
+
+header .search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+header .support-box {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header .support-box a {
+    margin-left: 20px;
+}
+ */
+ 
+ html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+section {
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
+    padding: 20px; /* Optional, for spacing */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
