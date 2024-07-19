@@ -43,11 +43,24 @@
 					<label for="user_nick">닉네임</label>
 					<input type="text" id="user_nick" name="user_nick"placeholder="2글자이상 입력해주세요." >
 					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" disabled>중복확인</button>
-					<div id="nickCheckBox"></div><br><br>
+					<div id="nickCheckBox"></div><br>
+					<label for="question_no">아이디, 비밀번호 확인용 질문입니다.</label><br>
+					<select id="question_no" name="question_no">
+						<option value="0">선택해주세요.</option>
+						<option value="1">어머니의 성함은?</option>
+						<option value="2">가장 좋아하는 숫자는?</option>
+						<option value="3">지금 사는 지역은?</option>
+						<option value="4">가장 좋아하는 색깔은?</option>
+						<option value="5">가장 좋아하는 배우는?</option>
+						<option value="6">가장 좋아하는 프로그램은?</option>
+						<option value="7">가장 좋아하는 영화는?</option>
+						<option value="8">가장 좋아하는 친구는?</option>
+						<option value="9">가장 좋아하는 음식은?</option>
+						<option value="10">가장 좋아하는 여행지는?</option>
+					</select><br>
+					<input type="text" id="answer" name="answer" placeholder="질문의 답을 적어주세요."><br>
 					<label for="user_email">이메일</label>
 					<input type="email" name="user_email" id="user_email"><br>
-					<label for="email_check">인증번호</label>
-					<input type="text" name="email_check" id="email_check" placeholder="인증번호 6자리입력"> <br>
 					<label for="user_address" name="user_address">주소</label>
 					<!-- <input type="text" name="user_address" id="user_address"> -->
 					<!-- <input type="text" id="sample6_postcode" id="user_address" placeholder="우편번호"> -->
@@ -169,15 +182,15 @@
 				alert("이메일을 입력하세요.");
 				form.user_email.focus();
 				
-			} else if(!form.email_check.value){
-				alert("인증번호을 입력하세요.");
-				form.email_check.focus();
-				
 			} else if(!form.user_address.value){
 		        alert("주소를 입력하세요.");
 		        form.user_address.focus();
 		        
-		    } else if(!idChecked){
+		    } else if(!form.answer.value){
+		        alert("질문의 답을 입력해주세요.");
+		        form.answer.focus();
+		        
+		    }else if(!idChecked){
 		        alert("아이디 중복 검사를 완료하세요.");
 		        form.user_id.focus();
 		        

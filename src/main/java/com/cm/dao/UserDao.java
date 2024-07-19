@@ -20,7 +20,7 @@ public class UserDao {
 		
 		int result =0;
 		try {
-			String sql = "INSERT INTO `user`(`user_id`,`user_pw`,`user_email`,`user_address`,`user_nick`) VALUES(?,?,?,?,?)";
+			String sql = "INSERT INTO `user`(`user_id`,`user_pw`,`user_email`,`user_address`,`user_nick`,`user_question`,`question_answer`) VALUES(?,?,?,?,?,?,?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -29,6 +29,8 @@ public class UserDao {
 			pstmt.setString(3, u.getUser_email());
 			pstmt.setString(4, u.getUser_address());
 			pstmt.setString(5, u.getUser_nick());
+			pstmt.setString(6, u.getUser_question());
+			pstmt.setString(7, u.getQuestion_answer());
 			
 			result=pstmt.executeUpdate();
 			
@@ -67,6 +69,9 @@ public class UserDao {
 						,rs.getString("user_nick")
 						,rs.getString("profile_ori_image_name")
 						,rs.getString("profile_new_image_name")
+						,rs.getString("user_question")
+						,rs.getString("question_answer")
+						,rs.getInt("question_no")
 						);
 				
 			}
