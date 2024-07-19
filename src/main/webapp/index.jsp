@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
+<title>로그인</title>
 </head>
 <body>
 <header>
@@ -660,6 +661,15 @@
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+   <section>
+   <%@ include file="views/include/header.jsp" %>
+   <%@ include file="views/include/nav.jsp" %>
+      <div id="section_wrap">
+         <div class="word">
+            <h3>나혼자산다</h3>
+         </div>
+      </div>
+   </section>
 </body>
 </html>
 
