@@ -241,12 +241,11 @@ public class SaleShareBoardDao {
 			SaleShareList ssl = null;
 			
 			try {
-				String sql = "SELECT p.post_no, p.cate_code, p.user_no, p.deal_status, p.post_title, p.post_text, p.prod_price, p.prod_mod_date, i.image_new_name "
-				           + "FROM `sale_share_post` p " 
-				           + "JOIN `sale_share_image` i ON p.post_no = i.post_no "
-				           + "WHERE p.prod_price = 0 "
-				           + "ORDER BY p.prod_mod_date DESC "
-				           + "LIMIT " + option.getLimitPageNo() + ", " + option.getNumPerPage();
+				String sql = "SELECT p.post_no, p.cate_code, p.user_no, p.deal_status, p.post_title, p.post_text, p.prod_price, p.prod_mod_date, i.image_new_name"
+						+ " FROM `sale_share_post` p JOIN `sale_share_image` i ON p.post_no = i.post_no"
+						+ " WHERE p.prod_price = 0"
+						+ " ORDER BY p.prod_mod_date DESC"
+				        + " LIMIT " + option.getLimitPageNo() + ", " + option.getNumPerPage();
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+section {
+	font-family: Jua;
+	margin-top : 500px;
+}
+
+
+#sale_icon{
+    width: 100px; 
+    height: 100px; 
+    
+}
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form_id input[type='text']{
+    margin-top : 500px;
+    border-radius: 50px;
+}
+#previewImage {
+    width: 100%;
+    max-width: 300px;
+}
+textarea{
+    width: 600px;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 10px; 
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 15px;
+}
+#form_id{
+	margin-left : 1000px;
+}
+input{
+    border-radius: 10px; 
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+#prod_id{
+    width: 300px;
+}
+input #prod_price{
+    width: 200px;
+}
+select{
+    border-radius: 10px; 
+    border: 1px solid #ccc;
+    font-size: 15px;
+    width: 150px;
+    text-align: center;
+}
+#submit_id{
+    float: right;
+}
+
+.textarea-container{
+    display: flex;
+    align-items: flex-start;
+    gap : 30px;
+}
+#profile_img{
+	border-radius: 50%; 
+    width : 50px;
+    height : 50px
+}
+#heart_id{
+    height: 20px;
+}
+#chat_id{
+    background-color: orange;
+    width: 70px;
+    border: white;
+    height: 20px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 10px;
+}

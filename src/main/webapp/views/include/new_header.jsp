@@ -162,7 +162,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="shop.html" class="dropdown-item">
+                            <a href="/sale_share_board/createSale" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/판매,나눔.png">
                                 판매/나눔 게시글
                             </a>
@@ -188,7 +188,7 @@
                             <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="nav-item">
-                            <a href="blog.html" class="nav-link">판매/나눔</a>
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="nav-item">
                             <a href="contact.html" class="nav-link">번개모임</a>

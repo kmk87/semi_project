@@ -11,7 +11,6 @@
     <link href="../../resources/css/listSale.css" rel="stylesheet" type="text/css">
     <link href="../../resources/css/paging.css" rel="stylesheet" type="text/css">
     <script type="text/JavaScript" src="jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>판매/나눔 게시판</title>
 </head>
 <body>

@@ -41,6 +41,7 @@ public class SaleShareBoardListServlet extends HttpServlet {
 		
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
+		list = new SaleShareBoardService().selectSaleBoardList(option);
 		
 //		int result = new SaleShareBoardService().selectSaleLikeCount(option);
 		

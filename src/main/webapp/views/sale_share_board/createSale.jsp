@@ -10,7 +10,7 @@
     <title>판매/나눔 게시글</title>
     <script type="text/JavaScript" src="jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link href='../../resources/css/createSale.css' rel="stylesheet" type="text/css">
+    <link href="../../resources/css/createSale.css" rel="stylesheet" type="text/css">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
 </head>

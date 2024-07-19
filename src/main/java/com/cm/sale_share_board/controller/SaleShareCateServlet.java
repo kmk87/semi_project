@@ -41,16 +41,17 @@ public class SaleShareCateServlet extends HttpServlet {
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
 		
-		if(cate.equals("free")) {
-			list = new SaleShareBoardService().selectShare(option);
-			
-		}else if(cate.equals("share")) {
-			list = new SaleShareBoardService().selectSale(option);
-			
-		}else {
-			list = new SaleShareBoardService().selectSaleBoardList(option);
-		}
-		
+		switch (cate) {
+        	case "free":
+        		list = new SaleShareBoardService().selectShare(option);
+        		break;
+        	case "share":
+        		list = new SaleShareBoardService().selectSale(option);
+        		break;
+        	default:
+        		list = new SaleShareBoardService().selectSaleBoardList(option);
+        		break;
+    }
 		
 		
 		
