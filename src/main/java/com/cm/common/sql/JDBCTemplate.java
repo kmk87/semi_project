@@ -9,32 +9,38 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
-
 	public static Connection getConnection() {
 		Connection conn = null;
 		Properties prop = new Properties();
+		
 		try {
 			String path = JDBCTemplate.class.getResource("driver.properties").getPath();
-			prop.load(new FileReader(path));
+			// 위치 찾음
+			prop.load(new FileReader(path)); // 외부에 있는 파일 읽어드림 -> FileReader
 			Class.forName(prop.getProperty("driver"));
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("username");
 			String pw = prop.getProperty("userpw");
+			
 			conn = DriverManager.getConnection(url,user,pw);
-		} catch (Exception e) {
+			
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return conn;
 	}
-	public static void commit(Connection conn) {
+	
+	public static void commit(Connection conn){
 		try {
-			if(conn != null && !conn.isClosed()) {
+			if(conn!=null && !conn.isClosed()) {
 				conn.commit();
 			}
-		} catch (SQLException e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}public static void rollback(Connection conn){
+	}
+	public static void rollback(Connection conn){
 		try {
 			if(conn != null && !conn.isClosed()) {
 				conn.rollback();
@@ -75,6 +81,5 @@ public class JDBCTemplate {
 		}
 	}
 }
-
 
 
