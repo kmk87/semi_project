@@ -1,84 +1,83 @@
 @charset "UTF-8";
-body {
-    font-family: 'Jua', sans-serif;
-    margin: 0;
-    background-color: #f0f0f0;
+
+/* section {
+    margin: 30px 0;
+    height: 80vh; Adjust the height as needed
+    overflow-y: auto;
 }
 
-header {
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
+#section_wrap {
+    width: 1200px;
     margin: 0 auto;
-    padding: 10px 20px;
-}
-
-.main-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.login-container {
-    background-color: #ffffff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    height: calc(100% - 40px); Adjust to ensure proper padding
+}
+
+#section_wrap .word {
+    width: 1024px;
+    margin: 0 auto;
     text-align: center;
-    width: 300px;
-    margin: 100px auto 0;
 }
 
-.word h2 {
-    font-size: 24px;
-    margin: 10px 0;
-    color: #333333;
+#section_wrap .others {
+    width: 1024px;
+    margin: 50px auto;
+    text-align: center;
 }
 
-.login_form {
-    margin-top: 20px;
+#section_wrap .others a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 0;
+    border-top: 1px solid #E1E1E1;
+    border-bottom: 1px solid #E1E1E1;
 }
 
-.login_form label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333333;
+New styles for centering the login elements
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.login_form input[type="text"],
-.login_form input[type="password"] {
+header .main-logo {
+    flex: 1;
+}
+
+header .search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+header .support-box {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header .support-box a {
+    margin-left: 20px;
+}
+ */
+ 
+ html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+section {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
+    max-width: 1200px; /* Adjust as needed */
+    padding: 20px; /* Optional, for spacing */
+    box-sizing: border-box; /* Ensure padding does not affect width */
 }
 
-.checkbox-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.check_btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.checkbox-group label {
-    font-size: 14px;
-    color: #333333
-}

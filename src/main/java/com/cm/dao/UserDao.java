@@ -2,6 +2,7 @@ package com.cm.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -9,8 +10,8 @@ import java.time.LocalDateTime;
 import com.cm.vo.User;
 
 import static com.cm.common.sql.JDBCTemplate.close;
-import static com.cm.common.sql.JDBCTemplate.getConnection;
-import com.cm.service.UserService;
+
+
 
 public class UserDao {
 	User uu = new User();
@@ -31,7 +32,7 @@ public class UserDao {
 			
 			result=pstmt.executeUpdate();
 			
-			System.out.println(result);
+//			System.out.println(result);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

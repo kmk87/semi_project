@@ -6,19 +6,19 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link href="../../resources/css/user/create.css" rel="stylesheet">
-<script src="../resources/jquery-3.7.1.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="../../resources/css/user/user_create.css" rel="stylesheet">
+<script src="../resources/js/jquery-3.7.1.js"></script>
 </head>
 <body>
 	<%-- <%@ include file ="../include/header.jsp" %>
 	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
-	<%-- <%@ include file ="../include/new_header.jsp" %> --%>
+	<%@ include file ="../include/new_header.jsp" %>
 	<section>
-		<div id="section_wrap">
+		<div id="section_wrap" style="margin-top: 300px">
 			<div class="word">
 				<h3>회원가입</h3>
 				<br>
@@ -30,7 +30,7 @@
 					<!-- <label for="user_name">이름</label>
 					<input type="text" name="user_name" placeholder="이름"> <br> -->
 					<label for="user_id">아이디</label>
-					<input type="text" id="user_id" placeholder="영문6글자이상 10자이하">
+					<input type="text" id="user_id" name="user_id" placeholder="영문6글자이상 10자이하">
 					<button type="button" onclick="idCheck();" id="idBoxBottomRight" disabled>중복확인</button>
 					<div id="idCheckBox"></div>
 					<!-- 아이디 중복 체크 여부  -->
@@ -41,19 +41,20 @@
 					<label for="user_pw_check">비밀번호 확인</label>
 					<input type="password" name="user_pw_check" id="user_pw_check" placeholder="비밀번호 확인"> <br>
 					<label for="user_nick">닉네임</label>
-					<input type="text" id="user_nick" placeholder="2글자이상 입력해주세요." >
+					<input type="text" id="user_nick" name="user_nick"placeholder="2글자이상 입력해주세요." >
 					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" disabled>중복확인</button>
 					<div id="nickCheckBox"></div><br><br>
 					<label for="user_email">이메일</label>
 					<input type="email" name="user_email" id="user_email"><br>
 					<label for="email_check">인증번호</label>
 					<input type="text" name="email_check" id="email_check" placeholder="인증번호 6자리입력"> <br>
-					<label for="user_address">주소</label>
+					<label for="user_address" name="user_address">주소</label>
+					<!-- <input type="text" name="user_address" id="user_address"> -->
 					<!-- <input type="text" id="sample6_postcode" id="user_address" placeholder="우편번호"> -->
-					<input type="text" id="user_address" value="주소찾기 클릭"><br>
+					<input type="text" id="user_address" name="user_address" value="주소찾기 클릭"><br>
 					
 					
-					<input type="button" value="회원가입" onclick="createUserForm();"><br>
+					<input type="button" value="회원가입" onclick="createUserForm();">
 					<input type="reset" value="초기화">
 				</form>
 			</div>
@@ -68,7 +69,7 @@
 	const contextPath = '<%= request.getContextPath() %>';
 	
 	let idChecked = false;
-	let nickChecked =
+	let nickChecked =false;
 		
 	// 아이디, 닉네임 중복확인 버튼관련,사용자가 입력을 환료한 후에 버튼 활성화
 	document.getElementById("user_id").addEventListener("input", function() {
@@ -88,10 +89,6 @@
     $.ajax({
         type: 'GET',
         url : contextPath + '/IdcheckServlet?user_id=' + mid,
-        <%-- url: '<%=request.getContextPath()%>/IdcheckServlet',
-        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-        dataType: 'JSON',
-        data: {"text" : text,"user":user},	 --%>
         success: function(result){
             if(result == 1){
                 $('#idCheckBox').text("사용가능한 아이디입니다.");
@@ -112,11 +109,7 @@
 });
 
 		// 닉네임 중복확인
-		
-		
-	/* const nickDoubleCheckBtn = document.getElementById("nickBoxBottomRight"); */
-		
-		
+
 	document.getElementById("nickBoxBottomRight").addEventListener("click", function() {
 			const mnick = $("#user_nick").val();
 			$.ajax({
@@ -143,42 +136,7 @@
 			
 				});	
 			});
-	
-		/* function idCheckPlus(){
-			let userId = $("#uer_id").val();
-			
-			if(userId == ''){
-					alert("ID를 입력하세요");
-					return;
-			}
-			
-			$.ajax({
-				type: "post",
-				async: true;
-				url: ,
-				dataType: "text",
-				data: { id: userId},
-				success: function(data,textStatus){
-					if(data == 'usable'){
-						$("#idCheckBox").text("사용할 수 있는 ID입니다.");
-						$('#idCheckBox').css("color","blue");
-						
-						
-					}else{
-						$$("#idCheckBox").text("사용할 수 없는 ID입니다.");
-						$('#idCheckBox').css("color","red");
-					}
-				},
-				error:function(data,textStatus){
-					alert("에러가 발생했습니다.";)
-				}
-				
-				
-				
-			})
-		} */
-		
-		
+
 		function createUserForm(){
 			
 		
@@ -218,12 +176,15 @@
 			} else if(!form.user_address.value){
 		        alert("주소를 입력하세요.");
 		        form.user_address.focus();
+		        
 		    } else if(!idChecked){
 		        alert("아이디 중복 검사를 완료하세요.");
 		        form.user_id.focus();
+		        
 		    } else if(!nickChecked){
 		        alert("닉네임 중복 검사를 완료하세요.");
 		        form.user_nick.focus();
+		        
 		    } else {
 				form.submit();
 			}

@@ -19,10 +19,10 @@
 	<%@ include file ="../include/loginHeader.jsp" %> --%>
 	<%-- <%@ include file="../include/nav.jsp" %> --%>
 	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
-	<%-- <%@ include file ="../include/new_header.jsp" %> --%>
+	<%@ include file ="../include/new_header.jsp" %>
 	
 	<section>
-		<div class="login-container" id="section_wrap">
+		<div class="login-container" id="section_wrap" style="margin: 330px auto 0">
 			<div class="word">
 				<h2>로그인 화면</h2>
 			</div>
@@ -32,12 +32,10 @@
 					<input type="text" id="user_id" name="user_id" required placeholder=" 아이디를 입력해주세요."><br>
 					<label for="user_pw">비밀번호 </label><br>
 					<input type="password" id="user_pw" name="user_pw" required placeholder=" 비밀번호를 입력해주세요."><br>
-					<div class="checkbox-group">
-						<input type="checkbox">
-						<label id="autoLogin">자동로그인</label><br>
-                        <input type="checkbox" id="saveId">
-                        <label id="saveId">아이디저장</label><br>
-                    </div>
+					<label>어서오세요! 좋은하루 보내세요.</label><br>
+                    
+                    
+                    
                     <div class="check_btn">
 						<button type="button" onclick="loginBtn();">로그인</button>
 						<input type="reset" value="초기화">
@@ -62,28 +60,15 @@
 			} else if(form.user_pw.value == ''){
 				alert("비밀번호를 입력하세요");
 				form.user_pw.focus();
-			} else{
-                if(document.getElementById('autoLogin').checked === true) { 
-                    setCookie("autoLogin", "Y", 30); 
-                    setCookie("id", form.user_id.value, 30);
-                    setCookie("password", form.user_pw.value, 30);
-                } else { 
-                    setCookie("autoLogin", "Y", 0);
-                    if (document.getElementById('saveId').checked === true) { 
-                        setCookie("id", form.user_id.value, 30); 
-                    } else { 
-                        setCookie("id", form.user_id.value, 0);
-                    }
-                }
+			} else {
                 form.submit();
-            }
+			}
         }
 
-        function setCookie(name, value, expiredays) {
+        /* function setCookie(name, value, expiredays) {
             var todayDate = new Date();
             todayDate.setDate(todayDate.getDate() + expiredays);
-            document.cookie = name + "=" + escape(value) + "; path=/; expires="
-                + todayDate.toGMTString() + ";"
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
         }
 
         function getCookie(name) {
@@ -99,6 +84,15 @@
                 }
             }
         }
+        window.onload = function() {
+            let savedId = getCookie("id");
+            if(savedId) {
+                document.getElementById("user_id").value = savedId;
+                document.getElementById("saveId").checked = true;
+            }
+        }
+         */
+        
     </script>
 </body>
 </html>

@@ -55,6 +55,7 @@
             </div>
             
         <!-- <div id="nav_wrap" class="col-sm-2"> -->
+     		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
 		<%
 			User user = (User)session.getAttribute("user");
 			if(user == null){
@@ -62,7 +63,6 @@
 
      	<!-- <div class="menu d-flex align-items-center justify-content-end">
      	<div id="all">  -->    	
-     		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
      			<div class="support-box text-end d-none d-xl-block">
      			 	<a href="/user/login">
      				<span class="fs-6 secondary-font text-muted">로그인</span>
@@ -78,14 +78,14 @@
      				<span class="fs-6 secondary-font text-muted">고객센터</span> 
      				</a> 
      			</div>
-     		</div>
+     		<!-- </div> -->
      		<!-- </div> -->
      		
      	<!-- </div> -->
      	<% } else { %>
      	<!-- <div class="menu"> -->
      		<!-- <div class="menu d-flex align-items-center justify-content-end"> -->
-     		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
+     		<!-- <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> --> 
      			<div class="support-box text-end d-none d-xl-block"> 
      				<a href="/user/userMyPage">
      				<span class="fs-6 secondary-font text-muted">마이페이지</span>
@@ -96,9 +96,14 @@
      				<span class="fs-6 secondary-font text-muted">로그아웃</span> 
      				</a>
      			</div>  
+     			<div class="support-box text-end d-none d-xl-block"> 
+     				<a href="customer_center.html"> 
+     				<span class="fs-6 secondary-font text-muted">고객센터</span> 
+     				</a> 
+     			</div>
+     	<% } %>
      		</div>
      	<!-- </div> -->
-     	<% } %>
      </div>
      </div>
      

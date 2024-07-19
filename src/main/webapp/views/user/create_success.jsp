@@ -8,37 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<!-- <link href="../../resources/css/user/create_result.css" rel="stylesheet" type="text./css"> -->
+<link href="../../resources/css/user/create_result.css" rel="stylesheet" type="text./css">
 
-<style>
-    body {
-        font-family: 'Jua', sans-serif;
-        text-align: center;
-        background-color: #f5f5f5;
-    }
-    #section_wrap {
-        background: white;
-        width: 360px;
-        margin: 100px auto;
-        padding: 20px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-    .word {
-        margin-bottom: 20px;
-    }
-    .other a {
-        display: inline-block;
-        background: #ff5722;
-        color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-    }
-    .other a:hover {
-        background: #e64a19;
-    }
-</style>
 </head>
 <body>
 	<%-- <%@ include file ="../include/header.jsp" %>
