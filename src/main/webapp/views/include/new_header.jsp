@@ -58,6 +58,7 @@
      		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
 		<%
 			User user = (User)session.getAttribute("user");
+		System.out.println("Session user: " + user);
 			if(user == null){
 		%>
 

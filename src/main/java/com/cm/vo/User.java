@@ -13,9 +13,8 @@ public class User {
 	private String user_nick;
 	private String profile_ori_image_name;
 	private String profile_new_image_name;
-	private String user_question;
-	private String question_answer;
-	private int question_no;
+	private int user_question;
+	private String user_answer;
 	
 	
 	
@@ -28,7 +27,7 @@ public class User {
 
 	public User(int user_no, String user_id, String user_pw, String user_email, String user_address,
 			LocalDateTime user_reg_date, String profile_text, String user_nick, String profile_ori_image_name,
-			String profile_new_image_name,String user_question,String question_answer,int question_no) {
+			String profile_new_image_name,int user_question,String user_answer) {
 		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
@@ -41,8 +40,7 @@ public class User {
 		this.profile_ori_image_name = profile_ori_image_name;
 		this.profile_new_image_name = profile_new_image_name;
 		this.user_question = user_question;
-		this.question_answer = question_answer;
-		this.question_no = question_no;
+		this.user_answer = user_answer;
 	}
 
 
@@ -164,29 +162,21 @@ public class User {
 	public void setProfile_new_image_name(String profile_new_image_name) {
 		this.profile_new_image_name = profile_new_image_name;
 	}
-	
-	public String getUser_question() {
+
+	public int getUser_question() {
 		return user_question;
 	}
 	
-	public void setUser_question(String user_question) {
+	public void setUser_question(int user_question) {
 		this.user_question = user_question;
 	}
-
-	public String getQuestion_answer() {
-		return question_answer;
+	
+	public String getUser_answer() {
+		return user_answer;
 	}
 	
-	public void setQuestion_answer(String question_answer) {
-		this.question_answer = question_answer;
-	}
-	
-	public int getQuestion_no() {
-		return question_no;
-	}
-	
-	public void setQuestion_no(int question_no) {
-		this.question_no = question_no;
+	public void setUser_answer(String user_answer) {
+		this.user_answer = user_answer;
 	}
 
 
@@ -197,7 +187,14 @@ public class User {
 				+ user_email + ", user_address=" + user_address + ", user_reg_date=" + user_reg_date + ", profile_text="
 				+ profile_text + ", user_nick=" + user_nick + ", profile_ori_image_name=" + profile_ori_image_name
 				+ ", profile_new_image_name=" + profile_new_image_name + ", user_question=" + user_question
-				+ ", question_answer=" + question_answer + ", question_no=" + question_no + "]";
+				+ ", user_answer=" + user_answer + "]";
 	}
+
+
+
+	
+
+
+	
 
 }

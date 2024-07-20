@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="shop.html" class="dropdown-item">
+                            <a href="/saleShareBoard/createSale" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/판매,나눔.png">
                                 판매/나눔 게시글
                             </a>
@@ -149,7 +149,7 @@
                             <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="nav-item">
-                            <a href="blog.html" class="nav-link">판매/나눔</a>
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="nav-item">
                             <a href="contact.html" class="nav-link">번개모임</a>
@@ -211,7 +211,7 @@
                             <h2 class="banner-title display-1 fw-normal" style="font-size: 50px;">Sale/Share Board<br>For <span
                                     class="text-primary">Your Solo Life</span>
                             </h2>
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
+                            <a href="/sale_share_board/sale_share_board_list" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
                                style="padding-top: 25px;">
                                 <span style="font-size: 20px;">판매/나눔 게시판</span>
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
@@ -598,7 +598,7 @@
                             <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">판매/나눔</a>
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="nav-link">번개모임</a>
