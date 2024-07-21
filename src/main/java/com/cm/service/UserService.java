@@ -82,7 +82,7 @@ public class UserService {
 	
 
 	// 회원탈퇴
-	
+	//
 	public boolean deleteUser(String id,String pw) {
 		Connection conn = getConnection();
 		boolean isDeleted = ud.deleteUser(id, pw, conn); // UserDao의 인스턴스 변수 사용
