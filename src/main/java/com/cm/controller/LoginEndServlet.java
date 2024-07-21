@@ -39,7 +39,7 @@ public class LoginEndServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 
             if (session.isNew() || session.getAttribute("user") == null) {
-                session.setAttribute("user", u);
+            	session.setAttribute("user", u);
                 session.setMaxInactiveInterval(60 * 30);
 
                 if ("admin".equals(id) && "admin1234".equals(pw)) {

@@ -11,6 +11,9 @@
 	<script src="../../resources/js/jquery-1.11.0.min.js"></script>
     <script src="../../resources/js/plugins.js"></script>
     <script src="../../resources/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/normalize.css">
   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	<link href='../../resources/css/user/login.css' rel="stylesheet" type="text/css">
