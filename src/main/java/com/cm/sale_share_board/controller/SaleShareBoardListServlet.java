@@ -28,7 +28,7 @@ public class SaleShareBoardListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SaleShareList option = new SaleShareList();
-		
+		 int i = 0;
 		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {

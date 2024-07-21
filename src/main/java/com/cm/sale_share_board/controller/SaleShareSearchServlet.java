@@ -32,7 +32,7 @@ public class SaleShareSearchServlet extends HttpServlet {
 		String title = request.getParameter("search_text");
 		String nowPage = request.getParameter("nowPage");
 		option.setPost_title(title);
-		
+		 int i = 0;
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}

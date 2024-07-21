@@ -29,7 +29,7 @@ public class SaleShareBoardDeleteServlet extends HttpServlet {
 		int postNo = Integer.parseInt(post);
 		
 		int result = new SaleShareBoardService().saleDelete(postNo);
-		
+		int i = 0;
 		RequestDispatcher view = null;
 		if(result > 0) {
 			view = request.getRequestDispatcher("index.jsp");

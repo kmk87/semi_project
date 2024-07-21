@@ -135,7 +135,7 @@
 </section>
 <script>
 function arrayForm() {
-    var arrayForm = document.getElementById('arrayForm');
+    var arrayForm = document.getElementById("arrayForm");
     arrayForm.submit();
 }
 </script>

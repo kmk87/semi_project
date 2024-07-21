@@ -92,7 +92,7 @@
                             var sigu = si + " " + gu;
                             document.getElementById("place").value = sigu;
                         } else {
-                            alert("서울 주소만 입력 가능합니다.");
+                            alert("서울시 주소만 입력 가능합니다.");
                         }
                     }
                 }).open();

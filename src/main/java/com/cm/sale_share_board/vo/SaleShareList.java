@@ -6,6 +6,7 @@ import com.cm.common.Paging;
 
 
 
+
 public class SaleShareList extends Paging {
 	private String Image_new_name;
 	private int post_no;

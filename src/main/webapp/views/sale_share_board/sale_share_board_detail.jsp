@@ -48,7 +48,7 @@
                     	case 2 : out.print("식품"); break;
                     	case 3 : out.print("가전"); break;
                     	case 4 : out.print("의류"); break;
-                    	default : out.print("기타"); break;
+                    	default : out.print("기타"); 
                     	}%>
                     </option>
                 </select>

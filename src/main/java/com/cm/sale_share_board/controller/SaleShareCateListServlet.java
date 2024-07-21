@@ -31,7 +31,7 @@ public class SaleShareCateListServlet extends HttpServlet {
 		
 		SaleShareList option = new SaleShareList();
 
-		
+		 int i = 0;
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));

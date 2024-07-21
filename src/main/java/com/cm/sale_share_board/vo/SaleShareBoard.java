@@ -2,7 +2,7 @@ package com.cm.sale_share_board.vo;
 
 import java.time.LocalDateTime;
 
-import com.cm.common.*;
+
 
 public class SaleShareBoard {
 	private int post_no;

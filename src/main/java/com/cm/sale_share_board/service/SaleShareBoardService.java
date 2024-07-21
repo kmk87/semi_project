@@ -20,6 +20,7 @@ public class SaleShareBoardService {
 		Connection conn = getConnection();
 		int result = new SaleShareBoardDao().createBoard(ssb,ssi,conn);
 		close(conn);
+		 int i = 0;
 		return result;
 	}
 	

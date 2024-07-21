@@ -47,7 +47,7 @@ public class SaleShareEditEndServlet extends HttpServlet {
 			 String oriName = mr.getOriginalFileName("thumbnail");
 			 String reName = mr.getFilesystemName("thumbnail");
 			 System.out.println(oriName+"->"+reName);
-			 
+			 int i = 0;
 			 // 체크박스 속성은 체크가 안되어있을 때 null 값으로 들어와서 여기서 null처리를 해줘야함
 			 String visiblity = mr.getParameter("closed");
 			 if(visiblity == null) {

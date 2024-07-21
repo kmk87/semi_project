@@ -17,7 +17,7 @@
 	<%@ include file="../include/new_header.jsp" %>
     <!-- <img src='../../resources/img/free-icon-sale-7967061.png' id="sale_icon"> -->
 	<section id="section_id">
-    	<!--  유저 사진 값 -->
+    	<!--  유저 사진 값1 -->
         <form action="/sale_share_board/createEnd" method="post" enctype="multipart/form-data" id="form_id" name="form_id">
     	<img src="../../resources/img/부럽이.jpg"  id="profile_img">
         <img src="../../resources/img/free-icon-heart-1077035.png" id="heart_id">

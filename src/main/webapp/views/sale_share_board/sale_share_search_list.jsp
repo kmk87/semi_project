@@ -36,7 +36,7 @@
 					<col width="20%">
         	<thead>
 						<tr>
-							<th>사진</th>
+							<th>사진 </th>
 							<th>제목</th>
 							<th>금액</th>
 							<th>작성자</th>

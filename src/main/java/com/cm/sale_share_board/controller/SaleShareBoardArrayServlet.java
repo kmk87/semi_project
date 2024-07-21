@@ -38,11 +38,11 @@ public class SaleShareBoardArrayServlet extends HttpServlet {
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
 		
-		switch(arrayInt) {
-			case 0 : response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
-			case 1 : list = new SaleShareBoardService().selectSaleSearchText(arrayInt); break;
-			case 2 : list = new SaleShareBoardService().selectSaleSearchNic(arrayInt); break;
-		}
+//		switch(arrayInt) {
+//			case 0 : response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
+//			case 1 : list = new SaleShareBoardService().selectSaleSearchText(arrayInt); break;
+//			case 2 : list = new SaleShareBoardService().selectSaleSearchNic(arrayInt); break;
+//		}
 		
 		
 		request.setAttribute("paging", option);

@@ -25,7 +25,7 @@ public class SaleShareBoardPullServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String post = request.getParameter("id");
 		int postNo = Integer.parseInt(post);
-		
+		 int i = 0;
 		int result = new SaleShareBoardService().salePull(postNo);
 		
 		if(result > 0) {

@@ -10,7 +10,8 @@ import com.cm.question_comment.dao.QuestionDao;
 public class QuestionService {
 	public int createComment(String user_nic,String text,int postNo) {
 		Connection conn = getConnection();
-		int result = new QuestionDao().createComment(user_nic,text,postNo,conn);
+		int result = 0;
+//		int result = new QuestionDao().createComment(user_nic,text,postNo,conn);
 		close(conn);
 		return result;
 	}

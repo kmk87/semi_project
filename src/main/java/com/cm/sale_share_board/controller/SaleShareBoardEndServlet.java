@@ -58,7 +58,7 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 String placeName = mr.getParameter("place");
 					 String place = placeName.substring(3);
 					 System.out.println(place);
-					 
+					 int i = 0;
 					 String text = mr.getParameter("post_text");
 //					 String deal = mr.getParameter("deal_label");
 					 HttpSession session = request.getSession(false);

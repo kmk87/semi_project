@@ -28,7 +28,7 @@ public class SaleShareBoardEditServlet extends HttpServlet {
 		
 		String post = request.getParameter("id");
 		int postNo = Integer.parseInt(post);
-		
+		int i = 0;
 		SaleShareList ssl = new SaleShareBoardService().selectBoard(postNo);
 		
 		request.setAttribute(post, ssl);

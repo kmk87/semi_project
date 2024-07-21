@@ -27,6 +27,7 @@ public class QuestionCommentServlet extends HttpServlet {
 		String text = request.getParameter("comment_text");
 		String post = request.getParameter("post_no");
 		int postNo = Integer.getInteger(post);
+//		int postNo = Integer.getInteger(post);
 		
 		int result = new QuestionService().createComment(user_nic,text,postNo);
 		
