@@ -200,6 +200,29 @@ public class UserDao {
 	    return user;
 	}
 	
+	// 회원탈퇴
+	
+	public boolean deleteUser(String userId, String password,Connection conn) {
+		PreparedStatement pstmt = null;
+		boolean isDeleted = false;
+		
+		try {
+			String sql= "DELETE FROM `user` WHERE user_id =? AND user_pw = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+	        pstmt.setString(2, password);
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) {
+                isDeleted = true;
+            }
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isDeleted;
+	}
 	
 	
 }
