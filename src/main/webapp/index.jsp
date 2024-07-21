@@ -128,7 +128,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="single-product.html" class="dropdown-item">
+                            <a href="/flashmob/list" class="dropdown-item">
                                 <img class="dropdown_icon" src="images/번개.png">
                                 번개모임 게시글
                             </a>
@@ -151,7 +151,7 @@
                             <a href="blog.html" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">번개모임</a>
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
                         </li>
                     </ul>
                     <div class="d-none d-lg-flex align-items-end">
@@ -231,7 +231,7 @@
                             <h2 class="banner-title display-1 fw-normal" style="font-size: 50px;">Flashmob Board<br>For <span
                                     class="text-primary">Your Solo Life</span>
                             </h2>
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
+                            <a href="/flashmob/list" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
                                style="padding-top: 25px;">
                                 <span style="font-size: 20px;">번개모임 게시판</span>
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
