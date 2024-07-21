@@ -1,10 +1,22 @@
 @charset "UTF-8";
 
-section {
-	font-family: Jua;
-	margin-top : 500px;
+body {
+    font-family: 'Jua', sans-serif;
+    background-color: #f7f7f7;
 }
-
+#section {
+    max-width: 1200px;
+    margin: 200px 20px 300px 200px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    justify-content: center;
+    text-align : center;
+}
+#form_id{
+	margin-top : 300px;
+	margin-left : 300px;
+}
 
 #sale_icon{
     width: 100px; 
@@ -21,14 +33,6 @@ section {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.form_id input[type='text']{
-    margin-top : 500px;
-    border-radius: 50px;
-}
-#previewImage {
-    width: 100%;
-    max-width: 300px;
-}
 textarea{
     width: 600px;
     height: 200px;
@@ -38,9 +42,7 @@ textarea{
     padding: 10px;
     font-size: 15px;
 }
-#form_id{
-	margin-left : 1000px;
-}
+
 input{
     border-radius: 10px; 
     border: 1px solid #ccc;

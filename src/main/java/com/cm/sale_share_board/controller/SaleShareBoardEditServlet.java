@@ -28,12 +28,10 @@ public class SaleShareBoardEditServlet extends HttpServlet {
 		
 		String post = request.getParameter("id");
 		int postNo = Integer.parseInt(post);
-		System.out.println("시작 서블릿 : "+postNo); // postNo 값을 가지고 옴
-		
-		
 		
 		SaleShareList ssl = new SaleShareBoardService().selectBoard(postNo);
 		
+		request.setAttribute(post, ssl);
 		request.setAttribute("postNo", postNo);
 		request.setAttribute("list", ssl);
 		

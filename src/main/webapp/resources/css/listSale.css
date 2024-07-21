@@ -1,0 +1,120 @@
+body {
+    font-family: 'Jua', sans-serif;
+    background-color: #f7f7f7;
+    padding: 0;
+}
+a{
+	justify-content: center;	
+}
+select {
+	margin : 100px;
+}
+
+#section {
+    max-width: 1200px;
+    margin: 200px 20px 300px 200px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    justify-content: center;
+}
+
+#sale_share, #prod_category {
+    gap: 15px;
+    font-family: 'Jua', sans-serif;
+}
+input {
+	font-family : 'Jua', sans-serif;
+}
+
+#sale_share .circle{
+    border : 1px solid black;
+    width : 100px;
+    height : 100px;
+    background-color : orange;
+    border-radius : 50%;
+    margin-left : 30px;
+}
+#sale_share{
+	margin-left : 600px;
+}
+#section {
+	margin-top : 250px;
+}
+#prod_category .cate {
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: 60px;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.item {
+    width: calc(20% - 20px);
+    text-align: center;
+}
+
+.item img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.item p{
+	margin-bottom : -10px;
+}
+.circle, .cate {
+    background-color: #eeeeee;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.circle:hover, .cate:hover {
+    background-color: #dcdcdc;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+a:hover {
+    color: #ff5722;
+}
+
+.center {
+    text-align: center;
+    margin: 20px 0;
+}

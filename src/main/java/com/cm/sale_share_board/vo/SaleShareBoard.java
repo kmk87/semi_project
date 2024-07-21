@@ -7,7 +7,7 @@ import com.cm.common.*;
 public class SaleShareBoard {
 	private int post_no;
 	private int board_type_id;
-	private int local_gu_no;
+	private String local_gu_name;
 	private String post_title;
 	private String post_text;
 	private int prod_price;
@@ -16,10 +16,18 @@ public class SaleShareBoard {
 	private int deal_status;
 	private LocalDateTime prod_reg_date;
 	private LocalDateTime prod_mod_date;
+	private String visibilty;
+	
+	public String getVisibilty() {
+		return visibilty;
+	}
+	
+	public void setVisibilty(String visibilty) {
+		this.visibilty = visibilty;
+	}
 	
 	public SaleShareBoard() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getPost_no() {
@@ -38,12 +46,12 @@ public class SaleShareBoard {
 		this.board_type_id = board_type_id;
 	}
 
-	public int getLocal_gu_no() {
-		return local_gu_no;
+	public String getLocal_gu_name() {
+		return local_gu_name;
 	}
 
-	public void setLocal_gu_no(int local_gu_no) {
-		this.local_gu_no = local_gu_no;
+	public void setLocal_gu_name(String local_gu_name) {
+		this.local_gu_name = local_gu_name;
 	}
 
 	public String getPost_title() {
@@ -110,13 +118,13 @@ public class SaleShareBoard {
 		this.deal_status = deal_status;
 	}
 
-	public SaleShareBoard(int post_no, int board_type_id, int local_gu_no, String post_title, String post_text,
+	public SaleShareBoard(int post_no, int board_type_id, String local_gu_name, String post_title, String post_text,
 			int prod_price, int cate_code, int user_no, int deal_status, LocalDateTime prod_reg_date,
-			LocalDateTime prod_mod_date) {
+			LocalDateTime prod_mod_date, String visibilty) {
 		super();
 		this.post_no = post_no;
 		this.board_type_id = board_type_id;
-		this.local_gu_no = local_gu_no;
+		this.local_gu_name = local_gu_name;
 		this.post_title = post_title;
 		this.post_text = post_text;
 		this.prod_price = prod_price;
@@ -125,10 +133,9 @@ public class SaleShareBoard {
 		this.deal_status = deal_status;
 		this.prod_reg_date = prod_reg_date;
 		this.prod_mod_date = prod_mod_date;
+		this.visibilty = visibilty;
 	}
 
-	
-	
 	
 }
 

@@ -27,12 +27,8 @@ public class SaleShareBoardListServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String title = request.getParameter("post_title");
-		
-		String cate = request.getParameter("key");
-		
 		SaleShareList option = new SaleShareList();
-//		option.setPost_title(title);
+		
 		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
@@ -43,11 +39,11 @@ public class SaleShareBoardListServlet extends HttpServlet {
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
 		list = new SaleShareBoardService().selectSaleBoardList(option);
 		
-//		int result = new SaleShareBoardService().selectSaleLikeCount(option);
+	
 		
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
-//		request.setAttribute("like", result);
+
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_board_list.jsp");
 		view.forward(request, response);

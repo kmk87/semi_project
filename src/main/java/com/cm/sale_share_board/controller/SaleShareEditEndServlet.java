@@ -19,7 +19,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
-@WebServlet("/saleShare/edit")
+@WebServlet("/sale_share_board/sale_share_board_edit_end")
 public class SaleShareEditEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,26 +48,30 @@ public class SaleShareEditEndServlet extends HttpServlet {
 			 String reName = mr.getFilesystemName("thumbnail");
 			 System.out.println(oriName+"->"+reName);
 			 
+			 // 체크박스 속성은 체크가 안되어있을 때 null 값으로 들어와서 여기서 null처리를 해줘야함
+			 String visiblity = mr.getParameter("closed");
+			 if(visiblity == null) {
+				 visiblity = "Y";
+			 }
+			 
 			 String name = mr.getParameter("post_title");
 			 String price = mr.getParameter("prod_price");
 			 int priceInt = Integer.parseInt(price);
 			 String cate = mr.getParameter("prod_cate");
+			 
 			 int cateInt = Integer.parseInt(cate);
 			 String deal = mr.getParameter("deal_status");
 			 int dealStatus = Integer.parseInt(deal);
 			 
-			 
 			 String post = mr.getParameter("postNo");
 			 int postNo = Integer.parseInt(post);
-			 System.out.println("엔드서블릿 : "+postNo);
+			 
+			 System.out.println(cateInt);
 			 
 			 
-			 
-			 
-			 
-			 String place = mr.getParameter("place_label");
+			 String placeName = mr.getParameter("place");
+			 String place = placeName.substring(4);
 			 String text = mr.getParameter("post_text");
-//			 String deal = mr.getParameter("deal_label");
 			 HttpSession session = request.getSession(false);
 			 
 			 SaleShareBoard ssb = new SaleShareBoard();
@@ -77,27 +81,18 @@ public class SaleShareEditEndServlet extends HttpServlet {
 			 ssb.setPost_text(text);
 			 ssb.setProd_price(priceInt);
 			 ssb.setCate_code(cateInt);
+			 ssb.setLocal_gu_name(place);
 			 ssi.setImage_ori_name(oriName);
 			 ssi.setImage_new_name(reName);
 			 ssb.setDeal_status(dealStatus);
+			 
+			 int result = new SaleShareBoardService().saleEdit(visiblity,postNo,ssb,ssi);
 			
-//			 if(session != null) {
-//				 User u  = (User)session.getAttribute("user");
-//				 int userNo = u.getUser_no();
-//				 ssb.setUser_no(userNo);
-//			 }
-			 // board 객체에 정보 담기
-			 
-			 
-			 int result = new SaleShareBoardService().saleEdit(postNo,ssb,ssi);
-			 RequestDispatcher view = null;
 				if(result > 0) {
-					view = request.getRequestDispatcher("/index.jsp");
-					view.forward(request, response);
+					response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
 				}
 				else {
-					view = request.getRequestDispatcher("/views/sale_share_board/sale_share_borad_detail.jsp");
-					view.forward(request, response);
+					response.sendRedirect(request.getContentType() + "/sale_share_board/sale_share_edit");
 					
 				}
 	

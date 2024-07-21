@@ -36,9 +36,9 @@
                 <label for="price_id" id="price_label">가격</label>
                 <input type="number" id="price_id" name="prod_price" value="<%= list.getProd_price() %>" disabled>
                 <label>나눔</label>
-                <input type="checkbox" id="free_checkBox"><br><br>
+                <input type="checkbox" id="free_checkBox" disabled><br><br>
                 <label for="place" id="place_label" >거래장소</label>
-                <input type="text" id="place" name="place" disabled><br>
+                <input type="text" id="place" name="place" value="서울시 <%= list.getLocal_gu_name() %>" disabled><br>
                 <br>
                 <label>카테고리</label>
                 <select name="prod_cate" disabled>
@@ -71,11 +71,22 @@
                 </div>
             </div>
         </form>
+        <form action="/sale_share_borad/comment" method="post" >
+        <div class="comment-container">
+        <label class="comment-label">이름(user_nic)</label><br>
+        <textarea class="comment-textarea" name="comment_text"></textarea>
+        <div class="button-container">
+            <input type="button" value="등록">
+            <input type="button" value="취소">
+        </div>
+   		</div>
+        </form>
         <!-- 뒤로가기 -->
         <input type="button" value="목록" onclick = "window.history.back();" style="float:right; margin-right :20px">
         <!-- 수정하기 -->
         <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_edit?id=<%= list.getPost_no()%>"> 수정하기</a>
         <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_delete?id=<%= list.getPost_no() %>">삭제하기</a>
+        <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_pull?id=<%=list.getPost_no() %>">끌어올리기</a>
     </section>
     <script>
     $('#price_id').keyup(function(){

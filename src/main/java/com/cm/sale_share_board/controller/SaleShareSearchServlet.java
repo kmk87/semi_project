@@ -15,25 +15,24 @@ import com.cm.sale_share_board.service.SaleShareBoardService;
 import com.cm.sale_share_board.vo.SaleShareList;
 
 
-@WebServlet("/sale_share_board/sale_share_board_cate")
-public class SaleShareCateServlet extends HttpServlet {
+@WebServlet("/sale_share/searchList")
+public class SaleShareSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public SaleShareCateServlet() {
+   
+    public SaleShareSearchServlet() {
         super();
+      
     }
 
-	
+	// 조회 (제목, 내용, 닉네임)
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("post_title");
-		
-		String cate = request.getParameter("key");
-		
 		SaleShareList option = new SaleShareList();
-//		option.setPost_title(title);
-		
+		String search = request.getParameter("search");
+		String title = request.getParameter("search_text");
 		String nowPage = request.getParameter("nowPage");
+		option.setPost_title(title);
+		
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
@@ -41,28 +40,20 @@ public class SaleShareCateServlet extends HttpServlet {
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
 		
-		switch (cate) {
-        	case "free":
-        		list = new SaleShareBoardService().selectShare(option);
-        		break;
-        	case "share":
-        		list = new SaleShareBoardService().selectSale(option);
-        		break;
-        	default:
-        		list = new SaleShareBoardService().selectSaleBoardList(option);
-        		break;
-    }
+		switch(search) {
+			case "1" : list = new SaleShareBoardService().selectSaleBoardList(option); break;
+			case "2" : list = new SaleShareBoardService().selectSaleSearchText(option); break;
+			case "3" : list = new SaleShareBoardService().selectSaleSearchNic(option); break;
+		}
 		
-		
-		
-//		int result = new SaleShareBoardService().selectSaleLikeCount(option);
 		
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
-//		request.setAttribute("like", result);
+
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_board_list.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_search_list.jsp");
 		view.forward(request, response);
+	
 	}
 
 	

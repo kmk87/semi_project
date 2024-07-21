@@ -55,7 +55,10 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 String cate = mr.getParameter("prod_cate");
 					 int cateInt = Integer.parseInt(cate);
 					 
-					 String place = mr.getParameter("place_label");
+					 String placeName = mr.getParameter("place");
+					 String place = placeName.substring(3);
+					 System.out.println(place);
+					 
 					 String text = mr.getParameter("post_text");
 //					 String deal = mr.getParameter("deal_label");
 					 HttpSession session = request.getSession(false);
@@ -67,6 +70,7 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 ssb.setPost_text(text);
 					 ssb.setProd_price(priceInt);
 					 ssb.setCate_code(cateInt);
+					 ssb.setLocal_gu_name(place);
 					 ssi.setImage_ori_name(oriName);
 					 ssi.setImage_new_name(reName);
 					
@@ -79,19 +83,16 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 
 					 
 					 int result = new SaleShareBoardService().createBoard(ssb,ssi);
-					 RequestDispatcher view = null;
 						if(result > 0) {
-							view = request.getRequestDispatcher("/index.jsp");
-							view.forward(request, response);
+							response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
 						}
 						else {
-							view = request.getRequestDispatcher("/views/sale_share_board/createSale.jsp");
-							view.forward(request, response);
+							response.sendRedirect(request.getContentType() + "/sale_share_board/createSale");
 							
 						}
 			
 					}else {
-						response.sendRedirect("/index.jsp");
+						response.sendRedirect(request.getContentType() + "/index");
 					}
 			
 	}

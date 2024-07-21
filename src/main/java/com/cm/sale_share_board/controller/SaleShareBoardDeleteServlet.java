@@ -32,10 +32,10 @@ public class SaleShareBoardDeleteServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(result > 0) {
-			view = request.getRequestDispatcher("/index.jsp");
+			view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}else {
-			view = request.getRequestDispatcher("/index.jsp");
+			view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}
 		
