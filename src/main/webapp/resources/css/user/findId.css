@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
-/* login.css */
-
 body {
-    font-family: 'Jua', sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +10,7 @@ body {
     margin: 0;
 }
 
-.login-container {
+.container {
     text-align: center;
     background-color: #ffffff;
     padding: 30px;
@@ -21,12 +19,25 @@ body {
     width: 300px;
 }
 
-.word h2 {
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
-    color: #333;
 }
 
-.login_form {
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.logo div {
+    font-size: 30px;
+    color: #000000;
+}
+
+.form-container {
     margin-top: 20px;
 }
 
@@ -37,18 +48,13 @@ label {
     text-align: left;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ced4da;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-.check_btn {
-    margin-top: 10px;
 }
 
 button {
@@ -63,34 +69,4 @@ button {
 
 button:hover {
     background-color: #343a40;
-}
-
-input[type="reset"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #e0e0e0;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-input[type="reset"]:hover {
-    background-color: #bdbdbd;
-}
-
-.find_id_create_account {
-    margin-top: 20px;
-}
-
-.find_id_create_account a {
-    display: block;
-    margin: 5px 0;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.find_id_create_account a:hover {
-    text-decoration: underline;
 }

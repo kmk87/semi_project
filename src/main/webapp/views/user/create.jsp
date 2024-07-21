@@ -31,7 +31,7 @@
 					<input type="text" name="user_name" placeholder="이름"> <br> -->
 					<label for="user_id">아이디</label>
 					<input type="text" id="user_id" name="user_id" placeholder="영문6글자이상 10자이하">
-					<button type="button" onclick="idCheck();" id="idBoxBottomRight" disabled>중복확인</button>
+					<button type="button" onclick="idCheck();" id="idBoxBottomRight" name="idBoxBottomRight" disabled>중복확인</button>
 					<div id="idCheckBox"></div>
 					<!-- 아이디 중복 체크 여부  -->
 					<!-- <input type="hidden" name="idDuplication" value="idUncheck"/>
@@ -41,27 +41,32 @@
 					<label for="user_pw_check">비밀번호 확인</label>
 					<input type="password" name="user_pw_check" id="user_pw_check" placeholder="비밀번호 확인"> <br>
 					<label for="user_nick">닉네임</label>
-					<input type="text" id="user_nick" name="user_nick"placeholder="2글자이상 입력해주세요." >
-					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" disabled>중복확인</button>
-					<div id="nickCheckBox"></div><br>
-					<label for="question_no">아이디, 비밀번호 확인용 질문입니다.</label><br>
-					<select id="question_no" name="question_no">
-						<option value="0">선택해주세요.</option>
-						<option value="1">어머니의 성함은?</option>
-						<option value="2">가장 좋아하는 숫자는?</option>
-						<option value="3">지금 사는 지역은?</option>
-						<option value="4">가장 좋아하는 색깔은?</option>
-						<option value="5">가장 좋아하는 배우는?</option>
-						<option value="6">가장 좋아하는 프로그램은?</option>
-						<option value="7">가장 좋아하는 영화는?</option>
-						<option value="8">가장 좋아하는 친구는?</option>
-						<option value="9">가장 좋아하는 음식은?</option>
-						<option value="10">가장 좋아하는 여행지는?</option>
+					<input type="text" id="user_nick" name="user_nick" placeholder="2글자이상 입력해주세요." >
+					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" name="nickBoxBottomRight" disabled>중복확인</button>
+					<div id="nickCheckBox"></div>
+					
+					<label for="user_question">아이디, 비밀번호 확인용 질문입니다.</label><br>
+					<select  id="user_question" name="user_question">
+						<option value=0>선택해주세요.</option>
+						<option value=1>어머니의 성함은?</option>
+						<option value=2>가장 좋아하는 계절은?</option>
+						<option value=3>지금 사는 지역은?</option>
+						<option value=4>가장 좋아하는 색깔은?</option>
+						<option value=5>가장 좋아하는 배우는?</option>
+						<option value=6>가장 좋아하는 프로그램은?</option>
+						<option value=7>가장 좋아하는 영화는?</option>
+						<option value=8>가장 좋아하는 친구는?</option>
+						<option value=9>가장 좋아하는 음식은?</option>
+						<option value=10>가장 좋아하는 여행지는?</option>
 					</select><br>
-					<input type="text" id="answer" name="answer" placeholder="질문의 답을 적어주세요."><br>
+					
+					
+					<input type="text"  id="user_answer" name="user_answer" placeholder="질문의 답을 적어주세요."><br>
+					
+					
 					<label for="user_email">이메일</label>
 					<input type="email" name="user_email" id="user_email"><br>
-					<label for="user_address" name="user_address">주소</label>
+					<label for="user_address">주소</label>
 					<!-- <input type="text" name="user_address" id="user_address"> -->
 					<!-- <input type="text" id="sample6_postcode" id="user_address" placeholder="우편번호"> -->
 					<input type="text" id="user_address" name="user_address" value="주소찾기 클릭"><br>
@@ -71,10 +76,9 @@
 					<input type="reset" value="초기화">
 				</form>
 			</div>
-			<div class="login">
 				<a href="/user/login">로그인</a>
 			</div>
-		</div>
+		
 	</section>	
 	
 	<script>
@@ -176,7 +180,7 @@
 				
 			} else if(!form.user_nick.value){
 				alert("닉네임을 입력하세요.");
-				form.user_name.focus();
+				form.user_nick.focus();
 				
 			} else if(!form.user_email.value){
 				alert("이메일을 입력하세요.");
@@ -186,10 +190,14 @@
 		        alert("주소를 입력하세요.");
 		        form.user_address.focus();
 		        
-		    } else if(!form.answer.value){
-		        alert("질문의 답을 입력해주세요.");
-		        form.answer.focus();
-		        
+		    } else if (form.user_question.value == "0") {
+                alert("질문을 선택하세요.");
+                form.user_question.focus();
+                
+            } else if (!form.user_answer.value) {
+                alert("질문의 답을 입력해주세요.");
+                form.user_answer.focus();
+                
 		    }else if(!idChecked){
 		        alert("아이디 중복 검사를 완료하세요.");
 		        form.user_id.focus();

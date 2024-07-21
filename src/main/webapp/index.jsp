@@ -18,159 +18,17 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="resources/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
 </head>
 <body>
-<header>
-    <div class="container py-2">
-        <div class="row py-4 pb-0 pb-sm-4 align-items-center">
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-                <div class="main-logo">
-                    <a href="index.html" style="display: flex; align-items: center;">
-                        <img src="images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
-                        <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
-                    </a>
-                </div>
-            </div>
-            <div style="padding-left: 50px;" class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-                    <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                        <input type="text" class="form-control border-0 bg-transparent"
-                               placeholder="통합검색" style="padding-left: 20px; padding-top: 23px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                  d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/>
-                        </svg>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-                <div class="support-box text-end d-none d-xl-block">
-                    <span class="fs-6 secondary-font text-muted">로그인</span>
-                </div>
-                <div class="support-box text-end d-none d-xl-block">
-                    <span class="fs-6 secondary-font text-muted">회원가입</span>
-                </div>
-                <div class="support-box text-end d-none d-xl-block">
-                    <a href="customer_center.html">
-                        <span class="fs-6 secondary-font text-muted">고객센터</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <hr class="m-0">
-    </div>
-    <div class="container">
-        <nav class="main-menu d-flex navbar navbar-expand-lg ">
-            <div class="d-flex d-lg-none align-items-end mt-3">
-                <ul class="d-flex justify-content-end list-unstyled m-0">
-                    <li>
-                        <a href="account.html" class="mx-3">
-                            <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishlist.html" class="mx-3">
-                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                           aria-controls="offcanvasSearch">
-                            <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body justify-content-between">
-                    <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                       aria-expanded="false" style="padding-top: 10px; font-size: 20px;">글쓰기</a>
-                    <style>
-                        .dropdown_icon {
-                            margin-bottom: 5px;
-                        }
-
-                        .dropdown-menu {
-                            font-size: 20px;
-                        }
-                    </style>
-                    <ul class="dropdown-menu" aria-labelledby="pages">
-                        <li>
-                            <a href="about.html" class="dropdown-item">
-                                <img class="dropdown_icon" src="images/질문.png">
-                                질문 게시글
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/saleShareBoard/createSale" class="dropdown-item">
-                                <img class="dropdown_icon" src="images/판매,나눔.png">
-                                판매/나눔 게시글
-                            </a>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="dropdown-item">
-                                <img class="dropdown_icon" src="images/번개.png">
-                                번개모임 게시글
-                            </a>
-                        </li>
-                    </ul>
-                    <style>
-                        .nav-item {
-                            padding-left: 50px;
-                            font-size: 20px;
-                        }
-                    </style>
-                    <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link active">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="shop.html" class="nav-link">질문</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">번개모임</a>
-                        </li>
-                    </ul>
-                    <div class="d-none d-lg-flex align-items-end">
-                        <ul class="d-flex justify-content-end list-unstyled m-0">
-                            <li>
-                                <a href="account.html" class="mx-3">
-                                    <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="mx-3">
-                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-
+<%@ include file ="views/include/new_header.jsp" %>
 <section id="banner" style="background: #F9F3EC;">
     <div class="container">
         <div class="swiper main-swiper">
@@ -178,7 +36,7 @@
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
-                            <img src="images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:70px;"
+                            <img src="../resources/images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:70px;"
                                  class="img-fluid">
                         </div>
                         <div class="content-wrapper col-md-7 p-5 mb-5">
@@ -199,7 +57,7 @@
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
-                            <img src="images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:30px ;"
+                            <img src="../resources/images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:30px ;"
                                  class="img-fluid">
                         </div>
                         <div class="content-wrapper col-md-7 p-5 mb-5">
@@ -207,7 +65,7 @@
                             <h2 class="banner-title display-1 fw-normal" style="font-size: 50px;">Sale/Share Board<br>For <span
                                     class="text-primary">Your Solo Life</span>
                             </h2>
-                            <a href="/sale_share_board/sale_share_board_list" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
+                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
                                style="padding-top: 25px;">
                                 <span style="font-size: 20px;">판매/나눔 게시판</span>
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
@@ -220,7 +78,7 @@
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
-                            <img src="images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:30px ;"
+                            <img src="../resources/images/질문게시판.png" style="width: 500px; padding-left: 90px; padding-bottom:30px ;"
                                  class="img-fluid">
                         </div>
                         <div class="content-wrapper col-md-7 p-5 mb-5">
@@ -239,28 +97,156 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-pagination" style="padding-bottom: 10px;"></div>
+            <div class="swiper-pagination" style="padding-bottom: 10px;">
+            	<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+            </div>
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+</script>
 
 <br>
 
 <div class="swiper-container container my-3 py-5 slider1">
     <h5 style="font-size:40px;" class="display-3 fw-normal">
-        <img src="images/fire.png" style="padding-bottom: 12px;">
-        인기 게시글</h5>
-    <div class="swiper-wrapper my-5">
-        <div class="swiper-slide col text-center card">카드 1</div>
-        <div class="swiper-slide col text-center card">카드 2</div>
-        <div class="swiper-slide col text-center card">카드 3</div>
-        <div class="swiper-slide col text-center card">카드 4</div>
-        <div class="swiper-slide col text-center card">카드 5</div>
-        <div class="swiper-slide col text-center card">카드 6</div>
-        <div class="swiper-slide col text-center card">카드 7</div>
-        <div class="swiper-slide col text-center card">카드 8</div>
-        <div class="swiper-slide col text-center card">카드 9</div>
-        <div class="swiper-slide col text-center card">카드 10</div>
+        <img src="../resources/images/fire.png" style="padding-bottom: 12px;">
+    인기 게시글</h5>
+    <div class="swiper-wrapper my-5" style="position:relative;">
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/1.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/2.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/3.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/4.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/5.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/6.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/7.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
     </div>
     <div class="swiper-button-prev swiper-button-prev1"></div>
     <div class="swiper-button-next swiper-button-next1"></div>
@@ -268,19 +254,128 @@
 
 <div class="swiper-container container my-3 py-5 slider2">
     <h5 style="font-size:40px;" class="display-3 fw-normal">
-        <img src="images/pink_fire.png" style="padding-bottom: 12px;">
+        <img src="../resources/images/pink_fire.png" style="padding-bottom: 12px;">
         인기 모임</h5>
-    <div class="swiper-wrapper my-5">
-        <div class="swiper-slide col text-center card">카드 1</div>
-        <div class="swiper-slide col text-center card">카드 2</div>
-        <div class="swiper-slide col text-center card">카드 3</div>
-        <div class="swiper-slide col text-center card">카드 4</div>
-        <div class="swiper-slide col text-center card">카드 5</div>
-        <div class="swiper-slide col text-center card">카드 6</div>
-        <div class="swiper-slide col text-center card">카드 7</div>
-        <div class="swiper-slide col text-center card">카드 8</div>
-        <div class="swiper-slide col text-center card">카드 9</div>
-        <div class="swiper-slide col text-center card">카드 10</div>
+    <div class="swiper-wrapper my-5" style="position:relative;">
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/1.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/2.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/3.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/4.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/5.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/6.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
+        <div class="swiper-slide col text-center card">
+        	<div class="z-1 position-absolute rounded-3 m-3 px-3 border-dark-subtle" style="left: -20px;">
+              <img src="../resources/images/7.png">
+            </div>
+	        <div class="card-body p-0" style="position:absolute; margin-top:230px; display:flex;">
+	            <a href="single-product.html">
+	               <h3 class="card-title pt-4 m-0" style="font-size: 20px;"><img src="../resources/images/profile.png" width="35px" style="margin-bottom: 8px; margin-left:15px;"><span style="margin-left: 8px;">작성자1님</span></h3>
+	            </a>
+		        <div class="card-text" style="z-index:2000;">
+		            <div class="" style="display:flex;">
+		                <a href="#" class="" style="margin-left:75px; margin-top:32px;">
+		                    <iconify-icon icon="fluent:heart-28-filled" class="" style="font-size:20px;"></iconify-icon>
+		                </a>
+		        	</div>
+		     	</div>
+	     	</div>
+        </div>
     </div>
     <div class="swiper-button-prev swiper-button-prev2"></div>
     <div class="swiper-button-next swiper-button-next2"></div>
@@ -351,13 +446,13 @@
                     <h3>Quick Links</h3>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="index.jsp" class="nav-link">Home</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">질문</a>
+                            <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="menu-item">
-                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
+                            <a href="#" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="nav-link">번개모임</a>
@@ -421,3 +516,4 @@
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </body>
 </html>
+

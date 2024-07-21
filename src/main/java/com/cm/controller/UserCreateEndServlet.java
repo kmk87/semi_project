@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cm.service.UserService;
 import com.cm.vo.User;
@@ -24,43 +25,98 @@ public class UserCreateEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 디버깅 츨력
+		System.out.println("UserCreateEndServlet doGet called");
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String user_id = request.getParameter("user_id");
-		String user_pw = request.getParameter("user_pw");
-		String user_email = request.getParameter("user_email");
-		int question_No = Integer.parseInt(request.getParameter("question_no"));
-		String question_answer = request.getParameter("question_answer");
-		String user_address = request.getParameter("user_address");
-		String user_nick = request.getParameter("user_nick");
+		String id = request.getParameter("user_id");
+		String pw = request.getParameter("user_pw");
+		String email = request.getParameter("user_email");
+		String question = request.getParameter("user_question");
+		String answer = request.getParameter("user_answer");
+		String address = request.getParameter("user_address");
+		String nick = request.getParameter("user_nick");
 		
-		User u = new User();
-		u.setUser_id(user_id);
-		u.setUser_pw(user_pw);
-		u.setUser_email(user_email);
-		u.setUser_address(user_address);
-		u.setUser_nick(user_nick);
-		u.setQuestion_answer(question_answer);
-		u.setQuestion_no(question_No);
+		// 아이디, 비밀번호 찾기 질문 입력 안할 시 오류메시지 출력
+		if (question == null || question.isEmpty()) {
+		    request.setAttribute("error_message", "Question is required.");
+		    
+		   
+		    
+		    RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
+		    view.forward(request, response);
+		    return;
+		}
+		if (answer == null || answer.isEmpty()) {
+		    request.setAttribute("error_message", "Question answer is required.");
+		    
+		    //디버깅 출력
+		    System.out.println("Question number is required.");
+		    
+		    RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
+		    view.forward(request, response);
+		    return;
+		}
 		
-		System.out.println("User ID: " + user_id);
-		System.out.println("User PW: " + user_pw);
-		System.out.println("User Email: " + user_email);
-		System.out.println("User Address: " + user_address);
-		System.out.println("User Nick: " + user_nick);
+		// 여기까지
 		
-		int result = new UserService().createUser(u);
+		
+		
+		// 디버깅용 출력문
+		System.out.println("Received parameters:");
+        System.out.println("user_id: " + id);
+        System.out.println("user_pw: " + pw);
+        System.out.println("user_email: " + email);
+        System.out.println("question: " + question);
+        System.out.println("answer: " + answer);
+        System.out.println("address: " + address);
+        System.out.println("nick: " + nick);
+		
+
+        int user_question = Integer.parseInt(question);
+		// 여기까지
+        
+        
+        User u = new User();
+        u.setUser_id(id);
+        u.setUser_pw(pw);
+        u.setUser_email(email);
+        u.setUser_address(address);
+        u.setUser_nick(nick);
+        u.setUser_answer(answer);
+        u.setUser_question(user_question);
+        
+        // 디버깅용 출력
+        System.out.println("User ID: " + id);
+        System.out.println("User PW: " + pw);
+        System.out.println("User Email: " + email);
+        System.out.println("User Address: " + address);
+        System.out.println("User Nick: " + nick);
+        System.out.println("answer: " + answer);
+        System.out.println("question: " + question);
+        
+        int result = new UserService().createUser(u);
+        
+        
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
 		if(result > 0) {
 			
 			view = request.getRequestDispatcher("/views/user/create_success.jsp");
 			
-		}
+		} else {
+			if (request.getAttribute("error_message") == null) {
+				request.setAttribute("error_message", "Failed to create user.");
+				System.out.println("Failed to create user.");
+			}
+        }
 		
 		view.forward(request, response);
+      
+        
 	}
 
 	

@@ -21,7 +21,7 @@
 		<div id="section_wrap">
 			<div class="word">
 			<h3>회원가입에 실패했습니다.</h3>
-				
+				<p><%= request.getAttribute("error_message") %></p>
 			</div>
 			<div class="other">
 				<a href="/user/create">회원가입</a>

@@ -37,19 +37,25 @@ public class LoginEndServlet extends HttpServlet {
 		
 		if(u != null) {
 			HttpSession session = request.getSession(true);
-			
-			if(session.isNew() || session.getAttribute("user") == null) {
-				session.setAttribute("user", u);
-				session.setMaxInactiveInterval(60*30);
 
-			response.sendRedirect("/");
-			
+            if (session.isNew() || session.getAttribute("user") == null) {
+            	session.setAttribute("user", u);
+                session.setMaxInactiveInterval(60 * 30);
 
-			} else {
-				RequestDispatcher view = request.getRequestDispatcher("/views/user/login_fail.jsp");
-				view.forward(request, response);
-			}
-		}
+                if ("admin".equals(id) && "admin1234".equals(pw)) {
+                	response.sendRedirect(request.getContextPath() + "/admin/myPage");
+                } else {
+                	response.sendRedirect(request.getContextPath() + "/index.jsp");
+                }
+            } else {
+                RequestDispatcher view = request.getRequestDispatcher("/views/user/login_fail.jsp");
+                view.forward(request, response);
+            }
+        } else {
+            RequestDispatcher view = request.getRequestDispatcher("/views/user/login_fail.jsp");
+            view.forward(request, response);
+			} 
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

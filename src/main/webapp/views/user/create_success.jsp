@@ -8,25 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link href="../../resources/css/user/create_result.css" rel="stylesheet" type="text./css">
+<link href="../../resources/css/user/user_create.css" rel="stylesheet" type="text./css">
 
 </head>
 <body>
-	<%-- <%@ include file ="../include/header.jsp" %>
-	<%@ include file ="../include/loginHeader.jsp" %> --%>
-	<%-- <%@ include file="../include/nav.jsp" %> --%>
-	<%-- <%@ include file="../include/loginNav.jsp" %> --%>
 	<%@ include file ="../include/new_header.jsp" %>
-	<section>
-		<div id="section_wrap">
-			<div class="word">
+	<div class="container">
+        <div class="logo">
+            <img src="../../resources/images/집.png" alt="Share Life">
+            <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
+        </div>
+    	<div class="message-container">
 			<h3>회원가입에 성공하였습니다. 로그인해주세요.</h3>
-				
-			</div>
-			<div class="other">
 				<a href="/user/login">로그인</a>
-			</div>
 		</div>
-	</section>
+	</div>
+	
 </body>
 </html>
