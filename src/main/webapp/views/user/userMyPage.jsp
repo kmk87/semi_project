@@ -27,30 +27,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+	<style>
+        .card-body {
+            text-align: center;
+            width: 100%;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .nav-pills .nav-link {
+            background-color: #f8d7da;
+            margin-bottom: 10px;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #f5c6cb;
+        }
+        .tab-content .card {
+            margin-top: 20px;
+        }
+        .tab-content {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #f5c6cb;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #f8d7da;
+        }
+        .profile-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-
-  	<%-- <div class="container">
-        <div class="logo">
-            <!-- <img src="../../resources/images/logo.png" alt="Share Life"> -->
-            <div>마이페이지</div>
-        </div>
-        <div class="form-container">
-            <p>환영합니다, ${user.user_nick}님!</p>
-            <a href="/user/editProfile">프로필 수정</a><br>
-            <a href="/user/viewContent">내 컨텐츠 보기</a><br>
-        </div>
-    </div> --%>
-	
-	
 	<header>
-
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
                     <a href="index.jsp" style="display: flex; align-items: center;">
-                        <img src="../../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
+                        <img src="../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
                         <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
                     </a>
                 </div>
@@ -67,40 +88,29 @@
                     </form>
                 </div>
             </div>
-            
-        <!-- <div id="nav_wrap" class="col-sm-2"> -->
-     		<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
-		<%
-			User user = (User)session.getAttribute("user");
-		System.out.println("Session user: " + user);
-			if(user == null){
-		%>
-
-     	<!-- <div class="menu d-flex align-items-center justify-content-end">
-     	<div id="all">  -->    	
-     			<div class="support-box text-end d-none d-xl-block">
-     			 	<a href="/user/login">
-     				<span class="fs-6 secondary-font text-muted">로그인</span>
-     				</a>
-     			</div> 
-     			<div class="support-box text-end d-none d-xl-block"> 
-     				<a href="/user/create">
-     				<span class="fs-6 secondary-font text-muted">회원가입</span> 
-     				</a>
-     			</div> 
-     			<div class="support-box text-end d-none d-xl-block"> 
-     				<a href="customer_center.html"> 
-     				<span class="fs-6 secondary-font text-muted">고객센터</span> 
-     				</a> 
-     			</div>
-     		<!-- </div> -->
-     		<!-- </div> -->
-     		
-     	<!-- </div> -->
-     	<% } else { %>
-     	<!-- <div class="menu"> -->
-     		<!-- <div class="menu d-flex align-items-center justify-content-end"> -->
-     		<!-- <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> --> 
+            <%
+				User user = (User)session.getAttribute("user");
+				if(user == null){
+			%>
+            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+                <div class="support-box text-end d-none d-xl-block">
+                	<a href="/user/login">
+                    <span class="fs-6 secondary-font text-muted">로그인</span>
+                    </a>
+                </div>
+                <div class="support-box text-end d-none d-xl-block">
+                	<a href="/user/create">
+                    	<span class="fs-6 secondary-font text-muted">회원가입</span>
+                    </a>
+                </div>
+                <div class="support-box text-end d-none d-xl-block">
+                    <a href="/customerCenter">
+                        <span class="fs-6 secondary-font text-muted">고객센터</span>
+                    </a>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
      			<div class="support-box text-end d-none d-xl-block"> 
      				<a href="/user/userMyPage">
      				<span class="fs-6 secondary-font text-muted">마이페이지</span>
@@ -110,176 +120,65 @@
      				<a href="/user/logout">
      				<span class="fs-6 secondary-font text-muted">로그아웃</span> 
      				</a>
-     			</div>  
-     			<div class="support-box text-end d-none d-xl-block"> 
-     				<a href="customer_center.html"> 
-     				<span class="fs-6 secondary-font text-muted">고객센터</span> 
-     				</a> 
      			</div>
-     	<% } %>
+     			<div class="support-box text-end d-none d-xl-block">
+                    <a href="/customerCenter">
+                        <span class="fs-6 secondary-font text-muted">고객센터</span>
+                    </a>
+                </div> 
      		</div>
      	<!-- </div> -->
+     	<% } %>
      </div>
      </div>
-     
-    
-    
-    <div class="container-fluid">
-        <hr class="m-0">
-    </div>
-    <div class="container">
-        <nav class="main-menu d-flex navbar navbar-expand-lg ">
-            <div class="d-flex d-lg-none align-items-end mt-3">
-                <ul class="d-flex justify-content-end list-unstyled m-0">
-                    <li>
-                        <a href="account.html" class="mx-3">
-                            <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishlist.html" class="mx-3">
-                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                           aria-controls="offcanvasSearch">
-                            <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body justify-content-between">
-                    <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                       aria-expanded="false" style="padding-top: 10px; font-size: 20px;">글쓰기</a>
-                    <style>
-                        .dropdown_icon {
-                            margin-bottom: 5px;
-                        }
+</header>
 
-                        .dropdown-menu {
-                            font-size: 20px;
-                        }
-                    </style>
-                    <ul class="dropdown-menu" aria-labelledby="pages">
-                        <li>
-                            <a href="/views/user/profile.jsp" class="dropdown-item">
-                                프로필
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/views/user/userInfoChang.jsp" class="dropdown-item">
-                                회원정보수정
-                            </a>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="dropdown-item">
-                                내가 쓴 글
-                            </a>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="dropdown-item">
-                                판매/나눔
-                            </a>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="dropdown-item">
-                                내 모임
-                            </a>
-                        </li>
-                    </ul>
-                    <style>
-                        .nav-item {
-                            padding-left: 50px;
-                            font-size: 20px;
-                        }
-                    </style>
-                    <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
-                        <li class="nav-item">
-                            <a href="index.jsp" class="nav-link active">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/qboard/list" class="nav-link">질문</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="blog.html" class="nav-link">판매/나눔</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">번개모임</a>
-                        </li>
-                    </ul>
-                    <div class="d-none d-lg-flex align-items-end">
-                        <ul class="d-flex justify-content-end list-unstyled m-0">
-                            <li>
-                                <a href="account.html" class="mx-3">
-                                    <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="mx-3">
-                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                        </ul>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>사용자 마이페이지</h1>
+        </div>
+    </div>
+    
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-3">
+            <ul class="nav flex-column nav-pills" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="true">프로필</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="edit-info-tab" data-bs-toggle="tab" href="/user/userInfoChange" role="tab" aria-controls="edit-info" aria-selected="false">회원정보수정</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="edit-info-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="edit-info" aria-selected="false">내가 쓴 글</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="sales-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="sales" aria-selected="false">판매/나눔</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="my-meetings-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="my-meetings" aria-selected="false">내 모임</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-danger" id="leave-tab" data-bs-toggle="tab" href="/user/userLeave" role="tab" aria-controls="leave" aria-selected="false">회원탈퇴</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="tab-content profile-card" id="myTabContent">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="<%= user.getProfile_new_image_name() != null ? request.getContextPath() + "../../resources/images/" + user.getProfile_new_image_name() : request.getContextPath() + "../../resources/images/default-profile.png" %>" alt="프로필 이미지" class="profile-img mb-3">
+                                <h2><%= user.getUser_nick() %></h2>
+  								<p><%= user.getProfile_text() %></p>
+                                <a href="/user/profileSetting"class="btn btn-primary">프로필 설정</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </nav>
-    </div> 
-    </header>
-    
-	<div class="container">
-        <!-- Profile Container -->
-        <div class="profile-container">
-            <img src="../../resources/images/profile.png" alt="Profile Image">
-            <h2>코코몽</h2>
-            <p>게시글 수 20 | 댓글 수 2 | 좋아요 3</p>
-            <p>자바 백엔드 개발자가 되고 싶어요! 자바 백엔드 개발자가 되고 싶어요!</p>
-            <button>프로필 설정</button>
-        </div>
-        
-        <!-- Posts Container -->
-        <div class="posts-container">
-            <h2>내 게시글</h2>
-            <div class="post">
-                <img src="../../resources/images/post1.png" alt="Post Image">
-                <div class="post-details">
-                    <h3>우유 빨리 마시기</h3>
-                    <p>소개글</p>
-                </div>
-            </div>
-            <div class="post">
-                <img src="../../resources/images/post2.png" alt="Post Image">
-                <div class="post-details">
-                    <h3>수다 떨기</h3>
-                    <p>소개글</p>
-                </div>
-            </div>
-            <div class="post">
-                <img src="../../resources/images/post3.png" alt="Post Image">
-                <div class="post-details">
-                    <h3>탕근 키우기</h3>
-                    <p>소개글</p>
-                </div>
-            </div>
-            <div class="post">
-                <img src="../../resources/images/post4.png" alt="Post Image">
-                <div class="post-details">
-                    <h3>애견 산책</h3>
-                    <p>소개글</p>
-                </div>
             </div>
         </div>
-    </div>    
-    
-    
+    </div>
+</div>
+
 </body>
 </html>

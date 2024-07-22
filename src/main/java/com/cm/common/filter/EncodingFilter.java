@@ -14,7 +14,7 @@ import javax.servlet.http.HttpFilter;
 @WebFilter("/*")
 public class EncodingFilter extends HttpFilter implements Filter {
        
-    
+
     public EncodingFilter() {
         super();
         
@@ -38,4 +38,3 @@ public class EncodingFilter extends HttpFilter implements Filter {
 	}
 
 }
-

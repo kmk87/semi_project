@@ -81,6 +81,55 @@ public class UserService {
 	}
 	
 
+	// 회원탈퇴
+	
+	public boolean deleteUser(String id,String pw) {
+		Connection conn = getConnection();
+		boolean isDeleted = ud.deleteUser(id, pw, conn); // UserDao의 인스턴스 변수 사용
+        close(conn);
+        return isDeleted;
+	}
+	
+	// 회원정보 수정
+	
+	public boolean updateUserEmail(String user_id, String email) {
+		Connection conn = getConnection();
+		boolean isupdated= ud.updateUserEmail(user_id, email, conn);
+		System.out.println("UserService updateUserEmail result: " + isupdated);
+		close(conn);
+		return isupdated;
+	}
+
+	// 프로필에서 보여지는 정보 가져오기
+	
+	public User getUserProfile(int userNo) {
+        Connection conn = getConnection();
+        User user = ud.getUserProfile(userNo, conn);
+        close(conn);
+        return user;
+    }
+	
+	
+	// 프로필 설정 후 변경하기
+	
+	public boolean updateUserProfile(int userNo,String nick, String text) {
+        Connection conn = getConnection();
+        boolean isUpdated = ud.updateUserProfile(userNo,nick, text, conn);
+        close(conn);
+        return isUpdated;
+    }
+
+	// 닉네임 중복 확인 메서드 추가
+    public boolean checkNicknameAvailability(String nickname) {
+        Connection conn = getConnection();
+        boolean isAvailable = ud.isNicknameAvailable(nickname, conn);
+        close(conn);
+        return isAvailable;
+    }
+	
+	
+	
+	
 	
 	
 	

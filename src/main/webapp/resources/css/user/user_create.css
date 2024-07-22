@@ -8,9 +8,11 @@ body {
     height: 100vh;
     background-color: #f8f9fa;
     margin: 0;
+    text-align: center;
 }
 
 .container {
+	margin-top: 200px;
     text-align: center;
     background-color: #ffffff;
     padding: 30px;
@@ -38,14 +40,13 @@ body {
 }
 
 .message-container {
-    margin-top: 300px;
+    margin-top: 20px; /* 기존 margin-top: 300px;에서 변경 */
 }
 
 .message-container h3 {
     margin-bottom: 20px;
     color: #333;
 }
-
 
 /* button, .link-button {
     width: 100%;
