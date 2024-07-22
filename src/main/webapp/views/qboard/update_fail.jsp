@@ -15,7 +15,7 @@
 			<div class="word">
 				<h3>게시글 수정 실패</h3>
 				<br>
-				<a href="javascript:history.back();">뒤로가기</a>
+				<a href="/qboard/list">게시물 목록으로 돌아가기</a>
 			</div>
 		</div>
 	</section>

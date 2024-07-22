@@ -3,6 +3,69 @@
 <html lang="en">
 <head>
   <title>Share_Life</title>
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center; /* 전체 텍스트 가운데 정렬 */
+        }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .table .title-column {
+            width: 40%; /* 제목 열의 크기 조정 */
+        }
+        .table .author-column {
+            width: 15%; /* 작성자 열의 크기 조정 */
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+        }
+        .pagination a.active {
+            background-color: #333;
+            color: white;
+            border: 1px solid #333;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+        .sort-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .sort-container select {
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+        .board-name{
+			align-items: left;
+	 		text-align: left;
+		}
+		.board-write{
+	    	align-items: right;
+		}
+    </style>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +82,9 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="../css/vendor.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/normalize.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -60,12 +123,17 @@ header {
     width: 100%;
 }
 
-.center-table thead tr th, .center-table tbody tr td {
-    border: 1px solid #e1e1e1;
+.center-table thead tr th{
+    border: 1px solid #dddddd;
     padding: 10px 3px;
-    background-color: #a5a5a5;
+    background-color: #f2f2f2;
+    text-align: center;
 }
-
+.center-table tbody tr td{
+	border:1px solid #dddddd;
+	padding: 10px 3px;
+	text-align: center;
+} 
 .mt-5 {
     margin-top: 3rem !important;
 }
@@ -80,6 +148,10 @@ header {
 .board-write{
 	    align-items: right;
 }
+.search-a{
+	 align-items: center;
+	 text-align: center;
+}
   </style>
 </head>
 <body>
@@ -89,7 +161,7 @@ header {
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
             <a href="../../index.jsp" style="display: flex; align-items: center;">
-              <img src="../../images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
+              <img src="../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
               <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
             </a>
           </div>
@@ -162,20 +234,20 @@ header {
             </style>
             <ul class="dropdown-menu" aria-labelledby="pages">
               <li>
-                <a href="about.html" class="dropdown-item">
-                  <img class="dropdown_icon" src="../../images/질문.png">
+                <a href="/qboard/create" class="dropdown-item">
+                  <img class="dropdown_icon" src="../resources/images/질문.png">
                   질문 게시글
                 </a>
               </li>
               <li>
                 <a href="shop.html" class="dropdown-item">
-                  <img class="dropdown_icon" src="../../images/판매,나눔.png">
+                  <img class="dropdown_icon" src="../resources/images/판매,나눔.png">
                   판매/나눔 게시글
                 </a>
               </li>
               <li>
                 <a href="single-product.html" class="dropdown-item">
-                  <img class="dropdown_icon" src="../../images/번개.png">
+                  <img class="dropdown_icon" src="../resources/images/번개.png">
                   번개모임 게시글
                 </a>
               </li>
@@ -220,82 +292,105 @@ header {
     </div>
   </header>
   <section class="main-board">
-    <div class="center-container mt-5">
+    <div class="container mt-5">
     <div class="board-name">
       <h3 class="mt-5">질문게시판</h3>
       </div>
-     <div class="board-write">
-      <nav>
-            <a href="/qboard/create" class="mt-3">게시글 등록</a>
-      </nav>
-     </div>  
-      <table class="center-table mt-3">
+<div class="board-write">
+    <form method="get" action="/qboard/list">
+        <select name="sort" onchange="this.form.submit()">
+            <option value="latest" <%= request.getParameter("sort") != null && request.getParameter("sort").equals("latest") ? "selected" : "" %>>최신순</option>
+            <option value="views" <%= request.getParameter("sort") != null && request.getParameter("sort").equals("views") ? "selected" : "" %>>조회순</option>
+            <option value="likes" <%= request.getParameter("sort") != null && request.getParameter("sort").equals("likes") ? "selected" : "" %>>좋아요순</option>
+        </select>
+    </form>
+</div>
+      <table class="table mt-3">
         <thead>
           <tr>
             <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
+            <th class="title-column">제목</th>
+            <th class="author-column">작성자</th>
             <th>작성일</th>
-            <th>좋아요 수</th>
+            <th>좋아요수</th>
+            <th>조회수</th>
           </tr>
         </thead>
         <tbody>
-          <%@page import="com.cm.board.vo.QBoard, java.util.*" %>
+        <%@ page import="com.cm.common.Paging" %>
+          <%@page import="com.cm.board.vo.QBoard, java.util.* ,com.cm.user.vo.User" %>
           <%
             List<QBoard> list = (List<QBoard>)request.getAttribute("qbList");
-            for(int i = 0 ; i < list.size(); i++){ %>
+            for(int i = 0 ; i < list.size(); i++){ 
+            	QBoard qboard = list.get(i);
+                User user = qboard.getUser();
+            %>
               <tr>
                 <td class="">
-                <a href="#"><%=list.get(i).getPostNo()%></a>
+                <a href="<%=request.getContextPath()%>/qboard/detail?post_no=<%=list.get(i).getPostNo()%>"><%=list.get(i).getPostNo()%></a>
+                </td>
+                <td class="title-column">
+                <a href="detail?post_no=<%=list.get(i).getPostNo()%>"><%=list.get(i).getPostTitle()%></a>
+                </td class="author-column">
+                <td>
+                <a href="detail?post_no=<%=list.get(i).getPostNo()%>"><%=list.get(i).getUser().getUser_nick()%></a>
                 </td>
                 <td>
-                <a href="#"><%=list.get(i).getPostTitle()%></a>
+                <a href="detail?post_no=<%=list.get(i).getPostNo()%>"><%=list.get(i).getPostModDate()%></a>
                 </td>
                 <td>
-                <a href="#"><%=list.get(i).getUserNo()%></a>
+                <a href="detail?post_no=<%=list.get(i).getPostNo()%>"><%=list.get(i).getLikeCount()%></a>
                 </td>
                 <td>
-                <a href="#"><%=list.get(i).getPostModDate()%></a>
-                </td>
-                <td>
-                <a href="#"><%=list.get(i).getLikeCount()%></a>
+                <a href="detail?post_no=<%=list.get(i).getPostNo()%>"><%= list.get(i).getPostView() %></a>
                 </td>																											
               </tr>
           <% } %>
         </tbody>
       </table>
-    </div>
-      <form action="/qboard/list" name="search_board_form" method="get" class="mt-3">
+    </div class="pagination">
+      <form action="/qboard/list" name="search_board_form" method="get" class="search-a mt-3">
+          <select name="search_type">
+        <option value="title">제목</option>
+        <option value="author">작성자</option>
+        <option value="title_author">제목 + 작성자</option>
+    </select>
+    	<%-- <input type="text" name="search_query" placeholder="검색어를 입력하세요.">  --%>
         <input type="text" name="post_title" placeholder="검색하고자하는 게시글의 제목을 입력하세요.">
         <input type="submit" value="검색">
       </form>
   </section>
   
-  <%
-    QBoard paging = (QBoard)request.getAttribute("paging");
-    if(paging != null){ %>
-      <div class="center-container mt-3">
-        <div class="pagination">
-          <% if(paging.isPrev()){ %>
-            <a href="/qboard/list?nowPage=<%=(paging.getPageBarStart()-1)%>">&laquo;</a>
-          <%}%>
-          <% for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++) {%>
-            <a href="/qboard/list?nowPage=<%=i%>" <%=paging.getNowPage() == i ? "class='active'" : ""%>>
-              <%=i%>
-            </a>
-          <%}%>
-          <% if(paging.isNext()){ %>
-            <a href="/qboard/list?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
-          <%}%>
+    <%
+        Paging paging = (Paging) request.getAttribute("paging");
+        if (paging != null) { 
+    %>
+        <div class="center-container mt-3">
+            <div class="pagination">
+                <% if (paging.isPrev()) { %>
+                    <a href="/qboard/list?nowPage=<%= paging.getPageBarStart() - paging.getPageBarSize() %>&sort=<%= request.getParameter("sort") %>" class="prev">&laquo; 이전 페이지</a>
+                <% } else { %>
+                    <a class="prev disabled">&laquo; 이전 페이지</a>
+                <% } %>
+                <% for (int i = paging.getPageBarStart(); i <= paging.getPageBarEnd(); i++) { %>
+                    <a href="/qboard/list?nowPage=<%= i %>&sort=<%= request.getParameter("sort") %>" class="<%= paging.getNowPage() == i ? "active" : "" %>">
+                        <%= i %>
+                    </a>
+                <% } %>
+                <% if (paging.isNext()) { %>
+                    <a href="/qboard/list?nowPage=<%= paging.getPageBarEnd() + 1 %>&sort=<%= request.getParameter("sort") %>" class="next">다음 페이지 &raquo;</a>
+                <% } else { %>
+                    <a class="next disabled">다음 페이지 &raquo;</a>
+                <% } %>
+            </div>
         </div>
-      </div>
-  <% } %>
+    <% } %>
   <footer id="footer" class="my-5">
     <div class="container py-5 my-5">
       <div class="row">
         <div class="col-md-3">
           <div class="footer-menu">
-            <img src="../../images/logo.png" alt="logo">
+            <img src="../resourse/images/logo.png" alt="logo">
             <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
             <div class="social-links">
               <ul class="d-flex list-unstyled gap-2">
@@ -393,13 +488,13 @@ header {
     </div>
   </div>
 
-  <script src="../js/jquery-1.11.0.min.js"></script>
+  <script src="../resources/js/jquery-1.11.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
-  <script src="../js/plugins.js"></script>
-  <script src="../js/script.js"></script>
+  <script src="../resources/js/plugins.js"></script>
+  <script src="../resources/js/script.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </body>
 </html>

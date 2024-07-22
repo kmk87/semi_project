@@ -3,6 +3,7 @@ package com.cm.board.vo;
 import java.time.LocalDateTime;
 
 import com.cm.common.Paging;
+import com.cm.user.vo.User;
 
 public class QBoard extends Paging{
 	private int postNo;
@@ -15,13 +16,35 @@ public class QBoard extends Paging{
 	private LocalDateTime postModDate;
 	private String postReleaseYn;
 	private int likeCount;
+	private String imageOriName;
+	private String imageNewName;
+	private int postView;
+	private User user;
+	private LocationGu location;
+	
+	public LocationGu getLocation() {
+		return location;
+	}
+	
+	public void setLocation() {
+		this.location = location;
+	}
+	
+	  public User getUser() {
+	        return user;
+	    }
+
+	    public void setUser(User user) {
+	        this.user = user;
+	    }
 	
 	public QBoard() {
 		super();
 	}
 
 	public QBoard(int postNo, int boardTypeId, int localGuNo, int userNo, String postTitle, String postText,
-			LocalDateTime postRegDate, LocalDateTime postModDate, String postReleaseYn, int likeCount) {
+			LocalDateTime postRegDate, LocalDateTime postModDate, String postReleaseYn, int likeCount,
+			String imageOriName, String imageNewName, int postView) {
 		super();
 		this.postNo = postNo;
 		this.boardTypeId = boardTypeId;
@@ -33,6 +56,9 @@ public class QBoard extends Paging{
 		this.postModDate = postModDate;
 		this.postReleaseYn = postReleaseYn;
 		this.likeCount = likeCount;
+		this.imageOriName = imageOriName;
+		this.imageNewName = imageNewName;
+		this.postView = postView;
 	}
 
 	public int getPostNo() {
@@ -114,8 +140,31 @@ public class QBoard extends Paging{
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-	
-	
+
+	public String getImageOriName() {
+		return imageOriName;
+	}
+
+	public void setImageOriName(String imageOriName) {
+		this.imageOriName = imageOriName;
+	}
+
+	public String getImageNewName() {
+		return imageNewName;
+	}
+
+	public void setImageNewName(String imageNewName) {
+		this.imageNewName = imageNewName;
+	}
+
+	public int getPostView() {
+		return postView;
+	}
+
+	public void setPostView(int postView) {
+		this.postView = postView;
+	}
+
 	
 	
 }
