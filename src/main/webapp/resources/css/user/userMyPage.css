@@ -1,69 +1,36 @@
 @charset "UTF-8"; 
-body {
-    font-family: 'Montserrat', sans-serif;
-}
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+    .card-body {
+        text-align: center;
+        width: 100%;
+    }
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+    .nav-pills .nav-link {
+        background-color: #f8d7da;
+        margin-bottom: 10px;
+    }
+    .nav-pills .nav-link.active {
+        background-color: #f5c6cb;
+    }
+    .tab-content .card {
+        margin-top: 20px;
+    }
+    .tab-content {
+        width: 100%;
+    }
+    .btn-primary {
+        background-color: #f5c6cb;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #f8d7da;
+    }
 
-header .main-logo a {
-    text-decoration: none;
-    color: #000;
-}
-
-.search-bar {
-    background-color: #f8f9fa;
-}
-
-.support-box {
-    margin-top: 10px;
-}
-
-.navbar-nav .nav-link.active {
-    color: #ff9800;
-}
-
-.navbar-nav .nav-link {
-    color: #000;
-}
-
-.tab-content .card {
-    margin-top: 20px;
-}
-
-.profile-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.btn-primary {
-    background-color: #ff9800;
-    border: none;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-.btn-primary:hover {
-    background-color: #e68900;
-}
-
-.nav-pills .nav-link {
-    background-color: #f8f9fa;
-    color: #000;
-}
-
-.nav-pills .nav-link.active {
-    background-color: #ff9800;
-    color: #fff;
-}
-
-.nav-pills .nav-link.text-danger {
-    color: #ff4d4d;
-}
+	.card {
+		margin-top: 300px;
+		width: 300px;
+	}

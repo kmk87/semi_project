@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -101,7 +102,7 @@
 	let idChecked = false;
 	let nickChecked =false;
 		
-	// 아이디, 닉네임 중복확인 버튼관련,사용자가 입력을 환료한 후에 버튼 활성화
+	// 아이디, 닉네임 중복확인 버튼관련,사용자가 입력을 완료한 후에 버튼 활성화
 	document.getElementById("user_id").addEventListener("input", function() {
 	    document.getElementById("idBoxBottomRight").disabled = this.value.length < 6 || this.value.length > 10;
 	    idChecked = false;

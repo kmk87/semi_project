@@ -27,6 +27,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+	<!-- <link href='../../resources/css/user/userMyPage.css' rel="stylesheet" type="text/css"> -->
+
+	<style>
+        /* 기존 스타일에서 추가 및 수정 부분 */
+        .card-body {
+            text-align: center;
+            width: 100%;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .nav-pills .nav-link {
+            background-color: #f8d7da;
+            margin-bottom: 10px;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #f5c6cb;
+        }
+        .tab-content .card {
+            margin-top: 20px;
+        }
+        .tab-content {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #f5c6cb;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #f8d7da;
+        }
+        .profile-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 	<header>
@@ -103,7 +141,8 @@
             <h1>사용자 마이페이지</h1>
         </div>
     </div>
-    <div class="row mt-4">
+    
+    <div class="row mt-4 justify-content-center">
         <div class="col-md-3">
             <ul class="nav flex-column nav-pills" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -127,18 +166,18 @@
             </ul>
         </div>
         <div class="col-md-9">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <img src="../../resources/images/default-profile.png" alt="프로필 이미지" class="profile-img mb-3">
-                            <h2>닉네임</h2>
-                            <p>좋아요 3</p>
-                            <p>자바 백엔드 개발자가 되고 싶어요!</p>
-                            <button class="btn btn-primary">프로필 설정</button>
+            <div class="tab-content profile-card" id="myTabContent">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="<%= user.getProfile_new_image_name() != null ? request.getContextPath() + "../../resources/images/" + user.getProfile_new_image_name() : request.getContextPath() + "../../resources/images/default-profile.png" %>" alt="프로필 이미지" class="profile-img mb-3">
+                                <h2><%= user.getUser_nick() %></h2>
+                                <%-- <p>좋아요 <%= user.getLikes() %></p> --%>
+                                <p><%= user.getProfile_text() %></p>
+                                <a href="/user/profileSetting"class="btn btn-primary">프로필 설정</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <!-- 회원정보수정, 내가 쓴 글, 판매/나눔, 내 모임, 회원탈퇴 탭 내용 추가 필요 -->
             </div>
         </div>
