@@ -31,6 +31,7 @@ public class SaleShareBoardEditServlet extends HttpServlet {
 		int i = 0;
 		SaleShareList ssl = new SaleShareBoardService().selectBoard(postNo);
 		
+		
 		request.setAttribute(post, ssl);
 		request.setAttribute("postNo", postNo);
 		request.setAttribute("list", ssl);

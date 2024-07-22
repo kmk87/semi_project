@@ -52,6 +52,8 @@ public class SaleShareEditEndServlet extends HttpServlet {
 			 String visiblity = mr.getParameter("closed");
 			 if(visiblity == null) {
 				 visiblity = "Y";
+			 }else {
+				 visiblity = "N";
 			 }
 			 
 			 String name = mr.getParameter("post_title");

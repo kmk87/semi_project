@@ -29,7 +29,7 @@ public class ViewPostServlet extends HttpServlet {
 		 int i = 0;
 		String post = request.getParameter("id");
 		int postNo = Integer.parseInt(post);
-		
+		System.out.println("번호값 : "+postNo);
 		SaleShareList ssl = new SaleShareBoardService().selectBoard(postNo);
 		request.setAttribute("list", ssl);
 		

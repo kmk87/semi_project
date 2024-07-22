@@ -44,6 +44,7 @@ public class SaleShareBoardListServlet extends HttpServlet {
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
 
+
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_board_list.jsp");
 		view.forward(request, response);

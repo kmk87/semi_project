@@ -9,6 +9,7 @@ import java.util.List;
 import com.cm.sale_share_board.dao.SaleShareBoardDao;
 import com.cm.sale_share_board.vo.SaleShareBoard;
 import com.cm.sale_share_board.vo.SaleShareImage;
+import com.cm.sale_share_board.vo.SaleShareLike;
 import com.cm.sale_share_board.vo.SaleShareList;
 
 
@@ -42,15 +43,21 @@ public class SaleShareBoardService {
 		
 	}
 	
-	// 검색(닉네임)조회
-	public List<SaleShareList> selectSaleSearchNic(SaleShareList option){
+	// 검색(제목+지역)조회
+	public List<SaleShareList> selectSaleSerchTitle_location(SaleShareList option){
 		Connection conn = getConnection();
-		List<SaleShareList> list = new SaleShareBoardDao().selectSaleSearchNic(option,conn);
+		List<SaleShareList> list = new SaleShareBoardDao().selectSaleSerchTitle_location(option,conn);
 		close(conn);
 		return list;
-		
 	}
 	
+	// 검색(지역) 조회
+	public List<SaleShareList> selectSaleSearchLocation(SaleShareList option){
+		Connection conn = null;
+		List<SaleShareList> list = new SaleShareBoardDao().selectSaleSearchLocation(option,conn);
+		close(conn);
+		return list;
+	}
 	
 	// 게시글 갯수
 	public int selectListCount(SaleShareList option) {
@@ -123,6 +130,15 @@ public class SaleShareBoardService {
 		close(conn);
 		return result;
 	}
+	
+	// 좋아요
+	public int saleLike(SaleShareLike like) {
+		Connection conn = getConnection();
+		int result = new SaleShareBoardDao().saleLike(like,conn);
+		close(conn);
+		return result;
+	}
+	
 	
 }
 

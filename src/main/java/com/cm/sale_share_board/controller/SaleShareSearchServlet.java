@@ -37,13 +37,16 @@ public class SaleShareSearchServlet extends HttpServlet {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
 		
+		System.out.println(option.getPost_title());
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
+		
 		
 		switch(search) {
 			case "1" : list = new SaleShareBoardService().selectSaleBoardList(option); break;
 			case "2" : list = new SaleShareBoardService().selectSaleSearchText(option); break;
-			case "3" : list = new SaleShareBoardService().selectSaleSearchNic(option); break;
+			case "3" : list = new SaleShareBoardService().selectSaleSerchTitle_location(option); break;
+			case "4" : list = new SaleShareBoardService().selectSaleSearchLocation(option); break;
 		}
 		
 		

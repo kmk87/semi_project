@@ -2,33 +2,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <title>판매/나눔 게시글</title>
-    <link href="../../resources/css/createSale.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/paging.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/createSale.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    
 </head>
 <body>
 	<%@ include file="../include/new_header.jsp" %>
-    <!-- <img src='../../resources/img/free-icon-sale-7967061.png' id="sale_icon"> -->
 	<section id="section_id">
-    	<!--  유저 사진 값1 -->
         <form action="/sale_share_board/createEnd" method="post" enctype="multipart/form-data" id="form_id" name="form_id">
-    	<img src="../../resources/img/부럽이.jpg"  id="profile_img">
-        <img src="../../resources/img/free-icon-heart-1077035.png" id="heart_id">
-        <input type="button" value="1:1채팅" id="chat_id">
         <br><br>
-            <div class="form_group">
-                <div style= " width: 100px; height: 100px; background-color: white; cursor: pointer;" >
-                    <input type='file' id="myFile" name="thumbnail"><br><br>
-                </div>
-            </div>
-            <br><br>
+                <input type='file' id="myFile" name="thumbnail"><br><br>
+            <br>
             <div class="form_group">
                 <p><label for="prod_id">상품명</label>
                 <input type="text" id="prod_id" name="post_title" placeholder="text">
@@ -120,17 +126,6 @@
         createBoardForm();
     });
 
-    // 파일 URL 읽기 함수
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                // 이미지 미리보기 처리 등 추가 가능
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
     function createBoardForm() {
         var form = document.getElementById("form_id");
         if (!form.post_title.value) {
@@ -164,5 +159,13 @@
     }
 };		
     </script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </body>
 </html>
