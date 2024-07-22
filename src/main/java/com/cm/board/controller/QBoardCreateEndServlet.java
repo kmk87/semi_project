@@ -23,9 +23,10 @@ public class QBoardCreateEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("post_title");
-		String text = request.getParameter("post_text");
-
+		String title = request.getParameter("postTitle");
+		String text = request.getParameter("postText");
+		System.out.println("제목"+title);
+		System.out.println("내용"+text);
 	
 		QBoard qb = new QBoard();
 		qb.setPostTitle(title);

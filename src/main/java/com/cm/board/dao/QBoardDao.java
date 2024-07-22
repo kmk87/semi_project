@@ -16,13 +16,15 @@ public class QBoardDao {
         PreparedStatement pstmt = null;
         int result = 0;
         try {
-            String sql = "INSERT INTO question_post (board_type_id, local_gu_no, user_no, post_title, post_text) VALUES ('?','?','?','?','?')";
+            String sql = "INSERT INTO question_post (board_type_id, local_gu_no, user_no, post_title, post_text) VALUES ('1','1','1','?','?')";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, qb.getBoardTypeId());
-            pstmt.setInt(2, qb.getLocalGuNo());
-            pstmt.setInt(3, qb.getUserNo());
-            pstmt.setString(4, qb.getPostTitle());
-            pstmt.setString(5, qb.getPostText());
+            System.out.println("Binding values:  post_title=" + qb.getPostTitle()+ " post_text=" + qb.getPostText());
+
+           // pstmt.setInt(1, 2);
+           // pstmt.setInt(2, 1);
+           // pstmt.setInt(3, 1);
+            pstmt.setString(1, qb.getPostTitle());
+            pstmt.setString(2, qb.getPostText());
 
             result = pstmt.executeUpdate();
 
@@ -65,12 +67,17 @@ public class QBoardDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM question_post";
+            String sql = "SELECT qp.*, "
+            		 +"COUNT(DISTINCT ql.like_no) AS like_count "
+            		 +"FROM question_post qp "
+            		 +"LEFT JOIN question_like ql ON qp.post_no = ql.post_no ";
             if (qb.getPostTitle() != null) {
                 sql += " WHERE post_title LIKE CONCAT('%','"+qb.getPostTitle()+"', '%')";
             }
-            sql += " LIMIT "+qb.getLimitPageNo()+", "+qb.getNumPerPage();
+            sql +=  " GROUP BY qp.post_no, qp.post_title, qp.post_mod_date, qp.user_no"
+            		+" LIMIT "+qb.getLimitPageNo()+", "+qb.getNumPerPage();
             pstmt = conn.prepareStatement(sql);
+            
             rs = pstmt.executeQuery();
             while(rs.next()) {
             	QBoard resultVo = new QBoard(rs.getInt("post_no"),
@@ -81,7 +88,9 @@ public class QBoardDao {
             			rs.getString("post_text"),
             			rs.getTimestamp("post_reg_date").toLocalDateTime(),
             			rs.getTimestamp("post_mod_date").toLocalDateTime(),
-            			rs.getString("post_release_yn"));
+            			rs.getString("post_release_yn"),
+            			rs.getInt("like_count"));
+
             	list.add(resultVo);
             }
             
