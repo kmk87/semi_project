@@ -20,22 +20,22 @@ import com.cm.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/flashmob/createEnd")
-public class FlashmobCreateEndServlet extends HttpServlet {
+@WebServlet("/flashmob/editEnd")
+public class FlashmobEditEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public FlashmobCreateEndServlet() {
+    public FlashmobEditEndServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 아직 유저 로그인 구현 전
-		HttpSession session = request.getSession(false);
-		if(session !=null) {User user = (User)session.getAttribute("user");
-		if(user!=null) {
-			int userNo = user.getUser_no();
-		int local_gu=1;
+		HttpSession session=request.getSession(false);
+		if(session!=null) {
+			User user = (User)session.getAttribute("user");
+			if(user!=null) {
+				int userNo = user.getUser_no();
 		int boardtype = 3;
+		int local_gu=1;
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 		if(ServletFileUpload.isMultipartContent(request)) {
@@ -47,6 +47,7 @@ public class FlashmobCreateEndServlet extends HttpServlet {
 			
 			String oriName = mr.getOriginalFileName("thumbnail");
 			String reName = mr.getFilesystemName("thumbnail");
+			int postNo = Integer.parseInt(mr.getParameter("postNo"));
 			String title = mr.getParameter("flashmob_post_title");
 			LocalDateTime time = LocalDateTime.parse(mr.getParameter("flashmob_time"),formatter);
 			String text = mr.getParameter("flashmob_post_text");
@@ -59,7 +60,6 @@ public class FlashmobCreateEndServlet extends HttpServlet {
 				privacy="N";
 			}
 			
-			
 			Flashmob f = new Flashmob();
 			f.setFlashmob_location(location);
 			f.setFlashmob_date(time);
@@ -70,21 +70,17 @@ public class FlashmobCreateEndServlet extends HttpServlet {
 			f.setUser_no(userNo);
 			f.setBoard_type_id(boardtype);
 			f.setLocal_gu_no(local_gu);
-			f.setFlashmob_ori_image_name(oriName);
-			f.setFlashmob_new_image_name(reName);
-			System.out.println(f);
-			int result = new FlashmobService().createFlashmob(boardtype,local_gu,f);
-			System.out.println(result);
-			RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/create_fail.jsp");
+			
+			int result = new FlashmobService().editFlashmob(postNo,userNo,boardtype,local_gu,f);
+			RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/edit_fail.jsp");
 			if(result>0) {
-				view=request.getRequestDispatcher("/views/flashmob/create_success.jsp");
+				view=request.getRequestDispatcher("/views/flashmob/edit_success.jsp");
 			}
 			view.forward(request, response);
 		}else {
-			response.sendRedirect("flashmob/create");
+			response.sendRedirect("flashmob/edit");
 		}}}
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

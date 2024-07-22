@@ -7,13 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ page import = "com.cm.vo.User" %>
+<%@ include file ="../include/new_header.jsp" %>
 	<section>
 		<div id="section_wrap">
 			<div class="word">
 				<h3>게시글 등록</h3>
 			</div><br>
 			<div class="register_book_form">
-				<form action='/flashmob/createEnd' name="create_flashmob_form" method="post" enctype="multipart/form-data">	
+				<form action="${pageContext.request.contextPath}/flashmob/createEnd" name="create_flashmob_form" method="post" enctype="multipart/form-data">	
 					<label for="flashmob_post_title">제목 : </label>
 					<input type="text" name="flashmob_post_title" id="flashmob_post_title" placeholder="제목을 입력하세요."> <br>
 					<label for="flashmob_location">장소 : </label>
@@ -31,7 +33,7 @@
         			<label for="flashmob_post_text">내용 : </label>
 					<input type="text" name="flashmob_post_text" id="flashmob_post_text" placeholder="내용을 입력하세요."><br>
 					<label for="thumbnail">사진</label>
-					<input type="file" name="thumbnail" id="thumbnail" accept=".png,.jpg,.jpeg"><br>
+					<input type="file" name="thumbnail" id="thumbnail" accept=".png,.jpg,.jpeg" multiple><br>
 					<input type="checkbox" name="privacy" id="privacy">
 					<label for="privacy">비공개</label>
 					<input type="button" value="등록" onclick="createBoardForm();"> 
@@ -42,24 +44,33 @@
 	</section>
 	<script type="text/javascript">
 		function createBoardForm() {
-			let form = document.create_flashmob_form;	
-			if(!form.flashmob_post_title.value){
+			let form = document.forms["create_flashmob_form"];	
+			if(!form["flashmob_post_title"].value){
 				alert("제목을 입력하세요.");
-				form.flashmob_post_title.focus();
-			} else if(!form.flashmob_post_text.value){
+				form["flashmob_post_title"].focus();
+			}else if(!form["flashmob_location"].value){
+				alert("장소를 입력하세요.");
+				form["flashmob_location"].focus();
+			}else if(!form["flashmob_time"].value){
+				alert("일정을 입력하세요.");
+				form["flashmob_time"].focus();
+			}else if(!form["flashmob_number"].value){
+				alert("인원을 입력하세요.");
+				form["flashmob_number"].focus();
+			}else if(!form["flashmob_post_text"].value){
 				alert("내용을 입력하세요.");
-				form.flashmob_post_text.focus();
-			}else if(!form.thumbnail.value){
+				form["flashmob_post_text"].focus();
+			}else if(!form["thumbnail"].value){
 				form.submit();
-			}else if(form.thumbnail.value){
-				const val = form.thumbnail.value;
+			}else if(form["thumbnail"].value){
+				const val = form["thumbnail"].value;
 				const idx = val.lastIndexOf('.');
 				const type = val.substring(idx+1,val.length);
 				if(type == 'jpg' || type == 'jpeg' || type == "png"){
 					form.submit();
 				} else{
 					alert("이미지 파일만 선택할 수 있습니다.");
-					form.thumbnail.value = '';
+					form["thumbnail"].value = '';
 				}
 			}
 		}

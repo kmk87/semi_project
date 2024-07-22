@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file ="../include/new_header.jsp" %>
-	<h1>실패 ㅠ</h1>
+<%@ include file ="../include/new_header.jsp" %>
+	<h1>좋아요를 눌렀습니다</h1>
 </body>
 </html>

@@ -24,12 +24,17 @@
     </style>
 </head>
 <body>
-
+<%@ include file ="../include/new_header.jsp" %>
 	<section>
 		<div id="section_wrap">
 			<div id="word">
 				<h3>게시글 목록</h3>
 			</div><br>
+			<div>
+				<a href="/flashmob/list?sort=latest">최신순</a>
+            	<a href="/flashmob/list?sort=view">조회순</a>
+            	<a href="/flashmob/list?sort=like">좋아요순</a>
+			</div>
 			<div class="flashmob_list">
 			<table>
 				<colgroup>
@@ -55,7 +60,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%@ page import="com.cm.flashmob.vo.Flashmob, java.util.*" %>
+					<%@ page import="com.cm.flashmob.vo.Flashmob, java.text.SimpleDateFormat,java.util.*" %>
 					<% 	List<Flashmob> list = (List<Flashmob>)request.getAttribute("resultList");
 						for(int i=0;i<list.size();i++){%>
 							<tr>
@@ -63,9 +68,9 @@
 								<td><%=list.get(i).getFlashmob_location() %></td>
 								<td><a href="/flashmob/check?post_no=<%=list.get(i).getPost_no()%>"><%=list.get(i).getPost_title() %></a></td>
 								<td id ="timer" data-end-time="<%= list.get(i).getFlashmob_date() %>">Loading...</td>
-								<td><%=list.get(i).getPost_reg_date() %></td>
-								<td><%=list.get(i).getUser_no() %></td>
-								<td><%=list.get(i).getBoard_type_id() %></td>
+								<td><%=list.get(i).getPost_reg_date()%></td>
+								<td><%=list.get(i).getUser_nick() %></td>
+								<td><%=list.get(i).getFlashmob_post_view() %></td>
 								<td><%=list.get(i).getLike_count() %></td>
 
 							</tr>

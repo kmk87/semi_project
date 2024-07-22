@@ -10,9 +10,9 @@ import com.cm.flashmob.dao.FlashmobDao;
 import com.cm.flashmob.vo.Flashmob;
 
 public class FlashmobService {
-	public List<Flashmob> selectFlashmobList(Flashmob option){
+	public List<Flashmob> selectFlashmobList(String sort,Flashmob option){
 		Connection conn = getConnection();
-		List<Flashmob> list = new FlashmobDao().selectFlashmobList(option,conn);
+		List<Flashmob> list = new FlashmobDao().selectFlashmobList(sort,option,conn);
 		close(conn);
 		return list;
 	}
@@ -22,9 +22,9 @@ public class FlashmobService {
 		close(conn);
 		return result;
 	}
-	public int createFlashmob(int user,int boardtype,int local_gu,Flashmob f) {
+	public int createFlashmob(int boardtype,int local_gu,Flashmob f) {
 		Connection conn = getConnection();
-		int result = new FlashmobDao().createFlashmob(user,boardtype,local_gu,f,conn);
+		int result = new FlashmobDao().createFlashmob(boardtype,local_gu,f,conn);
 		close(conn);
 		return result;
 	}
@@ -34,4 +34,22 @@ public class FlashmobService {
 		close(conn);
 		return result;
 		}
+	public int editFlashmob(int postNo,int user,int boardtype,int local_gu,Flashmob f) {
+		Connection conn = getConnection();
+		int result = new FlashmobDao().editFlashmob(postNo,user,boardtype,local_gu,f,conn);
+		close(conn);
+		return result;
+	}
+	public int delete(int post_no) {
+		Connection conn = getConnection();
+		int result = new FlashmobDao().delete(post_no,conn);
+		close(conn);
+		return result;
+	}
+	public String getName(int post_no) {
+		Connection conn =  getConnection();
+		String name = new FlashmobDao().getName(post_no,conn);
+		close(conn);
+		return name;
+	}
 }

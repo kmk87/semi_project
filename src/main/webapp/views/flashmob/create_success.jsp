@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file ="../include/new_header.jsp" %>
+	<h1>성공</h1>
 </body>
 </html>

@@ -22,6 +22,11 @@ public class FlashmobListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sort = request.getParameter("sort");
+		if (sort == null) {
+            sort = "latest";
+        }
+		 
 		String title = request.getParameter("post_title");
 		Flashmob option = new Flashmob();
 		option.setPost_title(title);
@@ -32,8 +37,7 @@ public class FlashmobListServlet extends HttpServlet {
 		}
 		
 		option.setTotalData(new FlashmobService().selectFlashmobCount(option));
-		List<Flashmob> list = new FlashmobService().selectFlashmobList(option);
-		
+		List<Flashmob> list = new FlashmobService().selectFlashmobList(sort,option);
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
 		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/list.jsp");
