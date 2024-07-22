@@ -34,7 +34,7 @@
 <body>
 	<%@ include file ="../include/new_header.jsp" %>
 	
-	<section>
+	<section Style="margin-top: 100px">
 		<div class="login-container" id="section_wrap" style="margin: 330px auto 0">
 			<div class="word">
 				<h2>로그인</h2>
@@ -56,9 +56,11 @@
 				</form>
 			</div>
 			<div class="find_id_create_account">
+			<span>
 				<a href="/user/findId">아이디 찾기</a>
 				<a href="/user/findPw">비밀번호 찾기</a>
 				<a href="/user/create">회원 가입</a>
+			</span>
 			</div>
 		</div>
 	

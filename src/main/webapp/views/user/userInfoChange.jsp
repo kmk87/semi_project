@@ -30,24 +30,54 @@
     <meta charset="UTF-8">
 </head>
 <style>
+		body, html {
+        	height: 100%;
+        	margin: 0;
+        	font-family: 'Jua', sans-serif;
+        	display: flex;
+        	justify-content: center;
+        	align-items: center;
+    	}
+
+    	.container {
+        	display: flex;
+        	flex-direction: column;
+        	align-items: center;
+        	text-align: center;
+    	}
+		.form-container {
+        	display: flex;
+        	flex-direction: column;
+        	align-items: center;
+        	width: 100%;
+        	max-width: 400px;
+    	}
         .form-control {
-            max-width: 400px;
+            width: 100%;
         }
         .btn-container {
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+       	 	width: 100%;
+        	margin-top: 20px;
+        	
         }
+        
+        .btn-container .btn {
+        	margin: 0 10px; /* 버튼 사이 간격 설정 */
+    	}
+    
         input[type="email"] {
-        text-transform: none; /* First character should not be uppercase */
+        	text-transform: none; /* First character should not be uppercase */
     	}
 </style>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5" style="display: flex; justify-content: center; align-items: center;">
         <h2>회원정보 수정</h2>
         <form action="<%=request.getContextPath()%>/user/userInfoChangeEnd" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">이메일</label>
-                <input type="email" class="form-control" id="email" name="email" required autocapitalize="none" autocomplete="off" autocorrect="off">
+                <input type="email" class="form-control" id="email" name="email" required autocapitalize="none" autocomplete="off" autocorrect="off" placeholder=" 수정하실 이메일을 입력해주세요.">
             </div>
             <!-- <div class="mb-3">
                 <label for="address" class="form-label">주소</label>
@@ -60,6 +90,17 @@
         </form>
     </div>
 <script>
+
+		document.getElementById('email').addEventListener('focus', function() {
+    		this.placeholder = '';
+		});
+
+		document.getElementById('email').addEventListener('blur', function() {
+    		if (this.value === '') {
+        		this.placeholder = '수정하실 이메일을 입력해주세요.';
+    		}
+		});
+
         window.onload = function() {
             let message = '<%= (session.getAttribute("message") != null) ? session.getAttribute("message") : "" %>';
             let error = '<%= (session.getAttribute("error") != null) ? session.getAttribute("error") : "" %>';

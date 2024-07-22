@@ -27,10 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-	<!-- <link href='../../resources/css/user/userMyPage.css' rel="stylesheet" type="text/css"> -->
 
 	<style>
-        /* 기존 스타일에서 추가 및 수정 부분 */
         .card-body {
             text-align: center;
             width: 100%;
@@ -172,13 +170,11 @@
                             <div class="card-body text-center">
                                 <img src="<%= user.getProfile_new_image_name() != null ? request.getContextPath() + "../../resources/images/" + user.getProfile_new_image_name() : request.getContextPath() + "../../resources/images/default-profile.png" %>" alt="프로필 이미지" class="profile-img mb-3">
                                 <h2><%= user.getUser_nick() %></h2>
-                                <%-- <p>좋아요 <%= user.getLikes() %></p> --%>
-                                <p><%= user.getProfile_text() %></p>
+  								<p><%= user.getProfile_text() %></p>
                                 <a href="/user/profileSetting"class="btn btn-primary">프로필 설정</a>
                             </div>
                         </div>
                     </div>
-                <!-- 회원정보수정, 내가 쓴 글, 판매/나눔, 내 모임, 회원탈퇴 탭 내용 추가 필요 -->
             </div>
         </div>
     </div>

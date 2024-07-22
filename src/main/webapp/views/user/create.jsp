@@ -27,11 +27,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../resources/css/user/find_pw_success.css"> -->
 <meta charset="UTF-8">
 </head>
 <body>
 	<%@ include file ="../include/new_header.jsp" %>
-	<section>
+	<section style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
 		<div id="section_wrap" style="margin-top: 300px">
 			<div class="word">
 				<h3>회원가입</h3>

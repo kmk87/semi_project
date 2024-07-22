@@ -1,6 +1,8 @@
 package com.cm.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +16,11 @@ import com.cm.vo.User;
 
 
 @WebServlet(name="userLeaveEnd",urlPatterns="/user/userLeaveEnd")
-public class UserLeaveEndServler extends HttpServlet {
+public class UserLeaveEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public UserLeaveEndServler() {
+    public UserLeaveEndServlet() {
         super();
         
     }
@@ -28,23 +30,30 @@ public class UserLeaveEndServler extends HttpServlet {
 		HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String password = request.getParameter("password");
+        System.out.println(password);
 
         if (user != null && password != null) {
             UserService us = new UserService();
             boolean isDeleted = us.deleteUser(user.getUser_id(), password);
+            System.out.println(isDeleted);
 
-            if (isDeleted) {
-                session.invalidate();
-                response.sendRedirect(request.getContextPath() + "/user/userLeave_success");
-            } else {
-                response.sendRedirect(request.getContextPath() + "/user/userLeaveEnd.jsp?error=비밀번호가 일치하지 않습니다.");
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/user/login");
-        }
-    }
+            	if (isDeleted) {
+            		session.invalidate(); // 세션 무효화
+               
+            		RequestDispatcher view = request.getRequestDispatcher("/views/user/userLeave_success.jsp");
+            		view.forward(request,response);
+            	} else {
+            		RequestDispatcher view = request.getRequestDispatcher("/views/user/userLeave_fail.jsp");
+            		view.forward(request,response);
+            	}
+         } else {
+        	RequestDispatcher view = request.getRequestDispatcher("/");
+        	view.forward(request,response);
+        	
+         }
+        
 	
-
+	}
 	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

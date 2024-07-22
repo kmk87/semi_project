@@ -40,6 +40,7 @@
                         <label for="userPassword" class="form-label">비밀번호</label>
                         <input type="password" class="form-control" id="userPassword" name="password" required>
                     </div>
+                    
                     <button type="submit" class="btn btn-danger w-100">탈퇴하기</button>
                 </form>
             </div>
