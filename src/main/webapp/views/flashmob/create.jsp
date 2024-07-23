@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ page import = "com.cm.vo.User" %>
+<%@ page import = "com.cm.user.vo.User" %>
 <%@ include file ="../include/new_header.jsp" %>
 	<section>
 		<div id="section_wrap">
