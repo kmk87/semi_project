@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.cm.user.vo.User" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%@ page import="com.cm.vo.User, java.util.*" %>
 <header>
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
@@ -127,7 +134,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="single-product.html" class="dropdown-item">
+                        
+                            <a href="<%
+    								User now = (User) session.getAttribute("user");
+    								if (now != null) {
+        							out.print(request.getContextPath() + "/flashmob/create");
+    								} else {
+        							out.print(request.getContextPath() + "/user/login");
+    								}%>" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/번개.png">
                                 번개모임 게시글
                             </a>
@@ -150,7 +164,7 @@
                             <a href="blog.html" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">번개모임</a>
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
                         </li>
                     </ul>
                     <div class="d-none d-lg-flex align-items-end">
@@ -172,3 +186,5 @@
         </nav>
     </div>
 </header>
+</body>
+</html>
