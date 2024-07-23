@@ -28,7 +28,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<%@ include file ="views/include/new_header.jsp" %>
+<%@ include file ="/views/include/new_header.jsp" %>
 <section id="banner" style="background: #F9F3EC;">
     <div class="container">
         <div class="swiper main-swiper">

@@ -1,4 +1,4 @@
-package com.cm.controller;
+package com.cm.user.controller;
 
 import java.io.IOException;
 
@@ -8,22 +8,35 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.cm.user.service.UserService;
+import com.cm.user.vo.User;
 
 
-@WebServlet("/user/userMyPage")
-public class UserMyPageServlet extends HttpServlet {
+@WebServlet("/user/profileSetting")
+public class ProfileSettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public UserMyPageServlet() {
+    
+    public ProfileSettingServlet() {
         super();
         
     }
+    
+    
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/user/userMyPage.jsp");
-		view.forward(request,response);	}
+		
+		HttpSession session = request.getSession(false);
+		User u = (User)session.getAttribute("user");
+		int no = u.getUser_no();
+		User user = new UserService().getUserProfile(no);
+		request.setAttribute("pro",user);
+		RequestDispatcher view = request.getRequestDispatcher("/views/user/profileSetting.jsp");
+		view.forward(request,response);
+	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

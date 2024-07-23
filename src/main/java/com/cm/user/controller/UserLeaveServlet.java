@@ -1,4 +1,4 @@
-package com.cm.controller;
+package com.cm.user.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/user/findPw")
-public class FindPwServlet extends HttpServlet {
+@WebServlet("/user/userLeave")
+public class UserLeaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public FindPwServlet() {
+    
+    public UserLeaveServlet() {
         super();
         
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/user/findPw.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/user/userLeave.jsp");
 		view.forward(request,response);
 	}
 

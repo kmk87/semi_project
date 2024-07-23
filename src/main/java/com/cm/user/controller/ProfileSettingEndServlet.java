@@ -1,4 +1,4 @@
-package com.cm.controller;
+package com.cm.user.controller;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cm.service.UserService;
-import com.cm.vo.User;
+import com.cm.user.service.UserService;
+import com.cm.user.vo.User;
 
 
 @WebServlet("/user/profileSettingEnd")
