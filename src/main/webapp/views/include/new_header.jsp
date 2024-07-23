@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.cm.user.vo.User, java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
-<%@ page import="com.cm.vo.User, java.util.*" %>
 <header>
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%@ page import="com.cm.flashmob.vo.Flashmob,java.util.*" %>
 <%@ page import="com.cm.flashmob.vo.FlashmobApply" %>
-<%@ page import="com.cm.vo.User" %>
+<%@ page import="com.cm.user.vo.User" %>
 <link href="../../resources/css/flashmob/check.css" rel="stylesheet" type="text/css">
 <html>
 <head>
