@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cm.service.UserService;
-import com.cm.vo.User;
+import com.cm.user.service.UserService;
+import com.cm.user.vo.User;
 
 @WebFilter("/*")
 public class AutoLogFilter implements Filter {

@@ -19,9 +19,9 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/normalize.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,7 @@ header {
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
             <a href="../../index.jsp" style="display: flex; align-items: center;">
-              <img src="images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
+              <img src="../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
               <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
             </a>
           </div>
@@ -178,20 +178,20 @@ header {
             </style>
             <ul class="dropdown-menu" aria-labelledby="pages">
               <li>
-                <a href="/qboard/list.jsp" class="dropdown-item">
-                  <img class="dropdown_icon" src="images/질문.png">
+                <a href="/qboard/create" class="dropdown-item">
+                  <img class="dropdown_icon" src="../resources/images/질문.png">
                   질문 게시글
                 </a>
               </li>
               <li>
                 <a href="shop.html" class="dropdown-item">
-                  <img class="dropdown_icon" src="images/판매,나눔.png">
+                  <img class="dropdown_icon" src="../resources/images/판매,나눔.png">
                   판매/나눔 게시글
                 </a>
               </li>
               <li>
                 <a href="single-product.html" class="dropdown-item">
-                  <img class="dropdown_icon" src="images/번개.png">
+                  <img class="dropdown_icon" src="../resources/images/번개.png">
                   번개모임 게시글
                 </a>
               </li>
@@ -207,7 +207,7 @@ header {
                 <a href="../../index.jsp" class="nav-link active">Home</a>
               </li>
               <li class="nav-item">
-                <a href="/qboard/list.jsp" class="nav-link">질문</a>
+                <a href="/qboard/list" class="nav-link">질문</a>
               </li>
               <li class="nav-item">
                 <a href="blog.html" class="nav-link">판매/나눔</a>
@@ -237,35 +237,64 @@ header {
     </div>
   </header>
 
-<section>
-  <div class="container mt-5">
-    <h2>게시글 작성</h2>
+         <%@page import="com.cm.board.vo.LocationGu, java.util.*" %>
+<div class="container mt-5">
+        <h2>게시글 작성</h2>
     </div>
-      <div class="mb-3">
-      <form action="/qboard/createEnd" name="create_board_form" method="post">
-        <label for="postTitle" class="form-label">제목</label>
-        <input type="text" class="form-control" id="postTitle" name="postTitle" >
-        <label for="postText" class="form-label">내용</label>
-        <textarea class="form-control" id="postText" name="postText" rows="5" ></textarea>
-      <input type="button" value="등록" onclick="createBoardForm();">
-      <input type="reset" value="취소">
-    </form>
-  </div>
-  </section>
-	<script type="text/javascript">
-		function createBoardForm() {
-			let form = document.forms["create_board_form"];	
-			if(!form.postTitle.value){
-				alert("제목을 입력하세요.");
-				form.postTitle.focus();
-			} else if(!form.postText.value){
-				alert("내용을 입력하세요.");
-				form.postText.focus();
-			} 	else{
-				form.submit();
-			}	
-		}
-	</script>
+    <div class="container mb-3">
+        <form action="${pageContext.request.contextPath}/qboard/createEnd" name="create_board_form" method="post" enctype="multipart/form-data">
+            <label for="postTitle" class="form-label">제목</label>
+            <input type="text" class="form-control" id="postTitle" name="postTitle">
+            <input type="file" name="imageName"><br>
+            <label for="postText" class="form-label">내용</label>
+            <textarea class="form-control" id="postText" name="postText" rows="5"></textarea>
+
+            <!-- 추가된 부분: local_gu_no 선택 -->
+            <label for="localGuNo" class="form-label">지역 구 선택</label>
+            <select class="form-control" id="localGuNo" name="localGuNo">
+                <% 
+                    // 여기에 DB에서 location_gu 데이터를 가져와서 출력하는 로직이 필요합니다.
+                    List<LocationGu> locationGuList = (List<LocationGu>) request.getAttribute("locationGuList");
+                    for (LocationGu gu : locationGuList) {
+                %>
+                    <option value="<%= gu.getLocalGuNo() %>"><%= gu.getLocalGuName() %></option>
+                <% 
+                    } 
+                %>
+            </select>
+
+            <input type="button" class="btn btn-primary" value="등록" onclick="createBoardForm();">
+            <input type="reset" class="btn btn-primary" value="취소">
+            <a href="${pageContext.request.contextPath}/qboard/list" class="btn btn-primary">뒤로가기</a>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function createBoardForm() {
+            let form = document.forms["create_board_form"];
+            if (!form.postTitle.value) {
+                alert("제목을 입력하세요.");
+                form.postTitle.focus();
+            } else if (!form.postText.value) {
+                alert("내용을 입력하세요.");
+                form.postText.focus();
+            } else if (!form.localGuNo.value) {
+                alert("지역 구를 선택하세요.");
+                form.localGuNo.focus();
+            } else if (form.imageName.value) {
+                const val = form.imageName.value;
+                const idx = val.lastIndexOf('.');
+                const type = val.substring(idx + 1, val.length);
+                if (type == 'jpg' || type == 'jpeg' || type == "png") {
+                    form.submit();
+                } else {
+                    alert("이미지 파일만 선택할 수 있습니다.")
+                    form.imageName.value = '';
+                }
+            } else {
+                form.submit();
+            }
+        }
+    </script>
 	
 
   <footer id="footer" class="my-5">
@@ -273,7 +302,7 @@ header {
       <div class="row">
         <div class="col-md-3">
           <div class="footer-menu">
-            <img src="images/logo.png" alt="logo">
+            <img src="../resources/images/logo.png" alt="logo">
             <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
             <div class="social-links">
               <ul class="d-flex list-unstyled gap-2">
@@ -371,13 +400,13 @@ header {
     </div>
   </div>
 
-  <script src="../js/jquery-1.11.0.min.js"></script>
+  <script src="../resources/js/jquery-1.11.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
-  <script src="../js/plugins.js"></script>
-  <script src="../js/script.js"></script>
+  <script src="../resources/js/plugins.js"></script>
+  <script src="../resources/js/script.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </body>
 </html>

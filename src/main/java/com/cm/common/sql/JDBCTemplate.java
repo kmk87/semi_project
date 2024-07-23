@@ -9,41 +9,39 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemplate {
+
 	public static Connection getConnection() {
 		Connection conn = null;
 		Properties prop = new Properties();
-		
 		try {
 			String path = JDBCTemplate.class.getResource("driver.properties").getPath();
-			// 위치 찾음
-			prop.load(new FileReader(path)); // 외부에 있는 파일 읽어드림 -> FileReader
+			prop.load(new FileReader(path));
 			Class.forName(prop.getProperty("driver"));
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("username");
 			String pw = prop.getProperty("userpw");
-			
 			conn = DriverManager.getConnection(url,user,pw);
-			
-			
-		}catch(Exception e) {
+			// conn.setAutoCommit(false);
+            System.out.println("Connection established and auto-commit disabled.");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return conn;
 	}
-	
-	public static void commit(Connection conn){
+	public static void commit(Connection conn) {
 		try {
-			if(conn!=null && !conn.isClosed()) {
+			if(conn != null && !conn.isClosed()) {
 				conn.commit();
+				System.out.println("Transaction committed.");
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	public static void rollback(Connection conn){
+	}public static void rollback(Connection conn){
 		try {
 			if(conn != null && !conn.isClosed()) {
 				conn.rollback();
+				System.out.println("Transaction rolled back.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,6 +52,7 @@ public class JDBCTemplate {
 		try {
 			if(conn != null && conn.isClosed() == false) {
 				conn.close();
+				System.out.println("Connection closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -65,6 +64,7 @@ public class JDBCTemplate {
 		try {
 			if(stmt != null && stmt.isClosed() == false) {
 				stmt.close();
+			      System.out.println("Statement closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,11 +75,13 @@ public class JDBCTemplate {
 		try {
 			if(rs!= null && rs.isClosed() == false) {
 				rs.close();
+				System.out.println("ResultSet closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 }
+
 
 

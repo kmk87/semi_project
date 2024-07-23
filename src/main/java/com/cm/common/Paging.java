@@ -79,8 +79,8 @@ public class Paging {
 		pageBarStart = ((nowPage-1)/pageBarSize)*pageBarSize +1;
 		pageBarEnd = pageBarStart + pageBarSize -1;
 		if(pageBarEnd > totalPage) pageBarEnd = totalPage;
-		if(pageBarStart == 1) prev = false;
-		if(pageBarEnd >= totalPage) next = false;
+		prev = pageBarStart > 1; // 이전 페이지가 있는지 확인
+		next = pageBarEnd < totalPage; // 다음 페이지가 있는지 확인
 	}
 	
 	

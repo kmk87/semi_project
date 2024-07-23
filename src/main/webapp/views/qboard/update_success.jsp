@@ -14,6 +14,8 @@
 		<div id="section_wrap">
 			<div class="word">
 				<h3>게시글 수정 성공!!</h3>
+				
+				<a href="/qboard/list">게시물 목록으로 돌아가기</a>
 			</div>
 		</div>
 	</section>

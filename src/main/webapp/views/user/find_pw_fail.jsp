@@ -12,11 +12,11 @@
             <img src="../../resources/images/집.png" alt="Share Life">
             <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
         </div>
-    	<div class="message-container">
-    		<h4>비밀번호 찾기 실패</h4>
-    		<p>${error_message}</p>
-    		<a href="/user/findPw">비밀번호 찾기로 돌아가기</a>
-    	</div>
+    <div class="message-container">
+    <h4>비밀번호 찾기 실패</h4>
+    <p>${error_message}</p>
+    <a href="/user/findPw">비밀번호 찾기로 돌아가기</a>
+    </div>
     </div>
 </body>
 </html>

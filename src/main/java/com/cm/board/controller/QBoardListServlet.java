@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cm.board.service.QBoardService;
 import com.cm.board.vo.QBoard;
+import com.cm.common.Paging;
+import com.cm.user.vo.User;
 
 
 @WebServlet("/qboard/list")
@@ -22,32 +24,51 @@ public class QBoardListServlet extends HttpServlet {
     public QBoardListServlet() {
         super();
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int nowPage = 1;
+        if (request.getParameter("nowPage") != null) {
+            nowPage = Integer.parseInt(request.getParameter("nowPage"));
+        }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("post_title");
-		System.out.println("제목"+title);
-		QBoard qb = new QBoard();
-		qb.setPostTitle(title);
-		
-		String nowPage = request.getParameter("nowPage");
-		if(nowPage != null) {
-			qb.setNowPage(Integer.parseInt(nowPage));
-		}
-		
-		qb.setTotalData(new QBoardService().selectBoardCount(qb));
-			
-		List<QBoard> list = new QBoardService().selectBoardList(qb);
-		
-		request.setAttribute("paging",qb);
-		request.setAttribute("qbList",list);
-		
-		System.out.println("totaldata"+qb.getTotalData());
-		System.out.println(list);
-		System.out.println("listsize"+ list.size());
-		
-		RequestDispatcher view = request.getRequestDispatcher("/views/qboard/list.jsp");
-		view.forward(request, response);
-	}
+        String sort = request.getParameter("sort");
+        if (sort == null) {
+            sort = "latest";
+        }
+
+        QBoardService service = new QBoardService();
+        QBoard qb = new QBoard();
+        User user = new User();
+
+        String searchType = request.getParameter("search_type");
+        String searchQuery = request.getParameter("search_query");
+
+        if (searchType != null && searchQuery != null && !searchQuery.isEmpty()) {
+            if ("title".equals(searchType)) {
+                qb.setPostTitle(searchQuery);
+            } else if ("author".equals(searchType)) {
+                user.setUser_nick(searchQuery);
+                qb.setUser(user);
+            } else if ("title_author".equals(searchType)) {
+                qb.setPostTitle(searchQuery);
+                user.setUser_nick(searchQuery);
+                qb.setUser(user);
+            }
+        }
+
+        int totalRecords = service.selectBoardCount(qb);
+        Paging paging = new Paging();
+        paging.setTotalData(totalRecords);
+        paging.setNowPage(nowPage);
+
+        List<QBoard> list = service.getQBoardList(sort, nowPage, paging.getNumPerPage(), qb);
+        request.setAttribute("qbList", list);
+        request.setAttribute("paging", paging);
+        request.setAttribute("sort", sort);
+
+        RequestDispatcher view = request.getRequestDispatcher("/views/qboard/list.jsp");
+        view.forward(request, response);
+    }
+	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
