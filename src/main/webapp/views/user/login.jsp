@@ -84,7 +84,7 @@
 				form.user_pw.focus();
 			} else {
                 form.submit();
-			}
+         }
         }
 
     </script>

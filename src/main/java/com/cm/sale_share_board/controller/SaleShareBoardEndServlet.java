@@ -2,7 +2,6 @@ package com.cm.sale_share_board.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +14,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.cm.sale_share_board.service.SaleShareBoardService;
 import com.cm.sale_share_board.vo.SaleShareBoard;
 import com.cm.sale_share_board.vo.SaleShareImage;
+import com.cm.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -55,10 +55,12 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 String cate = mr.getParameter("prod_cate");
 					 int cateInt = Integer.parseInt(cate);
 					 
-					 String place = mr.getParameter("place_label");
+					 String placeName = mr.getParameter("place");
+					 String place = placeName.substring(3);
+					 int i = 0;
 					 String text = mr.getParameter("post_text");
-//					 String deal = mr.getParameter("deal_label");
-					 HttpSession session = request.getSession(false);
+
+					 
 					 
 					 SaleShareBoard ssb = new SaleShareBoard();
 					 SaleShareImage ssi = new SaleShareImage();
@@ -67,31 +69,30 @@ public class SaleShareBoardEndServlet extends HttpServlet {
 					 ssb.setPost_text(text);
 					 ssb.setProd_price(priceInt);
 					 ssb.setCate_code(cateInt);
+					 ssb.setLocal_gu_name(place);
 					 ssi.setImage_ori_name(oriName);
 					 ssi.setImage_new_name(reName);
+					 
+					 HttpSession session = request.getSession(false);
 					
-//					 if(session != null) {
-//						 User u  = (User)session.getAttribute("user");
-//						 int userNo = u.getUser_no();
-//						 ssb.setUser_no(userNo);
-//					 }
-					 // board 객체에 정보 담기
+					 if(session != null) {
+						 User u = (User)session.getAttribute("user");
+						 int userNo = u.getUser_no();
+						 ssb.setUser_no(userNo);
+					 }
 					 
 					 
 					 int result = new SaleShareBoardService().createBoard(ssb,ssi);
-					 RequestDispatcher view = null;
 						if(result > 0) {
-							view = request.getRequestDispatcher("/index.jsp");
-							view.forward(request, response);
+							response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
 						}
 						else {
-							view = request.getRequestDispatcher("/views/sale_share_board/createSale.jsp");
-							view.forward(request, response);
+							response.sendRedirect(request.getContentType() + "/sale_share_board/createSale");
 							
 						}
 			
 					}else {
-						response.sendRedirect("/index.jsp");
+						response.sendRedirect(request.getContentType() + "/index");
 					}
 			
 	}

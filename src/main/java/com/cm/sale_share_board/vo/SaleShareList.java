@@ -6,10 +6,14 @@ import com.cm.common.Paging;
 
 
 
+
 public class SaleShareList extends Paging {
 	private String Image_new_name;
 	private int post_no;
 	private int user_no;
+	private String user_nic;
+	private String local_gu_name;
+	private LocalDateTime prod_reg_date;
 	private LocalDateTime prod_mod_date;
 	private String post_title;
 	private String post_text;
@@ -17,6 +21,16 @@ public class SaleShareList extends Paging {
 	private int like_status;
 	private int deal_status;
 	private int prod_cate;
+	private String visibilty;
+	private int post_view;
+	
+	public String getVisibilty() {
+		return visibilty;
+	}
+	
+	public void setVisibilty(String visibilty) {
+		this.visibilty = visibilty;
+	}
 	
 	public SaleShareList() {
 		super();
@@ -38,13 +52,7 @@ public class SaleShareList extends Paging {
 		Image_new_name = image_new_name;
 	}
 
-	public int getUser_no() {
-		return user_no;
-	}
-
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
-	}
+	
 
 	public LocalDateTime getProd_mod_date() {
 		return prod_mod_date;
@@ -103,12 +111,40 @@ public class SaleShareList extends Paging {
 		this.deal_status = deal_status;
 	}
 
-	public SaleShareList(String image_new_name, int post_no, int user_no, LocalDateTime prod_mod_date,
-			String post_title, String post_text, int prod_price, int like_status, int deal_status, int prod_cate) {
+	public LocalDateTime getProd_reg_date() {
+		return prod_reg_date;
+	}
+
+	public void setProd_reg_date(LocalDateTime prod_reg_date) {
+		this.prod_reg_date = prod_reg_date;
+	}
+
+	public String getLocal_gu_name() {
+		return local_gu_name;
+	}
+
+	public void setLocal_gu_name(String local_gu_name) {
+		this.local_gu_name = local_gu_name;
+	}
+
+	public int getPost_view() {
+		return post_view;
+	}
+
+	public void setPost_view(int post_view) {
+		this.post_view = post_view;
+	}
+
+	public SaleShareList(String image_new_name, int post_no, int user_no, String user_nic, String local_gu_name,
+			LocalDateTime prod_reg_date, LocalDateTime prod_mod_date, String post_title, String post_text,
+			int prod_price, int like_status, int deal_status, int prod_cate, String visibilty, int post_view) {
 		super();
-		this.Image_new_name = image_new_name;
+		Image_new_name = image_new_name;
 		this.post_no = post_no;
 		this.user_no = user_no;
+		this.user_nic = user_nic;
+		this.local_gu_name = local_gu_name;
+		this.prod_reg_date = prod_reg_date;
 		this.prod_mod_date = prod_mod_date;
 		this.post_title = post_title;
 		this.post_text = post_text;
@@ -116,10 +152,28 @@ public class SaleShareList extends Paging {
 		this.like_status = like_status;
 		this.deal_status = deal_status;
 		this.prod_cate = prod_cate;
+		this.visibilty = visibilty;
+		this.post_view = post_view;
+	}
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+	public String getUser_nic() {
+		return user_nic;
+	}
+
+	public void setUser_nic(String user_nic) {
+		this.user_nic = user_nic;
 	}
 
 	
-	
+
 	
 	
 }
