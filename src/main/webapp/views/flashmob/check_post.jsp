@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="com.cm.flashmob.vo.Flashmob,java.util.*" %>
+<%@ page import="com.cm.flashmob.vo.FlashmobApply" %>
+<%@ page import="com.cm.vo.User" %>
 <link href="../../resources/css/flashmob/check.css" rel="stylesheet" type="text/css">
 <html>
 <head>
 <meta charset="UTF-8">
 <title>글 조회</title>
-<%@ page import="com.cm.flashmob.vo.Flashmob,java.util.*" %>
-<%@ page import="com.cm.flashmob.vo.FlashmobApply" %>
-<%@ page import="com.cm.vo.User" %>
 </head>
 <body>
 
