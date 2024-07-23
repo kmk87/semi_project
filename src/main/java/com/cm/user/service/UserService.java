@@ -1,6 +1,6 @@
 package com.cm.user.service;
 
-import static com.cm.user.common.sql.JDBCTemplate.*;
+import static com.cm.common.sql.JDBCTemplate.*;
 
 import java.sql.Connection;
 

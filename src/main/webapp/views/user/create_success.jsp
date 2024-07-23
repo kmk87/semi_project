@@ -5,14 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 성공</title>
+<link rel="stylesheet" type="text/css" href="../../resources/css/user/find_pw_success.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link href="../../resources/css/user/user_create.css" rel="stylesheet" type="text./css">
+<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 <body>
-	<%@ include file ="../include/new_header.jsp" %>
 	<div class="container">
         <div class="logo">
             <img src="../../resources/images/집.png" alt="Share Life">

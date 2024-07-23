@@ -11,8 +11,6 @@ public class User {
 	private LocalDateTime user_reg_date;
 	private String profile_text;
 	private String user_nick;
-	private String profile_ori_image_name;
-	private String profile_new_image_name;
 	private int user_question;
 	private String user_answer;
 	
@@ -26,8 +24,7 @@ public class User {
 
 
 	public User(int user_no, String user_id, String user_pw, String user_email, String user_address,
-			LocalDateTime user_reg_date, String profile_text, String user_nick, String profile_ori_image_name,
-			String profile_new_image_name,int user_question,String user_answer) {
+			LocalDateTime user_reg_date, String profile_text, String user_nick,int user_question,String user_answer) {
 		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
@@ -37,8 +34,6 @@ public class User {
 		this.user_reg_date = user_reg_date;
 		this.profile_text = profile_text;
 		this.user_nick = user_nick;
-		this.profile_ori_image_name = profile_ori_image_name;
-		this.profile_new_image_name = profile_new_image_name;
 		this.user_question = user_question;
 		this.user_answer = user_answer;
 	}
@@ -140,29 +135,6 @@ public class User {
 	}
 
 
-
-	public String getProfile_ori_image_name() {
-		return profile_ori_image_name;
-	}
-
-
-
-	public void setProfile_ori_image_name(String profile_ori_image_name) {
-		this.profile_ori_image_name = profile_ori_image_name;
-	}
-
-
-
-	public String getProfile_new_image_name() {
-		return profile_new_image_name;
-	}
-
-
-
-	public void setProfile_new_image_name(String profile_new_image_name) {
-		this.profile_new_image_name = profile_new_image_name;
-	}
-
 	public int getUser_question() {
 		return user_question;
 	}
@@ -185,11 +157,13 @@ public class User {
 	public String toString() {
 		return "User [user_no=" + user_no + ", user_id=" + user_id + ", user_pw=" + user_pw + ", user_email="
 				+ user_email + ", user_address=" + user_address + ", user_reg_date=" + user_reg_date + ", profile_text="
-				+ profile_text + ", user_nick=" + user_nick + ", profile_ori_image_name=" + profile_ori_image_name
-				+ ", profile_new_image_name=" + profile_new_image_name + ", user_question=" + user_question
-				+ ", user_answer=" + user_answer + "]";
+				+ profile_text + ", user_nick=" + user_nick + ", user_question=" + user_question + ", user_answer="
+				+ user_answer + "]";
 	}
 
+
+
+	
 
 
 	

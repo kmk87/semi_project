@@ -22,7 +22,7 @@ public class UserMyPageServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/user/userMyPage.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/user_page/userMyPageHeader.jsp");
 		view.forward(request,response);	}
 
 	
