@@ -1,6 +1,7 @@
 package com.cm.common.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,15 +10,17 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
 
+import com.cm.common.filter.PasswordEncodingWrapper;
 
-@WebFilter("/*")
+@WebFilter(servletNames= {"userCreateEnd","findIdEnd","findPwEnd","userloginEnd","userCreateEnd","userInfoChangeEnd","userLeaveEnd"})
 public class EncryptFilter extends HttpFilter implements Filter {
        
-   
+  
     public EncryptFilter() {
         super();
-        
+       
     }
 
 	
@@ -27,14 +30,13 @@ public class EncryptFilter extends HttpFilter implements Filter {
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		chain.doFilter(request, response);
+		PasswordEncodingWrapper pew = new PasswordEncodingWrapper((HttpServletRequest)request);
+		chain.doFilter(pew, response);
 	}
 
 	
 	public void init(FilterConfig fConfig) throws ServletException {
-	
+		
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.cm.user.dao;
 
-import static com.cm.user.common.sql.JDBCTemplate.close;
+import static com.cm.common.sql.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,8 +68,7 @@ public class UserDao {
 				user = new User(rs.getInt("user_no"), rs.getString("user_id"), rs.getString("user_pw"),
 						rs.getString("user_email"), rs.getString("user_address"),
 						rs.getTimestamp("user_reg_date").toLocalDateTime(), rs.getString("profile_text"),
-						rs.getString("user_nick"), rs.getString("profile_ori_image_name"),
-						rs.getString("profile_new_image_name"), rs.getInt("user_question"),
+						rs.getString("user_nick"), rs.getInt("user_question"),
 						rs.getString("user_answer"));
 
 			}
@@ -163,8 +162,7 @@ public class UserDao {
 				user = new User(rs.getInt("user_no"), rs.getString("user_id"), rs.getString("user_pw"),
 						rs.getString("user_email"), rs.getString("user_address"),
 						rs.getTimestamp("user_reg_date").toLocalDateTime(), rs.getString("profile_text"),
-						rs.getString("user_nick"), rs.getString("profile_ori_image_name"),
-						rs.getString("profile_new_image_name"), rs.getInt("user_question"),
+						rs.getString("user_nick"), rs.getInt("user_question"),
 						rs.getString("user_answer"));
 			}
 		} catch (SQLException e) {
@@ -247,8 +245,6 @@ public class UserDao {
 						rs.getTimestamp("user_reg_date").toLocalDateTime(), 
 						rs.getString("profile_text"),
 						rs.getString("user_nick"), 
-						rs.getString("profile_ori_image_name"),
-						rs.getString("profile_new_image_name"), 
 						rs.getInt("user_question"),
 						rs.getString("user_answer"));
 			System.out.println("user : "+user);

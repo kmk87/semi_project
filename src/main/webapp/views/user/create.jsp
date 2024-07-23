@@ -85,11 +85,7 @@
 					<label for="user_email">이메일</label>
 					<input type="email" name="user_email" id="user_email"><br>
 					<label for="user_address">주소</label>
-					<!-- <input type="text" name="user_address" id="user_address"> -->
-					<!-- <input type="text" id="sample6_postcode" id="user_address" placeholder="우편번호"> -->
 					<input type="text" id="user_address" name="user_address" value="주소찾기 클릭"><br>
-					
-					
 					<input type="button" value="회원가입" onclick="createUserForm();">
 					<input type="reset" value="초기화">
 				</form>
@@ -177,16 +173,26 @@
 		
 			const form = document.create_account_form;
 			
+			// 이메일 유효성 검사 정규식
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			
+			// // 아이디 유효성 검사 정규식 (영문 6글자 이상 10글자 이하)
+			const idRegex = /^[A-Za-z0-9]{6,10}$/;
+			
 			if(!form.user_id.value){
 				alert("아이디를 입력하세요.");
 				form.user_id.focus();
 			
 				 //form.user_id.value -> 비어있는 문자열 -> false -> ! -> true
+				// 아이디 유효성 검사 추가
+		    } else if (!idRegex.test(form.user_id.value)) {
+		        alert("아이디는 영문 6글자 이상 10글자 이하로 입력하세요.");
+		        form.user_id.focus();
 				
 			} else if(!form.user_pw.value){
 				alert("비밀번호를 입력하세요");
 				form.user_pw.focus();
-				// 정규식으로 특수문자 , 비밀번호 몇자이상 ->사용가능
+			
 				
 			} else if(!form.user_pw_check.value){
 				alert("비밀번호 확인을 입력하세요.")
@@ -203,6 +209,12 @@
 			} else if(!form.user_email.value){
 				alert("이메일을 입력하세요.");
 				form.user_email.focus();
+				
+				// 이메일 유효성 검사 추가
+		    } else if (!emailRegex.test(form.user_email.value)) {
+		        alert("올바른 이메일 형식을 입력하세요.");
+		        form.user_email.focus();
+				
 				
 			} else if(!form.user_address.value){
 		        alert("주소를 입력하세요.");

@@ -105,6 +105,7 @@
     </div>
 </section>
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
         var swiper = new Swiper('.swiper', {
             slidesPerView: 'auto',
