@@ -14,7 +14,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.cm.sale_share_board.service.SaleShareBoardService;
 import com.cm.sale_share_board.vo.SaleShareBoard;
 import com.cm.sale_share_board.vo.SaleShareImage;
-import com.cm.vo.User;
+import com.cm.user.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 

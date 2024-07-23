@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.cm.flashmob.service.FlashmobApplyService;
 import com.cm.flashmob.vo.FlashmobApply;
-import com.cm.vo.User;
+import com.cm.user.vo.User;
 
 @WebServlet("/flashmob/apply")
 public class FlashmobApplyEnd extends HttpServlet {

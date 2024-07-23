@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cm.vo.User;
+import com.cm.user.vo.User;
 import com.cm.user_page.service.MsgService;
 import com.cm.user_page.vo.Message;
 

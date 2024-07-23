@@ -16,7 +16,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.cm.flashmob.service.FlashmobService;
 import com.cm.flashmob.vo.Flashmob;
-import com.cm.vo.User;
+import com.cm.user.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 

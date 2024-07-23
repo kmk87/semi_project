@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.cm.admin_page.service.ReplyService;
 import com.cm.admin_page.vo.Inquiry;
 import com.cm.admin_page.vo.Reply;
-import com.cm.vo.User;
+import com.cm.user.vo.User;
 import com.cm.user_page.service.MyInquiryService;
 
 @WebServlet("/myInquiryboard/list")
