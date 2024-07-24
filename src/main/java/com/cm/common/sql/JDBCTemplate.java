@@ -21,8 +21,6 @@ public class JDBCTemplate {
 			String user = prop.getProperty("username");
 			String pw = prop.getProperty("userpw");
 			conn = DriverManager.getConnection(url,user,pw);
-			// conn.setAutoCommit(false);
-            System.out.println("Connection established and auto-commit disabled.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,7 +30,6 @@ public class JDBCTemplate {
 		try {
 			if(conn != null && !conn.isClosed()) {
 				conn.commit();
-				System.out.println("Transaction committed.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,7 +38,6 @@ public class JDBCTemplate {
 		try {
 			if(conn != null && !conn.isClosed()) {
 				conn.rollback();
-				System.out.println("Transaction rolled back.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +48,6 @@ public class JDBCTemplate {
 		try {
 			if(conn != null && conn.isClosed() == false) {
 				conn.close();
-				System.out.println("Connection closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -64,7 +59,6 @@ public class JDBCTemplate {
 		try {
 			if(stmt != null && stmt.isClosed() == false) {
 				stmt.close();
-			      System.out.println("Statement closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,7 +69,6 @@ public class JDBCTemplate {
 		try {
 			if(rs!= null && rs.isClosed() == false) {
 				rs.close();
-				System.out.println("ResultSet closed.");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

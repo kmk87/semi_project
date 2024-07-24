@@ -1,6 +1,6 @@
 package com.cm.board.dao;
 
-import static com.cm.common.sql.JDBCTemplate.close;
+import static com.cm.common.sql.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,22 +13,141 @@ import com.cm.board.vo.QBoard;
 import com.cm.user.vo.User;
 
 public class QBoardDao {
+	
+	 public List<QBoard> selectPostsByUser(int userNo, Connection conn) {
+	        List<QBoard> list = new ArrayList<QBoard>();
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
 
+	        String sql = "SELECT post_no, post_title, post_reg_date FROM question_post WHERE user_no = ?";
+
+	        try {
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setInt(1, userNo);
+	            rs = pstmt.executeQuery();
+
+	            while (rs.next()) {
+	                QBoard qb = new QBoard();
+	                qb.setPostNo(rs.getInt("post_no"));
+	                qb.setPostTitle(rs.getString("post_title"));
+	                qb.setPostRegDate(rs.getTimestamp("post_reg_date").toLocalDateTime());
+	                list.add(qb);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            close(rs);
+	            close(pstmt);
+	        }
+	        return list;
+	    }
+	
+	 public List<QBoard> selectUserPosts(int userNo, Connection conn) {
+		    List<QBoard> list = new ArrayList<>();
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    try {
+		        String sql = "SELECT qp.*, u.user_nick, COUNT(CASE WHEN ql.like_status = 1 THEN ql.post_no END) AS like_count " +
+		                     "FROM question_post qp " +
+		                     "LEFT JOIN question_like ql ON qp.post_no = ql.post_no " +
+		                     "LEFT JOIN user u ON qp.user_no = u.user_no " +
+		                     "WHERE qp.user_no = ? " +
+		                     "GROUP BY qp.post_no, qp.board_type_id, qp.user_no, qp.post_title, " +
+		                     "qp.post_text, qp.post_reg_date, qp.post_mod_date, qp.post_release_yn, " +
+		                     "qp.image_ori_name, qp.image_new_name, qp.question_post_view, u.user_nick ";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, userNo);
+		        rs = pstmt.executeQuery();
+		        while (rs.next()) {
+		            QBoard resultVo = new QBoard(rs.getInt("post_no"),
+		                                         rs.getInt("board_type_id"),
+		                                         rs.getInt("user_no"),
+		                                         rs.getString("post_title"),
+		                                         rs.getString("post_text"),
+		                                         rs.getTimestamp("post_reg_date").toLocalDateTime(),
+		                                         rs.getTimestamp("post_mod_date").toLocalDateTime(),
+		                                         rs.getString("post_release_yn"),
+		                                         rs.getInt("like_count"),
+		                                         rs.getString("image_ori_name"),
+		                                         rs.getString("image_new_name"),
+		                                         rs.getInt("question_post_view"));
+		                                         
+		            User user = new User();
+		            user.setUser_nick(rs.getString("user_nick"));
+		            resultVo.setUser(user);
+
+		            list.add(resultVo);
+		        }
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        close(rs);
+		        close(pstmt);
+		    }
+		    return list;
+		}
+	 	
+	 public List<QBoard> selectLikedPosts(int userNo, Connection conn) {
+		    List<QBoard> list = new ArrayList<>();
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    try {
+		        String sql = "SELECT qp.*, u.user_nick, COUNT(CASE WHEN ql.like_status = 1 THEN ql.post_no END) AS like_count " +
+		                     "FROM question_like ql " +
+		                     "LEFT JOIN question_post qp ON ql.post_no = qp.post_no " +
+		                     "LEFT JOIN user u ON qp.user_no = u.user_no " +
+		                     "WHERE ql.user_no = ? " +
+		                     "GROUP BY qp.post_no, qp.board_type_id, qp.user_no, qp.post_title, " +
+		                     "qp.post_text, qp.post_reg_date, qp.post_mod_date, qp.post_release_yn, " +
+		                     "qp.image_ori_name, qp.image_new_name, qp.question_post_view, u.user_nick ";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, userNo);
+		        rs = pstmt.executeQuery();
+		        while (rs.next()) {
+		            QBoard resultVo = new QBoard(rs.getInt("post_no"),
+		                                         rs.getInt("board_type_id"),
+		                                         rs.getInt("user_no"),
+		                                         rs.getString("post_title"),
+		                                         rs.getString("post_text"),
+		                                         rs.getTimestamp("post_reg_date").toLocalDateTime(),
+		                                         rs.getTimestamp("post_mod_date").toLocalDateTime(),
+		                                         rs.getString("post_release_yn"),
+		                                         rs.getInt("like_count"),
+		                                         rs.getString("image_ori_name"),
+		                                         rs.getString("image_new_name"),
+		                                         rs.getInt("question_post_view"));
+		                                         
+		            User user = new User();
+		            user.setUser_nick(rs.getString("user_nick"));
+		            resultVo.setUser(user);
+
+		            list.add(resultVo);
+		        }
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        close(rs);
+		        close(pstmt);
+		    }
+		    return list;
+		}
+	 
     public int createBoard(QBoard qb, Connection conn) {
         PreparedStatement pstmt = null;
         int result = 0;
         try {
-            String sql = "INSERT INTO question_post (board_type_id, local_gu_no, user_no, post_title, post_text, image_ori_name, image_new_name) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO question_post (board_type_id,  user_no, post_title, post_text, image_ori_name, image_new_name) VALUES (?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
-            System.out.println("Binding values: post_title=" + qb.getPostTitle() +"localgu"+qb.getLocalGuNo()+ " post_text=" + qb.getPostText() + " 이미지1=" + qb.getImageOriName() + " 이미지2=" + qb.getImageNewName());
+            System.out.println("Binding values: post_title=" + qb.getPostTitle() + " post_text=" + qb.getPostText() + " 이미지1=" + qb.getImageOriName() + " 이미지2=" + qb.getImageNewName());
             
             pstmt.setInt(1, 1);
-            pstmt.setInt(2, qb.getLocalGuNo());
-            pstmt.setInt(3, qb.getUserNo());
-            pstmt.setString(4, qb.getPostTitle());
-            pstmt.setString(5, qb.getPostText());
-            pstmt.setString(6, qb.getImageOriName());
-            pstmt.setString(7, qb.getImageNewName());
+            pstmt.setInt(2, qb.getUserNo());
+            pstmt.setString(3, qb.getPostTitle());
+            pstmt.setString(4, qb.getPostText());
+            pstmt.setString(5, qb.getImageOriName());
+            pstmt.setString(6, qb.getImageNewName());
 
             result = pstmt.executeUpdate();
 
@@ -42,19 +161,28 @@ public class QBoardDao {
         return result;
     }
     
-    public int deleteBoard(int postNo, Connection conn) {
+    public boolean deleteBoard(int postNo, Connection conn) {
+        boolean result = false;
         PreparedStatement pstmt = null;
-        int result = 0;
+
         try {
-            String sql = "DELETE FROM question_post WHERE post_no = ?";
-            pstmt = conn.prepareStatement(sql);
+            String deleteLikesSql = "DELETE FROM question_like WHERE post_no = ?";
+            pstmt = conn.prepareStatement(deleteLikesSql);
             pstmt.setInt(1, postNo);
-            result = pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            close(pstmt);
+
+            String deletePostSql = "DELETE FROM question_post WHERE post_no = ?";
+            pstmt = conn.prepareStatement(deletePostSql);
+            pstmt.setInt(1, postNo);
+            result = pstmt.executeUpdate() > 0;
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             close(pstmt);
         }
+
         return result;
     }
 
@@ -111,7 +239,7 @@ public class QBoardDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT qp.*, u.user_nick, COUNT(DISTINCT ql.like_no) AS like_count " +
+            String sql = "SELECT qp.*, u.user_nick, COUNT(CASE WHEN ql.like_status = 1 THEN ql.post_no END) AS like_count " +
                          "FROM question_post qp " +
                          "LEFT JOIN question_like ql ON qp.post_no = ql.post_no " +
                          "LEFT JOIN user u ON qp.user_no = u.user_no ";
@@ -121,7 +249,7 @@ public class QBoardDao {
 
             // 제목 검색 조건 추가
             if (qb.getPostTitle() != null && !qb.getPostTitle().isEmpty()) {
-                sql += " WHERE qp.post_title LIKE CONCAT('%', ?, '%')";
+                sql += " WHERE qp.post_title LIKE CONCAT('%' , ?, '%')";
                 hasCondition = true;
             }
 
@@ -135,7 +263,7 @@ public class QBoardDao {
                 }
             }
 
-            sql += " GROUP BY qp.post_no, qp.board_type_id, qp.local_gu_no, qp.user_no, qp.post_title, " +
+            sql += " GROUP BY qp.post_no, qp.board_type_id, qp.user_no, qp.post_title, " +
                    "qp.post_text, qp.post_reg_date, qp.post_mod_date, qp.post_release_yn, " +
                    "qp.image_ori_name, qp.image_new_name, qp.question_post_view, u.user_nick ";
 
@@ -174,7 +302,6 @@ public class QBoardDao {
             while (rs.next()) {
                 QBoard resultVo = new QBoard(rs.getInt("post_no"),
                                              rs.getInt("board_type_id"),
-                                             rs.getInt("local_gu_no"),
                                              rs.getInt("user_no"),
                                              rs.getString("post_title"),
                                              rs.getString("post_text"),
@@ -202,38 +329,45 @@ public class QBoardDao {
         return list;
     }
 
-
-
     public QBoard getQBoard(int postNo, Connection conn) {
+        QBoard qboard = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        QBoard result = null;
         try {
-            String sqlview = "UPDATE question_post SET question_post_view = question_post_view + 1 WHERE post_no = ?";
-            pstmt = conn.prepareStatement(sqlview);
-            pstmt.setInt(1, postNo);
-            int i = pstmt.executeUpdate();
-            String sql = "SELECT p.*, COUNT(l.post_no) AS like_count "
-                    + "FROM question_post p "
-                    + "LEFT JOIN question_like l ON p.post_no = l.post_no "
-                    + "WHERE p.post_no = ?";
+        	String sqlview = "UPDATE question_post SET question_post_view = question_post_view + 1 WHERE post_no = ?";
+        	pstmt = conn.prepareStatement(sqlview);
+        	pstmt.setInt(1, postNo);
+        	pstmt.executeUpdate();
+        	pstmt.close();
+            String sql = "SELECT qp.*, u.user_nick, " +
+                         " (SELECT COUNT(*) FROM question_like ql WHERE ql.post_no = qp.post_no) AS like_count " +
+                         " FROM question_post qp " +
+                         " JOIN user u ON qp.user_no = u.user_no " +
+                         " WHERE qp.post_no = ? " + " GROUP BY qp.post_no, qp.board_type_id, qp.user_no, qp.post_title, qp.post_text, qp.post_reg_date, qp.post_mod_date, qp.post_release_yn, qp.image_ori_name, qp.image_new_name, qp.question_post_view, u.user_nick ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, postNo);
+            System.out.println("Executing query: " + pstmt.toString()); // 쿼리 로그 추가
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                result = new QBoard(rs.getInt("post_no"),
-                        rs.getInt("board_type_id"),
-                        rs.getInt("local_gu_no"),
-                        rs.getInt("user_no"),
-                        rs.getString("post_title"),
-                        rs.getString("post_text"),
-                        rs.getTimestamp("post_reg_date").toLocalDateTime(),
-                        rs.getTimestamp("post_mod_date").toLocalDateTime(),
-                        rs.getString("post_release_yn"),
-                        rs.getInt("like_count"),
-                        rs.getString("image_ori_name"),
-                        rs.getString("image_new_name"),
-                        rs.getInt("question_post_view"));
+            	System.out.println("ResultSet is not empty"); // 결과가 있음을 로그로 출력
+                qboard = new QBoard(rs.getInt("post_no"),
+                                    rs.getInt("board_type_id"),
+                                    rs.getInt("user_no"),
+                                    rs.getString("post_title"),
+                                    rs.getString("post_text"),
+                                    rs.getTimestamp("post_reg_date").toLocalDateTime(),
+                                    rs.getTimestamp("post_mod_date").toLocalDateTime(),
+                                    rs.getString("post_release_yn"),
+                                    rs.getInt("like_count"),
+                                    rs.getString("image_ori_name"),
+                                    rs.getString("image_new_name"),
+                                    rs.getInt("question_post_view"));
+
+                User user = new User();
+                user.setUser_nick(rs.getString("user_nick"));
+                qboard.setUser(user);
+            } else {
+                System.out.println("No matching record found for post_no: " + postNo); // 결과가 없음
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -241,8 +375,10 @@ public class QBoardDao {
             close(rs);
             close(pstmt);
         }
-        return result;
+        return qboard;
     }
+    
+
 
     public int updateBoard(QBoard qb, Connection conn) {
         PreparedStatement pstmt = null;
@@ -274,16 +410,26 @@ public class QBoardDao {
     }
     
     public List<LocationGu> getLocationGuList(Connection conn) {
-        List<LocationGu> list = new ArrayList<>();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        List<LocationGu> list = new ArrayList<>();
+        
         try {
             String sql = "SELECT local_gu_no, local_gu_name FROM location_gu";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
+            
             while (rs.next()) {
-                LocationGu gu = new LocationGu(rs.getInt("local_gu_no"), rs.getString("local_gu_name"));
+                LocationGu gu = new LocationGu();
+                gu.setLocalGuNo(rs.getInt("local_gu_no"));
+                gu.setLocalGuName(rs.getString("local_gu_name"));
                 list.add(gu);
+            }
+            
+            if (!list.isEmpty()) {
+                System.out.println("DAO: Retrieved " + list.size() + " LocationGu records");
+            } else {
+                System.out.println("DAO: No LocationGu records found");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,6 +437,7 @@ public class QBoardDao {
             close(rs);
             close(pstmt);
         }
+        
         return list;
     }
     

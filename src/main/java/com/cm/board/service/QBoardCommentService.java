@@ -42,10 +42,10 @@ public class QBoardCommentService {
 	        return comment;
 	    }
 	    
-	    public int deleteComment(int commentNo) {
+	    public boolean deleteComment(int commentNo) {
 	        Connection conn = getConnection();
-	        int result = new QBoardCommentDao().deleteComment(commentNo, conn);
-	        if (result > 0) {
+	        boolean result = new QBoardCommentDao().deleteComment(commentNo, conn) > 0;
+	        if (result) {
 	            commit(conn);
 	        } else {
 	            rollback(conn);

@@ -42,8 +42,8 @@
         </div>
     </div> --%>
 	
-	
-	<header>
+
+<%-- 	<header>
 
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
@@ -234,8 +234,8 @@
             </div>
         </nav>
     </div> 
-    </header>
-    
+    </header> --%>
+    <%@ include file="../include/userMypageHeader.jsp" %>	
 	<div class="container">
         <!-- Profile Container -->
         <div class="profile-container">

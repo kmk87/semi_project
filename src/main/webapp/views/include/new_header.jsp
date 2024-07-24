@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ page import="com.cm.user.vo.User" %>
 <header>
     <div class="container py-2">
@@ -6,7 +6,7 @@
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
                     <a href="index.jsp" style="display: flex; align-items: center;">
-                        <img src="../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
+                        <img src="../../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
                         <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
                     </a>
                 </div>

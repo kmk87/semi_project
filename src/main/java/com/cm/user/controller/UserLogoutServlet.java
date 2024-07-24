@@ -27,7 +27,7 @@ public class UserLogoutServlet extends HttpServlet {
 			session.removeAttribute("user");
 			session.invalidate();
 		}
-		response.sendRedirect("/");
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 	

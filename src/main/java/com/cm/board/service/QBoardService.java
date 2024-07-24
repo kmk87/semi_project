@@ -8,6 +8,7 @@ import static com.cm.common.sql.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.cm.board.dao.LocationGuDao;
 import com.cm.board.dao.QBoardDao;
 import com.cm.board.vo.LocationGu;
 import com.cm.board.vo.QBoard;
@@ -25,10 +26,31 @@ public class QBoardService {
         close(conn);
         return result;
     }
+    
+    public List<QBoard> getUserPosts(int userNo) {
+        Connection conn = getConnection();
+        List<QBoard> list = new QBoardDao().selectUserPosts(userNo, conn);
+        close(conn);
+        return list;
+    }
+    
+    public List<QBoard> getLikedPosts(int userNo) {
+        Connection conn = getConnection();
+        List<QBoard> list = new QBoardDao().selectLikedPosts(userNo, conn);
+        close(conn);
+        return list;
+    }
 	
     public List<LocationGu> getLocationGuList() {
         Connection conn = getConnection();
-        List<LocationGu> list = new QBoardDao().getLocationGuList(conn);
+        List<LocationGu> locationGuList = new QBoardDao().getLocationGuList(conn);
+        close(conn);
+        return locationGuList;
+    }
+    
+    public List<QBoard> getPostsByUser(int userNo) {
+        Connection conn = getConnection();
+        List<QBoard> list = new QBoardDao().selectPostsByUser(userNo, conn);
         close(conn);
         return list;
     }
@@ -49,13 +71,17 @@ public class QBoardService {
     }
 
 	
-	public QBoard getQBoard(int postNo) {
-		Connection conn = getConnection();
-		QBoard result = new QBoardDao().getQBoard(postNo, conn);
-		System.out.println("서비스"+postNo);
-		close(conn);
-		return result;
-	}
+    public QBoard getQBoard(int postNo) {
+        Connection conn = getConnection();
+        QBoard result = new QBoardDao().getQBoard(postNo, conn);
+        if (result == null) {
+            System.out.println("Service: QBoard object is null");
+        } else {
+            System.out.println("Service: QBoard object is not null");
+        }
+        close(conn);
+        return result;
+    }
 	
     public int getQBoardCount() {
         Connection conn = getConnection();
@@ -84,15 +110,14 @@ public class QBoardService {
 
     public boolean deleteBoard(int postNo) {
         Connection conn = getConnection();
-        int result = new QBoardDao().deleteBoard(postNo, conn);
-        boolean isDeleted = result > 0; // 삭제된 행이 1개 이상이면 true
-        if (isDeleted) {
+        boolean result = new QBoardDao().deleteBoard(postNo, conn);
+        if (result) {
             commit(conn);
         } else {
             rollback(conn);
         }
         close(conn);
-        return isDeleted;
+        return result;
     }
     
 }

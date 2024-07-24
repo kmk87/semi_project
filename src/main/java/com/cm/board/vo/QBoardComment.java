@@ -1,7 +1,8 @@
 package com.cm.board.vo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import com.cm.user.vo.User;
 
 public class QBoardComment {
 	private int commentNo;
@@ -10,6 +11,16 @@ public class QBoardComment {
 	private String commentText;
 	private LocalDateTime commentRegDate;
 	private LocalDateTime commentModDate;
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public QBoardComment() {
 		super();
 	}

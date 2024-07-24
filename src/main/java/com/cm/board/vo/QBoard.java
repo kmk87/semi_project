@@ -1,14 +1,13 @@
 package com.cm.board.vo;
 
 import java.time.LocalDateTime;
-
+import com.cm.board.vo.LocationGu;
 import com.cm.common.Paging;
 import com.cm.user.vo.User;
 
 public class QBoard extends Paging{
 	private int postNo;
 	private int boardTypeId;
-	private int localGuNo;
 	private int userNo;
 	private String postTitle;
 	private String postText;
@@ -20,16 +19,7 @@ public class QBoard extends Paging{
 	private String imageNewName;
 	private int postView;
 	private User user;
-	private LocationGu location;
-	
-	public LocationGu getLocation() {
-		return location;
-	}
-	
-	public void setLocation() {
-		this.location = location;
-	}
-	
+
 	  public User getUser() {
 	        return user;
 	    }
@@ -42,13 +32,12 @@ public class QBoard extends Paging{
 		super();
 	}
 
-	public QBoard(int postNo, int boardTypeId, int localGuNo, int userNo, String postTitle, String postText,
+	public QBoard(int postNo, int boardTypeId, int userNo, String postTitle, String postText,
 			LocalDateTime postRegDate, LocalDateTime postModDate, String postReleaseYn, int likeCount,
 			String imageOriName, String imageNewName, int postView) {
 		super();
 		this.postNo = postNo;
 		this.boardTypeId = boardTypeId;
-		this.localGuNo = localGuNo;
 		this.userNo = userNo;
 		this.postTitle = postTitle;
 		this.postText = postText;
@@ -77,13 +66,6 @@ public class QBoard extends Paging{
 		this.boardTypeId = boardTypeId;
 	}
 
-	public int getLocalGuNo() {
-		return localGuNo;
-	}
-
-	public void setLocalGuNo(int localGuNo) {
-		this.localGuNo = localGuNo;
-	}
 
 	public int getUserNo() {
 		return userNo;

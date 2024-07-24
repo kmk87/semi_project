@@ -12,39 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cm.board.service.QBoardService;
-import com.cm.board.vo.LocationGu;
+import com.cm.board.vo.QBoard;
 import com.cm.user.vo.User;
 
-@WebServlet("/qboard/create")
-public class QBoardCreateServlet extends HttpServlet {
+
+@WebServlet("/user/myPosts")
+public class MyQBoardPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public QBoardCreateServlet() {
+
+    public MyQBoardPostServlet() {
         super();
     }
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        User user = null;
         if (session != null) {
-            user = (User) session.getAttribute("user");
-            if (user != null) {
-                System.out.println("Servlet: User No: " + user.getUser_no());
-            } else {
-                System.out.println("Servlet: User not found in session.");
+            User currentUser = (User) session.getAttribute("user");
+            if (currentUser != null) {
+                QBoardService service = new QBoardService();
+                List<QBoard> userPosts = service.getUserPosts(currentUser.getUser_no());
+
+                request.setAttribute("userPosts", userPosts);
+                request.getRequestDispatcher("/views/user/myQBoardPost.jsp").forward(request, response);
+                return;
             }
-        } else {
-            System.out.println("Servlet: Session not found.");
         }
-
-        request.setAttribute("user", user); // 유저 정보를 request에 설정
-        RequestDispatcher view = request.getRequestDispatcher("/views/qboard/create.jsp");
-        view.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/views/user/login.jsp");
     }
-  
-    
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

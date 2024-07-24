@@ -26,7 +26,7 @@ public class QBoardCreateEndServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (ServletFileUpload.isMultipartContent(request)) {
             String dir = request.getServletContext().getRealPath("/upload");
             int maxSize = 1024 * 1024 * 10;
@@ -35,30 +35,34 @@ public class QBoardCreateEndServlet extends HttpServlet {
             MultipartRequest mr = new MultipartRequest(request, dir, maxSize, encoding, dfr);
             String oriName = mr.getOriginalFileName("imageName");
             String newName = mr.getFilesystemName("imageName");
-            System.out.println(oriName);
-            System.out.println(newName);
+            System.out.println("Original File Name: " + oriName);
+            System.out.println("New File Name: " + newName);
 
             String title = mr.getParameter("postTitle");
             String text = mr.getParameter("postText");
-            int localGuNo = Integer.parseInt(mr.getParameter("localGuNo")); // 추가된 부분
-            System.out.println("제목" + title);
-            System.out.println("내용" + text);
+            System.out.println("Title: " + title);
+            System.out.println("Text: " + text);
 
             QBoard qb = new QBoard();
             qb.setPostTitle(title);
             qb.setPostText(text);
-            qb.setLocalGuNo(localGuNo); // 추가된 부분
 
             HttpSession session = request.getSession(false);
             if (session != null) {
                 User u = (User) session.getAttribute("user");
-                int userNo = u.getUser_no();
-                qb.setUserNo(userNo);
+                if (u != null) {
+                    int userNo = u.getUser_no();
+                    qb.setUserNo(userNo);
+                } else {
+                    System.out.println("Servlet: User not found in session.");
+                }
+            } else {
+                System.out.println("Servlet: Session not found.");
             }
             qb.setImageOriName(oriName);
             qb.setImageNewName(newName);
             int result = new QBoardService().createBoard(qb);
-            System.out.println("서블릿" + result);
+            System.out.println("서블릿 result=" + result);
             RequestDispatcher view = request.getRequestDispatcher("/views/qboard/create_fail.jsp");
             if (result > 0) {
                 view = request.getRequestDispatcher("/views/qboard/create_success.jsp");
@@ -67,8 +71,7 @@ public class QBoardCreateEndServlet extends HttpServlet {
         } else {
             response.sendRedirect("/qboard/create");
         }
-	}
-
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

@@ -47,7 +47,7 @@ public class QboardLikeDao {
                 pstmt.close();
 
                 String sql2 = "INSERT INTO `question_like` (post_no, user_no, like_status) VALUES (?,?,?)";
-                pstmt = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+                pstmt = conn.prepareStatement(sql2);
                 pstmt.setInt(1, bl.getPost_no());
                 pstmt.setInt(2, bl.getUser_no());
                 pstmt.setInt(3, status);
@@ -55,14 +55,6 @@ public class QboardLikeDao {
                 result = pstmt.executeUpdate();
                 System.out.println("Insert result2: " + result);
 
-                if (result > 0) {
-                    rs = pstmt.getGeneratedKeys();
-                    if (rs.next()) {
-                        int generatedLikeNo = rs.getInt(1);
-                        bl.setLike_no(generatedLikeNo);
-                        System.out.println("Generated like_no: " + generatedLikeNo);
-                    }
-                }
             }
 
         } catch (Exception e) {

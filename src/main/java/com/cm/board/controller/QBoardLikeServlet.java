@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cm.board.service.QboardLikeService;
 import com.cm.board.vo.QBoardLike;
+import com.cm.user.vo.User;
 
 @WebServlet("/QBoard/like")
 public class QBoardLikeServlet extends HttpServlet {
@@ -21,21 +23,21 @@ public class QBoardLikeServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      int post_no=Integer.parseInt(request.getParameter("post_no"));
-	      int user_no=1;
-	      QBoardLike bl = new QBoardLike();
-	      bl.setPost_no(post_no);
-	      bl.setUser_no(user_no);
-	      System.out.println("여기보:"+bl.getLike_no());
-	      int result = new QboardLikeService().like(bl);
-	      System.out.println("서블릿1"+bl);
-	      System.out.println("서블릿2"+bl.getPost_no());
-	      System.out.println("서블릿3"+bl.getUser_no());
-	      System.out.println("서블릿4"+result);
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			User user = (User)session.getAttribute("user");
+			if(user!=null) {
+				int user_no=user.getUser_no();
+		int post_no=Integer.parseInt(request.getParameter("post_no"));
+		QBoardLike bl = new QBoardLike();
+		bl.setPost_no(post_no);
+		bl.setUser_no(user_no);
+		int result = new QboardLikeService().like(bl);
 	      
 	      RequestDispatcher view = request.getRequestDispatcher("/views/qboard/like.jsp");
 	      view.forward(request, response);
-
+			}
+		}
 	}
 
 
