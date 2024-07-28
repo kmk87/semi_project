@@ -8,7 +8,7 @@
 <link href='../../resources/css/board/create_result.css' rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%@ include file="../include/header.jsp" %>
+	<%@ include file="../include/new_header.jsp" %>
 	<%@ include file="../include/nav.jsp" %>
 	<section>
 		<div id="section_wrap">

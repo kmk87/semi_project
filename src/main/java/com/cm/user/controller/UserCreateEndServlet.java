@@ -25,8 +25,7 @@ public class UserCreateEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 디버깅 츨력
-		System.out.println("UserCreateEndServlet doGet called");
+	
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -53,27 +52,14 @@ public class UserCreateEndServlet extends HttpServlet {
 		if (answer == null || answer.isEmpty()) {
 		    request.setAttribute("error_message", "Question answer is required.");
 		    
-		    //디버깅 출력
-		    System.out.println("Question number is required.");
+		    
 		    
 		    RequestDispatcher view = request.getRequestDispatcher("/views/user/create_fail.jsp");
 		    view.forward(request, response);
 		    return;
 		}
 		
-		// 여기까지
 		
-		
-		
-		// 디버깅용 출력문
-		System.out.println("Received parameters:");
-        System.out.println("user_id: " + id);
-        System.out.println("user_pw: " + pw);
-        System.out.println("user_email: " + email);
-        System.out.println("question: " + question);
-        System.out.println("answer: " + answer);
-        System.out.println("address: " + address);
-        System.out.println("nick: " + nick);
 		
 
         int user_question = Integer.parseInt(question);

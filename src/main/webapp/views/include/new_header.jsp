@@ -1,18 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.cm.user.vo.User, java.util.*" %>
-<!DOCTYPE html>
-<html>
+<%@ page import="com.cm.user.vo.User" %>
 <head>
-<meta charset="UTF-8">
-<title></title>
 </head>
-<body>
 <header>
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a href="index.jsp" style="display: flex; align-items: center;">
+                    <a href="/" style="display: flex; align-items: center;">
                         <img src="../resources/images/집.png" alt="logo" class="img-fluid" style="height: 30px; width: 30px;">
                         <div style="font-size: 40px; padding-left: 15px; margin-top: 5px;">Share Life</div>
                     </a>
@@ -51,7 +46,26 @@
                     </a>
                 </div>
             </div>
-            <% } else { %>
+            <% } else {
+            	if("admin".equals(user.getUser_id())){%>
+            	<div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
+     			<div class="support-box text-end d-none d-xl-block"> 
+     				<a href="/inquiryBoard/list">
+     				<span class="fs-6 secondary-font text-muted">마이페이지</span>
+     				</a>
+     			</div>
+     			<div class="support-box text-end d-none d-xl-block"> 
+     				<a href="/user/logout">
+     				<span class="fs-6 secondary-font text-muted">로그아웃</span> 
+     				</a>
+     			</div>
+     			<div class="support-box text-end d-none d-xl-block">
+                    <a href="/customerCenter">
+                        <span class="fs-6 secondary-font text-muted">고객센터</span>
+                    </a>
+                </div> 
+     		</div>
+     		<%}else{ %>
             <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end"> 
      			<div class="support-box text-end d-none d-xl-block"> 
      				<a href="/user/userMyPage">
@@ -69,8 +83,8 @@
                     </a>
                 </div> 
      		</div>
-     	<!-- </div> -->
-     	<% } %>
+     		<%}%>
+     	<%}%>
      </div>
      </div>
      
@@ -83,14 +97,30 @@
             <div class="d-flex d-lg-none align-items-end mt-3">
                 <ul class="d-flex justify-content-end list-unstyled m-0">
                     <li>
-                        <a href="account.html" class="mx-3">
-                            <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                        </a>
+                    <%
+						if(user == null){
+					%>
+                    	    <a href="/user/login" class="mx-3">
+                            <iconify-icon icon="system-uicons:paper-plane" width="26" height="26"></iconify-icon>
+                        	</a>
+                        	<% }else{%>
+	                        <a href="/receivedMsg/list" class="mx-3">
+	                            <iconify-icon icon="system-uicons:paper-plane" width="26" height="26"></iconify-icon>
+	                        </a>
+                        <% }%>
                     </li>
                     <li>
-                        <a href="wishlist.html" class="mx-3">
+                    <%
+						if(user == null){
+					%>
+                    	    <a href="/user/login" class="mx-3">
                             <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                        </a>
+                        	</a>
+                        	<% }else{%>
+	                        <a href="/user/MylikeQboard" class="mx-3">
+	                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+	                        </a>
+                        <% }%>
                     </li>
                     <li>
                         <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
@@ -122,26 +152,35 @@
                     </style>
                     <ul class="dropdown-menu" aria-labelledby="pages">
                         <li>
-                            <a href="/views/qboard/create.jsp" class="dropdown-item">
+                            <a href="<%
+                            User now = (User) session.getAttribute("user");
+                            if (now != null) {
+                             out.print(request.getContextPath() + "/qboard/create");
+                            } else {
+                             out.print(request.getContextPath() + "/user/login");
+                            }%>" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/질문.png">
                                 질문 게시글
                             </a>
                         </li>
                         <li>
-                            <a href="shop.html" class="dropdown-item">
+                            <a href="<%
+                            if (now != null) {
+                             out.print(request.getContextPath() + "/saleShareBoard/createSale");
+                            } else {
+                             out.print(request.getContextPath() + "/user/login");
+                            }%>" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/판매,나눔.png">
                                 판매/나눔 게시글
                             </a>
                         </li>
                         <li>
-                        
                             <a href="<%
-    								User now = (User) session.getAttribute("user");
-    								if (now != null) {
-        							out.print(request.getContextPath() + "/flashmob/create");
-    								} else {
-        							out.print(request.getContextPath() + "/user/login");
-    								}%>" class="dropdown-item">
+                            if (now != null) {
+                             out.print(request.getContextPath() + "/flashmob/create");
+                            } else {
+                             out.print(request.getContextPath() + "/user/login");
+                            }%>" class="dropdown-item">
                                 <img class="dropdown_icon" src="../resources/images/번개.png">
                                 번개모임 게시글
                             </a>
@@ -155,13 +194,13 @@
                     </style>
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="index.jsp" class="nav-link active">Home</a>
+                            <a href="/" class="nav-link active">Home</a>
                         </li>
                         <li class="nav-item">
                             <a href="/qboard/list" class="nav-link">질문</a>
                         </li>
                         <li class="nav-item">
-                            <a href="blog.html" class="nav-link">판매/나눔</a>
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
                         </li>
                         <li class="nav-item">
                             <a href="/flashmob/list" class="nav-link">번개모임</a>
@@ -170,14 +209,26 @@
                     <div class="d-none d-lg-flex align-items-end">
                         <ul class="d-flex justify-content-end list-unstyled m-0">
                             <li>
-                                <a href="account.html" class="mx-3">
-                                    <iconify-icon icon="token:chat" width="24" height="24"></iconify-icon>
-                                </a>
+                                <%if(user == null){%>
+		                    	    <a href="/user/login" class="mx-3">
+		                            	<iconify-icon icon="system-uicons:paper-plane" width="26" height="26"></iconify-icon>
+		                        	</a>
+                        		<%}else{%>	
+			                        <a href="/receivedMsg/list" class="mx-3">
+			                            <iconify-icon icon="system-uicons:paper-plane" width="26" height="26"></iconify-icon>
+			                        </a>
+                        		<%}%>
                             </li>
                             <li>
-                                <a href="wishlist.html" class="mx-3">
+                            	<%if(user == null){%>
+                                <a href="/user/login" class="mx-3">
                                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                 </a>
+                                <%}else{%>
+                                 <a href="/user/MylikeQboard" class="mx-3">
+                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                                </a>
+                                <%} %>
                             </li>
                         </ul>
                     </div>
@@ -186,5 +237,3 @@
         </nav>
     </div>
 </header>
-</body>
-</html>

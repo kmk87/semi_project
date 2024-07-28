@@ -28,7 +28,7 @@ public class SaleShareBoardListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SaleShareList option = new SaleShareList();
-		 int i = 0;
+		
 		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
@@ -44,8 +44,6 @@ public class SaleShareBoardListServlet extends HttpServlet {
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
 
-
-		
 		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_board_list.jsp");
 		view.forward(request, response);
 	}

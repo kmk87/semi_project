@@ -43,22 +43,6 @@ public class SaleShareBoardService {
 		
 	}
 	
-	// 검색(제목+지역)조회
-	public List<SaleShareList> selectSaleSerchTitle_location(SaleShareList option){
-		Connection conn = getConnection();
-		List<SaleShareList> list = new SaleShareBoardDao().selectSaleSerchTitle_location(option,conn);
-		close(conn);
-		return list;
-	}
-	
-	// 검색(지역) 조회
-	public List<SaleShareList> selectSaleSearchLocation(SaleShareList option){
-		Connection conn = null;
-		List<SaleShareList> list = new SaleShareBoardDao().selectSaleSearchLocation(option,conn);
-		close(conn);
-		return list;
-	}
-	
 	// 게시글 갯수
 	public int selectListCount(SaleShareList option) {
 		Connection conn = getConnection();
@@ -139,6 +123,44 @@ public class SaleShareBoardService {
 		return result;
 	}
 	
+	// 정렬 - 가격낮은 순
+	public List<SaleShareList> selectArrayPrice() {
+		Connection conn = getConnection();
+		List<SaleShareList> list = new SaleShareBoardDao().selectArrayPrice(conn);
+		close(conn);
+		return list;
+		}
 	
+	// 정렬 - 조회순
+	public List<SaleShareList> selectArrayView(){
+		Connection conn = getConnection();
+		List<SaleShareList> list = new SaleShareBoardDao().selectArrayView(conn);
+		close(conn);
+		return list;
+	}
+	
+	// 정렬 - 좋아요순
+	public List<SaleShareList> selectArrayHeart(){
+		Connection conn = getConnection();
+		List<SaleShareList> list = new SaleShareBoardDao().selectArrayHeart(conn);
+		close(conn);
+		return list;
+	}
+	
+	// 마이페이지 - 내가 쓴 글
+	public List<SaleShareList> myPageList(int userNo){
+		Connection conn = getConnection();
+		List<SaleShareList> list = new SaleShareBoardDao().myPageList(userNo,conn);
+		close(conn);
+		return list;
+	}
+	
+	// 마이페이지 - 내가 좋아요한 글
+	public List<SaleShareList> myPageLkieList(int userNo){
+		Connection conn = getConnection();
+		List<SaleShareList> list = new SaleShareBoardDao().myPageLkieList(userNo,conn);
+		close(conn);
+		return list;
+	}
 }
 

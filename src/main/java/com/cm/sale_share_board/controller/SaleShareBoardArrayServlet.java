@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cm.sale_share_board.service.SaleShareBoardService;
 import com.cm.sale_share_board.vo.SaleShareList;
+import com.cm.user.vo.User;
 
 
 @WebServlet("/sale_share_board/share_array")
@@ -29,6 +31,7 @@ public class SaleShareBoardArrayServlet extends HttpServlet {
 		SaleShareList option = new SaleShareList();
 		String array = request.getParameter("array");
 		int arrayInt = Integer.parseInt(array);
+		System.out.println("정렬 : "+arrayInt);
 		String nowPage = request.getParameter("nowPage");
 		
 		if(nowPage != null) {
@@ -38,18 +41,18 @@ public class SaleShareBoardArrayServlet extends HttpServlet {
 		option.setTotalData(new SaleShareBoardService().selectListCount(option));
 		List<SaleShareList> list = new ArrayList<SaleShareList>();
 		
-//		switch(arrayInt) {
-//			case 0 : response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_list");
-//			case 1 : list = new SaleShareBoardService().selectSaleSearchText(arrayInt); break;
-//			case 2 : list = new SaleShareBoardService().selectSaleSearchNic(arrayInt); break;
-//		}
+		switch(arrayInt) {
+			case 1 : list = new SaleShareBoardService().selectArrayPrice(); break;
+			case 2 : list = new SaleShareBoardService().selectArrayView(); break;
+			case 3 : list = new SaleShareBoardService().selectArrayHeart(); break;
+		}
 		
 		
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
 
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_search_list.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/saleArray.jsp");
 		view.forward(request, response);
 		
 	}

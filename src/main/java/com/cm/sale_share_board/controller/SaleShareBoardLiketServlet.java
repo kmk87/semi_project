@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cm.sale_share_board.service.SaleShareBoardService;
 import com.cm.sale_share_board.vo.SaleShareLike;
+import com.cm.user.vo.User;
 
 
 @WebServlet("/sale_share_board/like")
@@ -27,14 +29,23 @@ public class SaleShareBoardLiketServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String post = request.getParameter("id");
 		int postNo = Integer.parseInt(post);
-	     int user_no=1;
+	     int userNo = 0;
+		 HttpSession session = request.getSession(false);
+			
+		 if(session != null) {
+			 User u = (User)session.getAttribute("user");
+			 userNo = u.getUser_no();
+		 }
 	     SaleShareLike like = new SaleShareLike();
 	     like.setPost_no(postNo);
-	     like.setLike_user_no(user_no);
+	     like.setLike_user_no(userNo);
+	     
 	     int result = new SaleShareBoardService().saleLike(like);
+	    
+	     RequestDispatcher view = request.getRequestDispatcher("/views/sale_share_board/sale_share_board_list.jsp");
+	        view.forward(request, response);  
+	     
 	      
-	      
-	     response.sendRedirect(request.getContextPath() +"/sale_share_board/sale_share_board_detail?id="+postNo);
 	   }
 
 

@@ -73,14 +73,8 @@
 	    font-weight: lighter;
 	    border: 1px solid white;
 	}
-	
 	.sent_msg:hover {
 	    background-color: #0a58ca; /* 마우스 호버 시 색상 변화 */
-	}
-	
-	.sent_msg.active {
-	    background-color: #0d6efd; /* 활성화 시 색상 유지 */
-	    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* 선택된 상태를 강조하는 그림자 효과 */
 	}
 	
 	.write_msg{
@@ -180,6 +174,7 @@
 	                alert('삭제 중 오류가 발생했습니다.');
 	            }
 	        });
+	            	alert("성공적으로 삭제되었습니다.")
 	    });
         
         // 토글 아이콘 클릭 시 답변 토글
@@ -299,110 +294,79 @@
 		<%}%>
 
     <footer id="footer" class="my-5">
-        <div class="container py-5 my-5">
+    <div class="container py-5 my-5">
         <div class="row">
-
             <div class="col-md-3">
-            <div class="footer-menu">
-                <img src="../../resources/images/logo.png" alt="logo">
-                <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="social-links">
-                <ul class="d-flex list-unstyled gap-2">
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                    </a>
-                    </li>
-
-                </ul>
+                <div class="footer-menu">
+                    <img src="../../resources/images/집.png" alt="logo">
+                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
+                   
                 </div>
             </div>
-            </div>
             <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Quick Links</h3>
-                <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">질문</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">판매/나눔</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">번개모임</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Help Center</h5>
-                <ul class="menu-list list-unstyled">
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    </li>
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">1:1문의하기</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div>
-                <h3>Our Newsletter</h3>
-                <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="search-bar border rounded-pill border-dark-subtle px-2">
-                <form class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                    <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-                </form>
+                <div class="footer-menu">
+                    <h3>Quick Links</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="index.jsp" class="nav-link">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/qboard/list" class="nav-link">질문</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="footer-menu">
+                    <h3>Help Center</h5>
+                        <ul class="menu-list list-unstyled">
+                            <li class="menu-item">
+                                <a href="/customerCenter" class="nav-link">고객센터</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/admin/inquiryForm" class="nav-link">1:1문의하기</a>
+                            </li>
+                        </ul>
+                </div>
             </div>
-
+            <div class="col-md-3">
+                <div>
+                    <h3>Our Newsletter</h3>
+                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="search-bar border rounded-pill border-dark-subtle px-2">
+                        <form class="text-center d-flex align-items-center" action="" method="">
+                            <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here"/>
+                            <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <div id="footer-bottom">
-        <div class="container">
+<div id="footer-bottom">
+    <div class="container">
         <hr class="m-0">
         <div class="row mt-3">
             <div class="col-md-6 copyright">
-            <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
+                <p class="secondary-font">© 2024 cocomong. All rights reserved.</p>
             </div>
             <div class="col-md-6 text-md-end">
-            <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a> </p>
-            <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a> </p>
+                <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
+                                                                    class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a></p>
+                <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
+                                                             class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
             </div>
         </div>
-        </div>
     </div>
+</div>
 
 
     <script src="js/jquery-1.11.0.min.js"></script>

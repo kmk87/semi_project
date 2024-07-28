@@ -43,8 +43,8 @@ public class LoginEndServlet extends HttpServlet {
                 session.setMaxInactiveInterval(60 * 30);
                 
                 // 관리자, 일반사용자 구분하여 로그인
-                if ("admin1234".equals(id) && "admin1234".equals(pw)) {
-                	response.sendRedirect(request.getContextPath() + "/admin/myPage");
+                if ("admin".equals(id) && "admin1234".equals(pw)) {
+                	response.sendRedirect(request.getContextPath() + "/index.jsp");
                 } else {
                 	response.sendRedirect(request.getContextPath() + "/index.jsp");
                 }

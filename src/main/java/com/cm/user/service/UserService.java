@@ -12,10 +12,7 @@ public class UserService {
 	 
 	 // 회원가입
 	public int createUser(User u) {
-		
-		// 디버깅 출력
-		System.out.println("UserService createUser called");
-		
+	
 		Connection conn = getConnection();
 		
 		// 디버깅 출력
@@ -32,7 +29,7 @@ public class UserService {
         } finally {
             close(conn);
         }
-        System.out.println("UserService createUser result: " + result);
+        
         return result;
     }
 	

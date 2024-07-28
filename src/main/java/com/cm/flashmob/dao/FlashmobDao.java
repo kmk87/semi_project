@@ -18,11 +18,11 @@ public class FlashmobDao {
 		ResultSet rs = null;
 		try {
 			String sql = "SELECT p.post_no,p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,COUNT(CASE WHEN l.like_status = 1 THEN l.post_no END) AS like_count,u.user_nick"
-					+" FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no";
-			if(option.getPost_title() != null) {
-				sql += " WHERE p.post_title LIKE CONCAT('%','"+option.getPost_title()+"','%')";
-			}
-			sql += " GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick";
+		               +" FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no WHERE p.post_release_yn='Y'";
+		         if(option.getPost_title() != null) {
+		            sql += " AND p.post_title LIKE CONCAT('%','"+option.getPost_title()+"','%')";
+		         }
+		         sql += " GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick";
 			
 			switch (sort) {
             case "view":
@@ -238,5 +238,176 @@ public class FlashmobDao {
 		}
 		return name;
 	}
+	public List<Flashmob> mywriteFlashmob(int userNo,Connection conn){
+		List<Flashmob> list = new ArrayList<Flashmob>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT p.post_no,p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,COUNT(CASE WHEN l.like_status = 1 THEN l.post_no END) AS like_count,u.user_nick"
+					+" FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no WHERE p.user_no = ?"
+			+" GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Flashmob resultVo = new Flashmob(
+						rs.getInt("post_no"),
+						rs.getString("flashmob_location"),
+						rs.getTimestamp("flashmob_date").toLocalDateTime(),
+						rs.getInt("flashmob_number"),
+						rs.getInt("user_no"),
+						rs.getInt("board_type_id"),
+						rs.getInt("local_gu_no"),
+						rs.getString("post_title"),
+						rs.getString("post_text"),
+						rs.getTimestamp("post_reg_date").toLocalDateTime(),
+						rs.getTimestamp("post_mod_date").toLocalDateTime(),
+						rs.getString("post_release_yn"),
+						rs.getInt("like_count"),
+						rs.getString("flashmob_ori_image_name"),
+						rs.getString("flashmob_new_image_name"),
+						rs.getInt("flashmob_post_view"),
+						rs.getString("user_nick")
+						);
+				
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<Flashmob> mylikeFlashmob(int userNo,Connection conn){
+		List<Flashmob> list = new ArrayList<Flashmob>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT p.post_no,p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,COUNT(CASE WHEN l.like_status = 1 THEN l.post_no END) AS like_count,u.user_nick"
+					+" FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no WHERE l.like_status = 1 AND l.like_user_no=?"
+			+" GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Flashmob resultVo = new Flashmob(
+						rs.getInt("post_no"),
+						rs.getString("flashmob_location"),
+						rs.getTimestamp("flashmob_date").toLocalDateTime(),
+						rs.getInt("flashmob_number"),
+						rs.getInt("user_no"),
+						rs.getInt("board_type_id"),
+						rs.getInt("local_gu_no"),
+						rs.getString("post_title"),
+						rs.getString("post_text"),
+						rs.getTimestamp("post_reg_date").toLocalDateTime(),
+						rs.getTimestamp("post_mod_date").toLocalDateTime(),
+						rs.getString("post_release_yn"),
+						rs.getInt("like_count"),
+						rs.getString("flashmob_ori_image_name"),
+						rs.getString("flashmob_new_image_name"),
+						rs.getInt("flashmob_post_view"),
+						rs.getString("user_nick")
+						);
+				
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<Flashmob> myjoinFlashmob(int userNo,Connection conn){
+		List<Flashmob> list = new ArrayList<Flashmob>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT p.post_no,p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,COUNT(CASE WHEN l.like_status = 1 THEN l.post_no END) AS like_count,u.user_nick"
+					+" FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no LEFT JOIN flashmob_application a ON p.post_no = a.post_no WHERE a.accept_status = 'Y' AND a.user_no=?"
+			+" GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Flashmob resultVo = new Flashmob(
+						rs.getInt("post_no"),
+						rs.getString("flashmob_location"),
+						rs.getTimestamp("flashmob_date").toLocalDateTime(),
+						rs.getInt("flashmob_number"),
+						rs.getInt("user_no"),
+						rs.getInt("board_type_id"),
+						rs.getInt("local_gu_no"),
+						rs.getString("post_title"),
+						rs.getString("post_text"),
+						rs.getTimestamp("post_reg_date").toLocalDateTime(),
+						rs.getTimestamp("post_mod_date").toLocalDateTime(),
+						rs.getString("post_release_yn"),
+						rs.getInt("like_count"),
+						rs.getString("flashmob_ori_image_name"),
+						rs.getString("flashmob_new_image_name"),
+						rs.getInt("flashmob_post_view"),
+						rs.getString("user_nick")
+						);
+				
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<Flashmob> popularFlashmob(Connection conn) {
+		List<Flashmob> list = new ArrayList<Flashmob>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT p.post_no,p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,COUNT(CASE WHEN l.like_status = 1 THEN l.post_no END) AS like_count,u.user_nick"
+					+ " FROM flashmob_post p LEFT JOIN flashmob_like l ON p.post_no = l.post_no LEFT JOIN user u ON p.user_no = u.user_no  GROUP BY p.post_no, p.flashmob_location,p.flashmob_date,p.flashmob_number,p.user_no,p.board_type_id,p.local_gu_no,p.post_title,p.post_text,p.post_reg_date,p.post_mod_date,p.post_release_yn,p.flashmob_ori_image_name,p.flashmob_new_image_name,p.flashmob_post_view,u.user_nick"
+					+ " ORDER BY like_count DESC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Flashmob resultVo = new Flashmob(
+						rs.getInt("post_no"),
+						rs.getString("flashmob_location"),
+						rs.getTimestamp("flashmob_date").toLocalDateTime(),
+						rs.getInt("flashmob_number"),
+						rs.getInt("user_no"),
+						rs.getInt("board_type_id"),
+						rs.getInt("local_gu_no"),
+						rs.getString("post_title"),
+						rs.getString("post_text"),
+						rs.getTimestamp("post_reg_date").toLocalDateTime(),
+						rs.getTimestamp("post_mod_date").toLocalDateTime(),
+						rs.getString("post_release_yn"),
+						rs.getInt("like_count"),
+						rs.getString("flashmob_ori_image_name"),
+						rs.getString("flashmob_new_image_name"),
+						rs.getInt("flashmob_post_view"),
+						rs.getString("user_nick")
+						);
+				
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	
 }

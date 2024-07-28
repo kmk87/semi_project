@@ -24,7 +24,7 @@ public class FlashmobApplyCheckServlet extends HttpServlet {
 		int postNo=Integer.parseInt(request.getParameter("post_no"));
 		List<FlashmobApply> list = new FlashmobApplyService().checklist(postNo);
 		request.setAttribute("resultList", list);
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/check_post.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob_board/check_post.jsp");
 		view.forward(request, response);
 	}
 

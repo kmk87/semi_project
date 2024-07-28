@@ -97,12 +97,11 @@
 
     .send_button {
       display: flex;
-      background-color: #4c9cf7cb;
+      background-color: #0d6efd;
       color: white;
       border: none;
       font-size: 20px;
       cursor: pointer;
-      border-radius: 10px;
       width: 150px;
       height: 50px;
       align-items: center;
@@ -110,16 +109,15 @@
     }
 
     .send_button:hover{
-      background-color: #4c9cf7;
+      background-color: #0a58ca;
     }
     .cancel_button{
       display: flex;
-      background-color: #f7744ccb;
+      background-color: #b6b6b6cb;
       color: white;
       border: none;
       font-size: 20px;
       cursor: pointer;
-      border-radius: 10px;
       width: 150px;
       height: 50px;
       align-items: center;
@@ -128,7 +126,7 @@
     }
 
     .cancel_button:hover{
-      background-color: #f7744c;
+      background-color: gray;
     }
     
     .input{
@@ -171,7 +169,7 @@
     }
       .text_count_div{
         float: right;
-        margin-right: 250px; /* 텍스트 카운트와 버튼 간격 조정 */
+        margin-right: 230px; /* 텍스트 카운트와 버튼 간격 조정 */
         margin-top: 20px;
         display: flex;
         font-size: 16px;
@@ -212,10 +210,9 @@
 
 			function writeMsgForm(event) {
 			   let form = document.msgFrm;
-			   console.log(!form.receiver_id.value)
-			   if (!form.receiver_id.value) {
-			        alert("받는 사람 아이디를 입력하세요.");
-			        form.receiver_id.focus();
+			   if (!form.receiver_nick.value) {
+			        alert("받는 사람 닉네임을 입력하세요.");
+			        form.receiver_nick.focus();
 			   }else if (!form.msg_title.value) {
 				     alert("제목을 입력하세요.");
 				     form.msg_title.focus();
@@ -224,15 +221,16 @@
 			        form.msg_text.focus();
 			    } else {
 			    	form.submit();
+			    	alert("쪽지 전송이 완료되었습니다.");
 			    }
 			}
 	</script>
-
+							<% 
+							    String senderNick = (String)request.getAttribute("senderNick");
+							 %>
+<%@ include file ="../include/new_header.jsp" %>
     <section style="margin-bottom:550px;">
     <%@page import="com.cm.user_page.vo.Message, java.util.*" %>
-							<% 
-							    String senderId = (String)request.getAttribute("senderId");
-							 %>
 		<div id="section_wrap">
 			<div>
 				<button class="received_msg" type="button" style="float:left" onclick="received_page();">받은 쪽지함</button>
@@ -248,10 +246,10 @@
 				<hr class="form-divider">
 				<form method="post" name="msgFrm" action="/user/msgFormEnd" style="clear:both; position:relative">
 					<div style="float:left; margin-left:150px; margin-top:20px; display:flex;">
-						<label for="receiver_id" class="label">받는 사람</label>
-						<input type="text" id="receiver_id" name="receiver_id" class="input" value="<%=senderId%>" placeholder="받는 사람 아이디를 입력하세요.">
+						<label for="receiver_nick" class="label">받는 사람</label>
+						<input type="text" id="receiver_nick" name="receiver_nick" class="input" value="<%=senderNick%>" placeholder="받는 사람 아이디를 입력하세요.">
 					</div>
-					<div style="float:left; margin-left:150px; margin-top:20px; display:flex; font-weight: lighter;"">
+					<div style="float:left; margin-left:150px; margin-top:20px; display:flex; font-weight: lighter">
 						<label for="msg_title" class="label">제목</label>
 						<input type="text" id="msg_title" name="msg_title" class="input">
 					</div>
@@ -272,111 +270,79 @@
 	</section>
 
     <footer id="footer" class="my-5">
-        <div class="container py-5 my-5">
+    <div class="container py-5 my-5">
         <div class="row">
-
             <div class="col-md-3">
-            <div class="footer-menu">
-                <img src="../../resources/images/logo.png" alt="logo">
-                <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="social-links">
-                <ul class="d-flex list-unstyled gap-2">
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                    </a>
-                    </li>
-
-                </ul>
+                <div class="footer-menu">
+                    <img src="../../resources/images/집.png" alt="logo">
+                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
+                   
                 </div>
             </div>
-            </div>
             <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Quick Links</h3>
-                <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">질문</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">판매/나눔</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">번개모임</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Help Center</h5>
-                <ul class="menu-list list-unstyled">
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    </li>
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">1:1문의하기</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div>
-                <h3>Our Newsletter</h3>
-                <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="search-bar border rounded-pill border-dark-subtle px-2">
-                <form class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                    <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-                </form>
+                <div class="footer-menu">
+                    <h3>Quick Links</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="index.jsp" class="nav-link">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/qboard/list" class="nav-link">질문</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="footer-menu">
+                    <h3>Help Center</h5>
+                        <ul class="menu-list list-unstyled">
+                            <li class="menu-item">
+                                <a href="/customerCenter" class="nav-link">고객센터</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/admin/inquiryForm" class="nav-link">1:1문의하기</a>
+                            </li>
+                        </ul>
+                </div>
             </div>
-
+            <div class="col-md-3">
+                <div>
+                    <h3>Our Newsletter</h3>
+                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="search-bar border rounded-pill border-dark-subtle px-2">
+                        <form class="text-center d-flex align-items-center" action="" method="">
+                            <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here"/>
+                            <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <div id="footer-bottom">
-        <div class="container">
+<div id="footer-bottom">
+    <div class="container">
         <hr class="m-0">
         <div class="row mt-3">
             <div class="col-md-6 copyright">
-            <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
+                <p class="secondary-font">© 2024 cocomong. All rights reserved.</p>
             </div>
             <div class="col-md-6 text-md-end">
-            <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a> </p>
-            <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a> </p>
+                <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
+                                                                    class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a></p>
+                <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
+                                                             class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
             </div>
         </div>
-        </div>
     </div>
-
+</div>
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

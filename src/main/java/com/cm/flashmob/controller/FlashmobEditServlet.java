@@ -27,7 +27,7 @@ public class FlashmobEditServlet extends HttpServlet {
 		Flashmob check = new FlashmobService().checkPost(postNo);
 		request.setAttribute("post", check);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/edit.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob_board/edit.jsp");
 		view.forward(request, response);
 	}
 

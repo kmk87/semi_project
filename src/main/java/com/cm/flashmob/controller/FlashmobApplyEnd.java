@@ -1,6 +1,7 @@
 package com.cm.flashmob.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class FlashmobApplyEnd extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
 		if(session !=null) {User user = (User)session.getAttribute("user");
 		if(user!=null) {
@@ -35,11 +37,7 @@ public class FlashmobApplyEnd extends HttpServlet {
 		fa.setUser_no(userNo);
 		int result = new FlashmobApplyService().createApply(fa);
 		
-		RequestDispatcher view  = request.getRequestDispatcher("/views/flashmob/apply_fail.jsp");
-		if(result>0) {
-			view=request.getRequestDispatcher("/views/flashmob/apply_success.jsp");
-		}
-		view.forward(request, response);}}
+		response.sendRedirect(request.getContextPath() +"/flashmob/check?post_no="+postNo);}}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

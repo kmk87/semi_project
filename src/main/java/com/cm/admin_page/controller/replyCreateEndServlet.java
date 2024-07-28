@@ -34,7 +34,7 @@ public class replyCreateEndServlet extends HttpServlet {
 		int result = new ReplyService().createReply(r);
 		
 		if(result > 0) {
-			response.sendRedirect("/board/list");
+			response.sendRedirect("/inquiryBoard/list");
 		} 
 	}
 

@@ -10,11 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cm.flashmob.service.FlashmobApplyService;
+import com.cm.flashmob.service.FlashmobLikeService;
 import com.cm.flashmob.service.FlashmobService;
 import com.cm.flashmob.vo.Flashmob;
 import com.cm.flashmob.vo.FlashmobApply;
+import com.cm.flashmob.vo.FlashmobLike;
+import com.cm.user.vo.User;
 
 
 @WebServlet("/flashmob/check")
@@ -35,22 +39,30 @@ public class FlashmobCheckPost extends HttpServlet {
 		int cnt = new FlashmobApplyService().count(post_no);
 		List<FlashmobApply> displayList = new FlashmobApplyService().showList(post_no);
 		List<FlashmobApply> list = new FlashmobApplyService().checklist(post_no);
-		System.out.println("상세 게시글"+check);
-		System.out.println("신청내역"+list);
-		System.out.println("참가자명단"+displayList);
-		System.out.println("참가자 수 : "+cnt);
+
 		request.setAttribute("displayList", displayList);
 		request.setAttribute("resultList", list);
 		request.setAttribute("post", check);
 		request.setAttribute("count", cnt);
 		request.setAttribute("name", name);
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/check_post.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob_board/check_post.jsp");
 		view.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			User user = (User)session.getAttribute("user");
+			if(user!=null) {
+				int user_no=user.getUser_no();
+		int post_no=Integer.parseInt(request.getParameter("post_no"));
+		FlashmobLike fl = new FlashmobLike();
+		fl.setPost_no(post_no);
+		fl.setLike_user_no(user_no);
+		int result = new FlashmobLikeService().like(fl);
+		
 		doGet(request, response);
-	}
+	}}}
 
 }

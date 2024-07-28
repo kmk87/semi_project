@@ -96,33 +96,7 @@
 	.write_msg:hover {
 	    background-color: #1d8cf8; /* 마우스 호버 시 색상 변화 */
 	}
-	.read_status_button {
-    background-color: #4c9cf7;
-    color: white;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    width: 100px;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    font-weight: lighter;
-}
-
-.read_status_button:hover {
-    background-color: #1d8cf8; 
-}
-
-.read_status_button[disabled] {
-    pointer-events: none; /* 클릭 이벤트 무시 */
-    opacity: 0.6; /* 비활성화된 버튼 투명도 조정 (선택적) */
-}
-
-.read_status_button[disabled]:hover {
-    background-color: inherit; /* hover 시 배경색 변경 막기 */
-    color: inherit; /* hover 시 텍스트색 변경 막기 */
-    cursor: default; /* hover 시 커서 변경 막기 */
-}
+	
 	.answer_button{
 	background-color: #0d6efd;
       color: white;
@@ -177,35 +151,6 @@
 		window.location.href = '/user/deleteReceivedMsg?messageNo=' + messageNo;
 	}
 	$(document).ready(function() {
-        $("tbody").on("click", ".read_status_button", function() {
-            var button = $(this);
-            var tr = button.closest("tr");
-            var messageNo = button.data("message-no"); // 데이터 속성에서 메시지 번호 가져오기
-            
-            // Ajax 요청
-            $.ajax({
-                url: "/receivedMsg/list",
-                type: "POST",
-                data: { message_no: messageNo },
-                success: function(response) {
-                    console.log("메시지 읽음 처리 성공");
-                    // 응답 처리 후 필요한 UI 업데이트를 수행할 수 있습니다.
-                    button.prop("disabled", true).addClass("read").text("읽음"); // 버튼을 읽음 상태로 변경
-                    tr.css("color", "gray"); // 행 전체 회색으로 변경
-                    
-                	// 다음 행을 선택하여 회색으로 변경
-                    var nextTr = tr.next("tr");
-                    if (nextTr.hasClass("answer")) {
-                        nextTr.css("color", "gray");
-                    }
-                },
-                error: function(xhr, status, error) {
-                    alert("쪽지 읽음 처리 중 오류가 발생했습니다.");
-                    console.error(error);
-                }
-            });
-        });
-
 		// 전체 선택 체크박스 클릭 시 모든 체크박스 선택/해제
         var selectAllCheckbox = document.getElementById('selectAllCheckbox');
         selectAllCheckbox.addEventListener('change', function() {
@@ -240,24 +185,57 @@
 	                alert('삭제 중 오류가 발생했습니다.');
 	            }
 	        });
+	            	alert("성공적으로 삭제되었습니다.");
 	    });
         
-        // 토글 아이콘 클릭 시 답변 토글
         const toggleIcons = document.querySelectorAll('.toggle_icon');
         toggleIcons.forEach(toggleIcon => {
-            toggleIcon.addEventListener('click', () => {
+            toggleIcon.addEventListener('click', function() {
                 // 현재 클릭된 토글 아이콘의 부모 요소인 질문을 찾음
                 const question = toggleIcon.closest('.question');
                 if (!question) return;
 
-                // 질문 옆의 답변 요소를 찾아서 toggle
-                const answer = question.nextElementSibling;
-                if (answer) {
-                    answer.classList.toggle('visible');
-                }
+                // 질문 행과 관련된 데이터 속성에서 메시지 번호를 가져옴
+                const message_no = question.querySelector('input.messageCheckbox').value;
 
-                // 토글 아이콘 회전 클래스 추가/제거
-                toggleIcon.classList.toggle('rotate');
+                // AJAX 요청으로 읽기 여부 업데이트
+                $.ajax({
+                    url: '/receivedMsg/list',  // 서버에서 읽기 여부를 업데이트할 URL
+                    type: 'POST',
+                    data: { message_no: message_no },
+                    success: function(response) {
+                        // 성공적으로 읽기 상태가 업데이트됨
+                        console.log("AJAX Success: ", response);
+
+                        // 읽은 메시지 색상 변경
+                        question.style.color = 'gray'; 
+
+                        // 다음 행을 선택하여 회색으로 변경
+                        const nextTr = question.nextElementSibling;
+                        if (nextTr && nextTr.classList.contains('answer')) {
+                            nextTr.style.color = 'gray';
+                        }
+
+                        // 질문 옆의 답변 요소를 찾아서 toggle
+                        const answer = question.nextElementSibling;
+                        if (answer) {
+                            answer.classList.toggle('visible');
+                        }
+
+                        // 토글 아이콘 회전 클래스 추가/제거
+                        toggleIcon.classList.toggle('rotate');
+                        
+                        // 읽기 상태 텍스트를 'Y'로 변경
+                        const statusCell = question.querySelector('td.read_status');
+                        if (statusCell) {
+                            statusCell.textContent = 'Y';
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("읽기 여부 업데이트 중 오류가 발생했습니다.");
+                        console.error("AJAX Error: ", error);
+                    }
+                });
             });
         });
     });
@@ -310,8 +288,6 @@
 												         String readStatus = message.getRead_status(); // 읽기 여부 가져오기
 												         
 												         // 읽기 여부에 따라 표시할 텍스트 결정
-												         boolean isDisabled = (readStatus.equals("Y")) ? true : false;
-												         String buttonLabel = (readStatus.equals("Y")) ? "읽음" : "읽지않음";
 												         String rowStyle = (readStatus.equals("Y")) ? "color: gray;" : ""; // 읽음인 경우 행 전체에 회색 스타일 적용
 							%>
 							    <tr class="question" style="<%= rowStyle %>">
@@ -320,17 +296,14 @@
 							        <td class="table_text"><%=list.get(i).getUser_nick()%>(<%=list.get(i).getUser_id()%>)</td>
 							        <td class="table_text"><%=list.get(i).getMsg_title()%><img src="../../resources/images/토글.png" style="margin-top:-5px;" class="toggle_icon"></td>
 							        <td class="table_text"><%=dtf.format(list.get(i).getMsg_reg_date())%></td>
-							        <td class="table_text">
-							        			 <button type="button" class="read_status_button<%= (readStatus.equals("Y")) ? " read" : "" %>" <%= (isDisabled) ? "disabled" : "" %>
-                    data-message-no="<%= message.getMessage_no() %>"><%= buttonLabel %></button>
-							        </td>
+							        <td class="table_text read_status"><%=list.get(i).getRead_status() %></td>
 							    </tr>
 							    <tr class="answer" style="<%= rowStyle %>">
 							        <td class="table_text" colspan="3"></td>
 							        <td class="table_text" style="text-align: center;">
-							        <div style="padding: 8px">
-							        	<%= formatInquiryText(list.get(i).getMsg_text()) %>
-							        </div>
+								        <div style="padding: 8px">
+								        	<%= formatInquiryText(list.get(i).getMsg_text()) %>
+								        </div>
 							        </td>
 							        <td class="table_text"colspan="2">
 									   <button class="answer_button" type="button" onclick="answer_page(<%= list.get(i).getSender_no() %>);">답장</button>
@@ -375,112 +348,80 @@
 		</div>
 		<%}%>
 
-    <footer id="footer" class="my-5">
-        <div class="container py-5 my-5">
+   <footer id="footer" class="my-5">
+    <div class="container py-5 my-5">
         <div class="row">
-
             <div class="col-md-3">
-            <div class="footer-menu">
-                <img src="../../resources/images/logo.png" alt="logo">
-                <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="social-links">
-                <ul class="d-flex list-unstyled gap-2">
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                    </a>
-                    </li>
-
-                </ul>
+                <div class="footer-menu">
+                    <img src="../../resources/images/집.png" alt="logo">
+                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
+                   
                 </div>
             </div>
-            </div>
             <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Quick Links</h3>
-                <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">질문</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">판매/나눔</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">번개모임</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Help Center</h5>
-                <ul class="menu-list list-unstyled">
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    </li>
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">1:1문의하기</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div>
-                <h3>Our Newsletter</h3>
-                <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="search-bar border rounded-pill border-dark-subtle px-2">
-                <form class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                    <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-                </form>
+                <div class="footer-menu">
+                    <h3>Quick Links</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="index.jsp" class="nav-link">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/qboard/list" class="nav-link">질문</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="footer-menu">
+                    <h3>Help Center</h5>
+                        <ul class="menu-list list-unstyled">
+                            <li class="menu-item">
+                                <a href="/customerCenter" class="nav-link">고객센터</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/admin/inquiryForm" class="nav-link">1:1문의하기</a>
+                            </li>
+                        </ul>
+                </div>
             </div>
-
+            <div class="col-md-3">
+                <div>
+                    <h3>Our Newsletter</h3>
+                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="search-bar border rounded-pill border-dark-subtle px-2">
+                        <form class="text-center d-flex align-items-center" action="" method="">
+                            <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here"/>
+                            <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <div id="footer-bottom">
-        <div class="container">
+<div id="footer-bottom">
+    <div class="container">
         <hr class="m-0">
         <div class="row mt-3">
             <div class="col-md-6 copyright">
-            <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
+                <p class="secondary-font">© 2024 cocomong. All rights reserved.</p>
             </div>
             <div class="col-md-6 text-md-end">
-            <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a> </p>
-            <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a> </p>
+                <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
+                                                                    class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a></p>
+                <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
+                                                             class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
             </div>
         </div>
-        </div>
     </div>
-
+</div>
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

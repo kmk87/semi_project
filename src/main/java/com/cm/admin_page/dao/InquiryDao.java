@@ -17,10 +17,11 @@ public class InquiryDao {
 		int result = 0;
 		
 		try {
-			String sql = "INSERT INTO `inquiry_details` (user_no,inquiry_title,inquiry_text) VALUES (1,?,?)";
+			String sql = "INSERT INTO `inquiry_details` (user_no,inquiry_title,inquiry_text) VALUES (?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, i.getInquiry_title());
-			pstmt.setString(2, i.getInquiry_text());
+			pstmt.setInt(1, i.getUser_no());
+			pstmt.setString(2, i.getInquiry_title());
+			pstmt.setString(3, i.getInquiry_text());
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

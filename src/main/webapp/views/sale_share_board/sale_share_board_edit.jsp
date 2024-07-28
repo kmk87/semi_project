@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/paging.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/createSale.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/createSale.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -36,7 +36,6 @@
         <%@ page import="java.time.Duration, java.time.format.DateTimeFormatter" %>
         <% SaleShareList list = (SaleShareList)request.getAttribute("list");%>
     <section id="section_id">
-        <img src="../../resources/img/free-icon-heart-1077035.png" id="heart_id">
         <input type="button" value="1:1채팅" id="chat_id">
         
         <form action="/sale_share_board/sale_share_board_edit_end" method="post" enctype="multipart/form-data" id="form_id" name="form_id">
