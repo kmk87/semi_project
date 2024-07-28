@@ -24,10 +24,10 @@ public class replyMsgServlet extends HttpServlet {
 		
 		int senderNo = Integer.parseInt(senderNoStr);
 		
-		String senderId = new MsgService().selectMsg(senderNo);
+		String senderNick = new MsgService().selectMsg(senderNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/user_page/reply_msg.jsp");
-		request.setAttribute("senderId", senderId);
+		request.setAttribute("senderNick", senderNick);
 		view.forward(request, response);
 	}
 

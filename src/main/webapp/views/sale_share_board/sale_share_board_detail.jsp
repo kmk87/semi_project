@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/paging.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/createSale.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/createSale.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,14 +37,17 @@
         <%@ page import="java.time.LocalDateTime, java.time.format.DateTimeFormatter" %>
         <%@ page import="java.time.Duration, java.time.format.DateTimeFormatter" %>
         <% SaleShareList list = (SaleShareList)request.getAttribute("list");%>
+        <% User u = (User)session.getAttribute("user"); %>
 	<section id="section_id">
 		<span class="user-nic">
    		<%= list.getUser_nic() %>
 		</span>
+		<% if(u != null){ %>
 		<span class="chat-button">
-    		<input type="button" value="쪽지" id="chat_id">
-            <a href="<%= request.getContextPath() %>/sale_share_board/like?id=<%= list.getPost_no() %>" id="likeId">좋아요</a>            
+    		<a href="/user/msgForm" id="chat_id">쪽지</a>
+            <a href="<%= request.getContextPath() %>/sale_share_board/like?id=<%= list.getPost_no() %>" id="likeId" onclick="change(event)">좋아요</a>   
 		</span>
+		<%} %>
         <form action="/views/sale_share_board/createEnd" method="post" enctype="multipart/form-data" id="form_id" name="form_id">
             <div class="form_group">
                 <img src="../../upload/<%= list.getImage_new_name() %>" width="200px" height="200px">
@@ -94,16 +97,13 @@
         <input type="button" value="목록" onclick = "window.history.back();" style="float:right; margin-right :20px">
         <!-- 수정하기 -->
         <% int user_no = list.getUser_no(); %>
-        <% %>
-        <% User u = (User)session.getAttribute("user");
-        if (u != null && u.getUser_no() == user_no) {%>
+        
+        <% if (u != null && u.getUser_no() == user_no) {%>
         <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_edit?id=<%= list.getPost_no()%>"> 수정하기</a>
         <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_delete?id=<%= list.getPost_no() %>">삭제하기</a>
         <a href="<%= request.getContextPath() %>/sale_share_board/sale_share_board_pull?id=<%=list.getPost_no() %>">끌어올리기</a>
-        		
-        	<%}else{%>
-        	<%}%>
-        	
+        <%} else{ %>
+        <%} %>
     </section>
     <script>
     document.getElementById("price_id").addEventListener("keyup", function() {
@@ -115,7 +115,6 @@
             free_checkBox.checked = false;
         }
     });
-
     </script>
 		<script src="js/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

@@ -27,10 +27,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../../resources/css/user/find_pw_success.css"> -->
 <meta charset="UTF-8">
 </head>
 <body>
@@ -40,20 +36,13 @@
 			<div class="word">
 				<h3>회원가입</h3>
 				<br>
-				<!-- <span>※아이디는 추후에 수정할 수 없습니다.
-				<br>신중하게 선택해주세요.</span> -->
 			</div><br>
 			<div class="create_account_form">
 				<form name="create_account_form" action="/user/createEnd" method="post">
-					<!-- <label for="user_name">이름</label>
-					<input type="text" name="user_name" placeholder="이름"> <br> -->
 					<label for="user_id">아이디</label>
 					<input type="text" id="user_id" name="user_id" placeholder="영문6글자이상 10자이하">
 					<button type="button" onclick="idCheck();" id="idBoxBottomRight" name="idBoxBottomRight" disabled>중복확인</button>
 					<div id="idCheckBox"></div>
-					<!-- 아이디 중복 체크 여부  -->
-					<!-- <input type="hidden" name="idDuplication" value="idUncheck"/>
-					<div id="idCheckBox"></div><br> -->
 					<label for="user_pw">비밀번호</label>
 					<input type="password" name="user_pw" id="user_pw" placeholder="비밀번호"> <br>
 					<label for="user_pw_check">비밀번호 확인</label>
@@ -63,7 +52,7 @@
 					<button type="button" onclick="nickCheck();" id="nickBoxBottomRight" name="nickBoxBottomRight" disabled>중복확인</button>
 					<div id="nickCheckBox"></div>
 					
-					<label for="user_question">아이디, 비밀번호 확인용 질문입니다.</label><br>
+					<label for="user_question">비밀번호 확인용 질문입니다.</label><br>
 					<select  id="user_question" name="user_question">
 						<option value=0>선택해주세요.</option>
 						<option value=1>어머니의 성함은?</option>

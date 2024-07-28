@@ -16,8 +16,7 @@ public class UserDao {
 
 	// 회원가입
 	public int createUser(User u, Connection conn) {
-		// 디버깅 출력
-		System.out.println("UserDao createUser called");
+		
 
 		PreparedStatement pstmt = null;
 
@@ -37,16 +36,14 @@ public class UserDao {
 
 			result = pstmt.executeUpdate();
 
-			// 디버깅용 출력
-			System.out.println("Insert SQL Result: " + result);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		// 디버깅 출력
-		System.out.println("UserDao createUser result: " + result);
+		
 		return result;
 	}
 

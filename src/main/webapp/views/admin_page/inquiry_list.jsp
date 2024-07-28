@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
     rel="stylesheet">
-	<link href="../../resources/css/list.css" rel="stylesheet" type="text/css">
+	<link href="../../resources/css/admin_list.css" rel="stylesheet" type="text/css">
 	<link href="../../resources/css/style.css" rel="stylesheet" type="text/css">
 	<link href="../../resources/css/paging.css" rel="stylesheet" type="text/css">
     </head>
@@ -77,9 +77,6 @@
       font-weight:lighter;
 	}
 	
-		.answer_no_button:hover {
-	    background-color: #0a58ca; /* 마우스 호버 시 색상 변화 */
-	}
 		.answer_yes_button{
 	background-color: #b6b6b6cb;
       color: white;
@@ -101,7 +98,7 @@
     <section>
 		<div id="section_wrap">
 			<div class="word">
-				<span style="font-size: 40px;">문의내역 </span>
+				<span style="font-size: 40px;">문의내역</span>
 			</div><br>
 			<div class="book_list">
 				<table>
@@ -152,10 +149,21 @@
 							    </tr>
 								<tr class="answer">
 							        <td class="table_text" colspan="2"></td>
-							        <td class="table_text"><%= list.get(i).getInquiry_text() %></td>
+							        <td class="table_text" style="text-align:left;">
+								        <div  style="padding: 15px;">
+								        	<%= formatInquiryText(list.get(i).getInquiry_text()) %>
+								        </div>
+							        </td>
 							        <td class="table_text" colspan="3"></td>
 							    </tr>
-							    
+							    <%!
+								        String formatInquiryText(String text) {
+								            if (text == null) {
+								                return "";
+								            }
+								            return text.replace("\n", "<br>");
+								        }
+								    %>
 							   <%} %>
 						</tbody>
 				</table>
@@ -186,110 +194,79 @@
 		<%}%>
 
     <footer id="footer" class="my-5">
-        <div class="container py-5 my-5">
+    <div class="container py-5 my-5">
         <div class="row">
-
             <div class="col-md-3">
-            <div class="footer-menu">
-                <img src="../../resources/images/logo.png" alt="logo">
-                <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="social-links">
-                <ul class="d-flex list-unstyled gap-2">
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                    </a>
-                    </li>
-                    <li class="social">
-                    <a href="#">
-                        <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                    </a>
-                    </li>
-
-                </ul>
+                <div class="footer-menu">
+                    <img src="../../resources/images/집.png" alt="logo">
+                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
+                   
                 </div>
             </div>
-            </div>
             <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Quick Links</h3>
-                <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">질문</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">판매/나눔</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="nav-link">번개모임</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div class="footer-menu">
-                <h3>Help Center</h5>
-                <ul class="menu-list list-unstyled">
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    </li>
-                    <li class="menu-item">
-                    <a href="#" class="nav-link">1:1문의하기</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-            <div class="col-md-3">
-            <div>
-                <h3>Our Newsletter</h3>
-                <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-                <div class="search-bar border rounded-pill border-dark-subtle px-2">
-                <form class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                    <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-                </form>
+                <div class="footer-menu">
+                    <h3>Quick Links</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="index.jsp" class="nav-link">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/qboard/list" class="nav-link">질문</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/sale_share_board/sale_share_board_list" class="nav-link">판매/나눔</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/flashmob/list" class="nav-link">번개모임</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="footer-menu">
+                    <h3>Help Center</h5>
+                        <ul class="menu-list list-unstyled">
+                            <li class="menu-item">
+                                <a href="/customerCenter" class="nav-link">고객센터</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/admin/inquiryForm" class="nav-link">1:1문의하기</a>
+                            </li>
+                        </ul>
+                </div>
             </div>
-
+            <div class="col-md-3">
+                <div>
+                    <h3>Our Newsletter</h3>
+                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="search-bar border rounded-pill border-dark-subtle px-2">
+                        <form class="text-center d-flex align-items-center" action="" method="">
+                            <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here"/>
+                            <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <div id="footer-bottom">
-        <div class="container">
+<div id="footer-bottom">
+    <div class="container">
         <hr class="m-0">
         <div class="row mt-3">
             <div class="col-md-6 copyright">
-            <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
+                <p class="secondary-font">© 2024 cocomong. All rights reserved.</p>
             </div>
             <div class="col-md-6 text-md-end">
-            <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a> </p>
-            <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
-                class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a> </p>
+                <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/" target="_blank"
+                                                                    class="text-decoration-underline fw-bold text-black-50"> TemplatesJungle</a></p>
+                <p class="secondary-font">Distributed by <a href="https://themewagon.com/" target="_blank"
+                                                             class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
             </div>
         </div>
-        </div>
     </div>
+</div>
 
 
     <script src="js/jquery-1.11.0.min.js"></script>

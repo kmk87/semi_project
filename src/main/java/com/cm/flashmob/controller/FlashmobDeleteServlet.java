@@ -25,8 +25,7 @@ public class FlashmobDeleteServlet extends HttpServlet {
 		int post_no = Integer.parseInt(request.getParameter("post_no"));
 		int result = new FlashmobService().delete(post_no);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/delete.jsp");
-		view.forward(request, response);
+		response.sendRedirect(request.getContextPath() +"/flashmob/list");
 		
 	}
 

@@ -31,13 +31,13 @@ public class MsgWriteEndServlet extends HttpServlet {
             if (user != null) {
                 int userNo = user.getUser_no();
 		
-				String receiver_id = request.getParameter("receiver_id");
+				String receiver_nick = request.getParameter("receiver_nick");
 				String msg_title = request.getParameter("msg_title");
 				String msg_text = request.getParameter("msg_text");
 				
 				Message m = new Message();
 				m.setSender_no(userNo);
-				m.setUser_id(receiver_id);
+				m.setUser_nick(receiver_nick);
 				m.setMsg_title(msg_title);
 				m.setMsg_text(msg_text);
 				System.out.println(msg_text);

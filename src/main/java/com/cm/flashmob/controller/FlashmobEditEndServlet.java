@@ -72,13 +72,7 @@ public class FlashmobEditEndServlet extends HttpServlet {
 			f.setLocal_gu_no(local_gu);
 			
 			int result = new FlashmobService().editFlashmob(postNo,userNo,boardtype,local_gu,f);
-			RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/edit_fail.jsp");
-			if(result>0) {
-				view=request.getRequestDispatcher("/views/flashmob/edit_success.jsp");
-			}
-			view.forward(request, response);
-		}else {
-			response.sendRedirect("flashmob/edit");
+			response.sendRedirect(request.getContextPath() +"/flashmob/list");
 		}}}
 	}
 

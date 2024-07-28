@@ -75,13 +75,7 @@ public class FlashmobCreateEndServlet extends HttpServlet {
 			System.out.println(f);
 			int result = new FlashmobService().createFlashmob(boardtype,local_gu,f);
 			System.out.println(result);
-			RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/create_fail.jsp");
-			if(result>0) {
-				view=request.getRequestDispatcher("/views/flashmob/create_success.jsp");
-			}
-			view.forward(request, response);
-		}else {
-			response.sendRedirect("flashmob/create");
+			response.sendRedirect(request.getContextPath() +"/flashmob/list");
 		}}}
 	}
 

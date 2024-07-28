@@ -135,11 +135,11 @@ public class MsgDao {
 		int receiver_no = 0;
 		
 		try {
-			String sql1 = "SELECT user_no FROM user WHERE user_id = ?";
+			String sql1 = "SELECT user_no FROM user WHERE user_nick = ?";
 			pstmt = conn.prepareStatement(sql1);
-			pstmt.setString(1, m.getUser_id());
+			pstmt.setString(1, m.getUser_nick());
 			rs = pstmt.executeQuery();
-
+			
 			    // 조회된 결과가 있을 경우에만 senderNo 설정
 			    if (rs.next()) {
 			        receiver_no = rs.getInt("user_no");
@@ -204,9 +204,9 @@ public class MsgDao {
 	public String selectMsg(int senderNo, Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String receiverId = "";
+		String receiverNick = "";
 		try {
-			String sql = "SELECT u.user_id "
+			String sql = "SELECT u.user_nick "
 					+ "FROM `user` u "
 					+ "JOIN received_messages r ON u.user_no = r.sender_no "
 					+ "WHERE r.sender_no = ?";
@@ -215,7 +215,7 @@ public class MsgDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				receiverId = rs.getString("user_id");
+				receiverNick = rs.getString("user_nick");
 			}
 			
 		} catch (Exception e) {
@@ -224,7 +224,7 @@ public class MsgDao {
 			close(rs);
 			close(pstmt);
 		}
-		return receiverId;
+		return receiverNick;
 	}
 
 	public int[] deleteReceivedMsg(int[] messageNoArray, Connection conn) {

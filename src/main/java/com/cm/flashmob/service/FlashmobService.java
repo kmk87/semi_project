@@ -52,4 +52,28 @@ public class FlashmobService {
 		close(conn);
 		return name;
 	}
+	public List<Flashmob> mywriteFlashmob(int userNo){
+		Connection conn = getConnection();
+		List <Flashmob> list = new FlashmobDao().mywriteFlashmob(userNo,conn);
+		close(conn);
+		return list;
+	}
+	public List<Flashmob> mylikeFlashmob(int userNo){
+		Connection conn = getConnection();
+		List <Flashmob> list = new FlashmobDao().mylikeFlashmob(userNo,conn);
+		close(conn);
+		return list;
+	}
+	public List<Flashmob> myjoinFlashmob(int userNo){
+		Connection conn = getConnection();
+		List <Flashmob> list = new FlashmobDao().myjoinFlashmob(userNo,conn);
+		close(conn);
+		return list;
+	}
+	public List<Flashmob> popularFlashmob() {
+		Connection conn = getConnection();
+		List <Flashmob> list = new FlashmobDao().popularFlashmob(conn);
+		close(conn);
+		return list;
+	}
 }

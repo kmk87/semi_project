@@ -40,7 +40,7 @@ public class FlashmobListServlet extends HttpServlet {
 		List<Flashmob> list = new FlashmobService().selectFlashmobList(sort,option);
 		request.setAttribute("paging", option);
 		request.setAttribute("resultList", list);
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/list.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob_board/list.jsp");
 		view.forward(request, response);
 	}
 

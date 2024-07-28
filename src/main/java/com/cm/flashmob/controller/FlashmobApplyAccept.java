@@ -23,11 +23,10 @@ public class FlashmobApplyAccept extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int app_no = Integer.parseInt(request.getParameter("applyNo"));
-		System.out.println("여기보세요 : "+app_no);
 		String yn = request.getParameter("yn");
 		int result = new FlashmobApplyService().accept(yn,app_no);
-		RequestDispatcher view = request.getRequestDispatcher("/views/flashmob/accept.jsp");
-		view.forward(request, response);
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+	    response.sendRedirect(request.getContextPath() +"/flashmob/check?post_no="+postNo);
 	}
 
 

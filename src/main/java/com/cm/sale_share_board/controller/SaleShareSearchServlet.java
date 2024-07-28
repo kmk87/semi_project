@@ -45,8 +45,6 @@ public class SaleShareSearchServlet extends HttpServlet {
 		switch(search) {
 			case "1" : list = new SaleShareBoardService().selectSaleBoardList(option); break;
 			case "2" : list = new SaleShareBoardService().selectSaleSearchText(option); break;
-			case "3" : list = new SaleShareBoardService().selectSaleSerchTitle_location(option); break;
-			case "4" : list = new SaleShareBoardService().selectSaleSearchLocation(option); break;
 		}
 		
 		

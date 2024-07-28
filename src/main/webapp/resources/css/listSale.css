@@ -6,9 +6,8 @@ a{
 	justify-content: center;	
 }
 select {
-	margin : 100px;
+	margin : 200px;
 }
-
 #section {
     max-width: 1200px;
     margin: 200px 20px 300px 200px;
@@ -28,17 +27,18 @@ input {
 }
 
 #sale_share .circle{
+	margin-top : 100px;
     border : 1px solid black;
-    width : 1000px;
-    height : 1000px;
     background-color : orange;
     border-radius : 50%;
+    justify-content: center;
 }
 #sale_share{
+	margin-top :100px;
 	margin-left : 500px;
 }
 #section {
-	margin-top : 250px;
+	margin-top : 200px;
 }
 #prod_category .cate {
     align-items: center;
@@ -62,12 +62,12 @@ input {
     text-align: center;
 }
 
-.item img {
+/* .item img {
     width: 200px;
     height: 200px;
     border: 1px solid black;
     margin-bottom: 10px;
-}
+} */
 .item p{
 	margin-bottom : -10px;
 }
@@ -104,10 +104,29 @@ img {
     height: 100px;
 }
 
+#arraySelect {
+	margin-top:10px;
+	padding : 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    width : 150px;
+    
+}
+
 a:hover {
     color: #ff5722;
 }
+.list {
+    position: relative; /* 부모 요소에 position을 지정해야 z-index가 동작합니다. */
+    z-index: 1; /* 테이블의 층위를 설정합니다. */
+}
 
+#sale_share, #arrayForm {
+    position: relative; /* 필요에 따라 position 속성을 설정합니다. */
+    z-index: 2; /* 셀렉트 박스와 버튼의 층위를 설정합니다. */
+}
 .center {
     text-align: center;
     margin: 20px 0;

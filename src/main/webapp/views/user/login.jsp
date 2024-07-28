@@ -32,7 +32,7 @@
 	<link href='../../resources/css/user/login.css' rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%@ include file ="../include/new_header.jsp" %>
+	<%-- <%@ include file ="../include/new_header.jsp" %> --%>
 	
 	<section style="margin-top: 150px;">
 		<div class="login-container" id="section_wrap" style="margin: 330px auto 0">

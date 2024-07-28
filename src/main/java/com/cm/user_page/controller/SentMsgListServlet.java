@@ -43,6 +43,11 @@ public class SentMsgListServlet extends HttpServlet {
 				
 				List<Message> list = new MsgService().selectSentMsgList(option);
 				
+				// User_id 마스킹 처리
+		        for (Message msg : list) {
+		            msg.setUser_id(maskEndCharacters(msg.getUser_id(), 3)); // User_id 끝에서 세 자리 * 처리
+		        }
+				
 				RequestDispatcher view = request.getRequestDispatcher("/views/user_page/sent_msg_list.jsp");
 				request.setAttribute("resultList", list);
 				request.setAttribute("paging", option);
@@ -51,6 +56,16 @@ public class SentMsgListServlet extends HttpServlet {
         }
 	}
 
+	private String maskEndCharacters(String str, int numCharsToMask) {
+        if (str == null || str.length() == 0 || numCharsToMask <= 0) {
+            return str;
+        }
+        
+        int startIndex = Math.max(str.length() - numCharsToMask, 0);
+        String maskedPart = str.substring(startIndex).replaceAll(".", "*");
+        return str.substring(0, startIndex) + maskedPart;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
