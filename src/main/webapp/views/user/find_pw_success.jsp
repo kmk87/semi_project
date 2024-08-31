@@ -19,6 +19,7 @@
     <h4>비밀번호 찾기 성공</h4>
     <p>비밀번호: ${userPw}</p>
     <a href="/user/login">로그인</a>
+    <a href="/user/pwChange">비밀번호 변경</a>
     </div>
     </div>
 </body>
